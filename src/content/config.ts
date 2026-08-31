@@ -13,6 +13,11 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     cover: z.string().optional(),
     draft: z.boolean().default(false),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    primaryKeyword: z.string().optional(),
+    secondaryKeywords: z.array(z.string()).or(z.string()).optional(),
+    keywords: z.array(z.string()).or(z.string()).optional(),
   }),
 });
 

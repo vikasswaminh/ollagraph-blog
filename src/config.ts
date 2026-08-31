@@ -9,8 +9,9 @@ export const SITE = {
   url: 'https://blogs.ollagraph.com',
   marketingUrl: 'https://ollagraph.com',
   marketingLabel: 'ollagraph.com',
+  contactUrl: 'https://ollagraph.com',
   author: 'OllaGraph Team',
-  accent: '#0ea5e9',
+  accent: '#E8443A',
   tagline: 'See how it all connects.',
   locale: 'en',
 } as const;
@@ -19,4 +20,14 @@ export const NAV = [
   { label: 'Blog', href: '/' },
   { label: 'Tags', href: '/tags/' },
   { label: 'About', href: '/about/' },
+];
+
+export const PRODUCT_LINKS = [
+  { label: 'Web Scraping API', href: 'https://ollagraph.com' },
+  { label: 'AI Search Intelligence', href: 'https://ollagraph.com' },
+  { label: 'Browser Automation', href: 'https://ollagraph.com' },
+  { label: 'Data Extraction', href: 'https://ollagraph.com' },
+  { label: 'RAG Pipeline Tools', href: 'https://ollagraph.com' },
+  { label: 'Citation Monitoring', href: 'https://ollagraph.com' },
+  { label: 'AEO Analytics', href: 'https://ollagraph.com' },
 ];

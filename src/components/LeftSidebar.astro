@@ -1,0 +1,18 @@
+---
+import { getPublishedPosts } from '../utils/posts';
+
+const allPosts = await getPublishedPosts();
+const posts = allPosts.slice(0, 6);
+---
+
+<aside class="sidebar sidebar-left">
+  <span class="sidebar-badge">Popular</span>
+  <ul class="sidebar-links">
+    {posts.map((p) => (
+      <li>
+        <a href={`/blog/${p.slug}/`}>{p.data.title}</a>
+      </li>
+    ))}
+  </ul>
+  <a class="sidebar-view-all" href="/tags/">View All →</a>
+</aside>

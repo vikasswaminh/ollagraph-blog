@@ -9,6 +9,11 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string | string[];
+  keywords?: string | string[];
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -16,13 +21,34 @@ interface Props {
     tags?: string[];
   };
 }
-const { title = SITE.title, description, image, article } = Astro.props;
+
+const {
+  title = SITE.title,
+  description,
+  image,
+  metaTitle,
+  metaDescription,
+  primaryKeyword,
+  secondaryKeywords,
+  keywords,
+  article,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang={SITE.locale} style={`--accent:${SITE.accent}`}>
   <head>
-    <BaseHead title={title} description={description} image={image} article={article} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      metaTitle={metaTitle}
+      metaDescription={metaDescription}
+      primaryKeyword={primaryKeyword}
+      secondaryKeywords={secondaryKeywords}
+      keywords={keywords}
+      article={article}
+    />
   </head>
   <body>
     <Header />

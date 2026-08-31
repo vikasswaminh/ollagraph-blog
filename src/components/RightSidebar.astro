@@ -1,0 +1,22 @@
+---
+import { SITE, PRODUCT_LINKS } from '../config';
+---
+
+<aside class="sidebar sidebar-right">
+  <span class="sidebar-badge">🚀 Product</span>
+  <ul class="sidebar-links">
+    {PRODUCT_LINKS.map((link) => (
+      <li>
+        <a href={link.href} target="_blank" rel="noopener noreferrer">
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <a class="sidebar-view-all" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
+    View All Features →
+  </a>
+  <a class="sidebar-cta" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
+    + Get Started Free
+  </a>
+</aside>

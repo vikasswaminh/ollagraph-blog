@@ -1,17 +1,40 @@
 ---
-import { SITE } from '../config';
+import { SITE, NAV } from '../config';
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
+    <div class="footer-brand">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">{SITE.brand}</span>
+        <span class="brand-sub">Blog</span>
+      </a>
+      <p class="footer-tagline">{SITE.description}</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        {NAV.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>OllaGraph</h4>
+      <ul>
+        <li><a href={SITE.marketingUrl}>{SITE.marketingLabel}</a></li>
+        <li><a href="/rss.xml">RSS Feed</a></li>
+        <li><a href="/tags/">All Tags</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
     <p>© {year} {SITE.brand}. All rights reserved.</p>
-    <p class="footer-links">
-      <a href={SITE.marketingUrl}>{SITE.marketingLabel}</a>
-      <span aria-hidden="true">·</span>
-      <a href="/rss.xml">RSS</a>
-      <span aria-hidden="true">·</span>
-      <a href="/tags/">Tags</a>
-    </p>
+    <p>{SITE.tagline}</p>
   </div>
 </footer>

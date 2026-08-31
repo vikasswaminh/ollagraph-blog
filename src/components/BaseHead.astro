@@ -5,6 +5,11 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string | string[];
+  keywords?: string | string[];
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
@@ -13,31 +18,80 @@ interface Props {
   };
 }
 
-const { title, description = SITE.description, image, article } = Astro.props;
+const {
+  title,
+  description = SITE.description,
+  image,
+  metaTitle,
+  metaDescription,
+  primaryKeyword,
+  secondaryKeywords,
+  keywords,
+  article,
+} = Astro.props;
+
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
-const fullTitle = title === SITE.title ? title : `${title} · ${SITE.brand} Blog`;
+
+// Determine final title
+const activeTitle = metaTitle || title;
+const fullTitle = activeTitle === SITE.title ? activeTitle : `${activeTitle} · ${SITE.brand} Blog`;
+
+// Determine final description
+const activeDescription = metaDescription || description;
+
+// Format keywords
+const secondaryKeywordsStr = secondaryKeywords
+  ? Array.isArray(secondaryKeywords)
+    ? secondaryKeywords.join(', ')
+    : secondaryKeywords
+  : '';
+
+let allKeywordsList: string[] = [];
+if (primaryKeyword) allKeywordsList.push(primaryKeyword);
+if (secondaryKeywordsStr) allKeywordsList.push(secondaryKeywordsStr);
+if (keywords) {
+  if (Array.isArray(keywords)) allKeywordsList.push(...keywords);
+  else allKeywordsList.push(keywords);
+}
+if (article?.tags && article.tags.length > 0) {
+  allKeywordsList.push(...article.tags);
+}
+const allKeywordsStr = allKeywordsList.join(', ');
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="canonical" href={canonical} />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Google Fonts — Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
 <title>{fullTitle}</title>
-<meta name="description" content={description} />
+<meta name="description" content={activeDescription} />
+
+{primaryKeyword && <meta name="primary-keyword" content={primaryKeyword} />}
+{secondaryKeywordsStr && <meta name="secondary-keywords" content={secondaryKeywordsStr} />}
+{allKeywordsStr && <meta name="keywords" content={allKeywordsStr} />}
 
 <meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:title" content={fullTitle} />
-<meta property="og:description" content={description} />
+<meta property="og:description" content={activeDescription} />
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={`${SITE.brand} Blog`} />
 {ogImage && <meta property="og:image" content={ogImage} />}
 
 <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
 <meta name="twitter:title" content={fullTitle} />
-<meta name="twitter:description" content={description} />
+<meta name="twitter:description" content={activeDescription} />
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
 {
@@ -50,15 +104,10 @@ const fullTitle = title === SITE.title ? title : `${title} · ${SITE.brand} Blog
         <meta property="article:modified_time" content={article.modifiedTime} />
       )}
       {article.author && <meta property="article:author" content={article.author} />}
-      {(article.tags ?? []).map((t) => <meta property="article:tag" content={t} />)}
+      {article.tags &&
+        article.tags.map((t) => <meta property="article:tag" content={t} />)}
     </>
   )
 }
 
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link
-  rel="alternate"
-  type="application/rss+xml"
-  title={`${SITE.brand} Blog`}
-  href="/rss.xml"
-/>

@@ -4,13 +4,25 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
+<!-- Top Royal Blue Announcement Strip -->
+<div class="top-blue-bar">
+  <div class="container-header top-blue-inner" style="justify-content: center;">
+    <a href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer" class="top-blue-center-link">
+      <span class="top-blue-pill">NEW</span>
+      <span class="top-blue-text">1,000 free credits on signup · 147 endpoints, one API key, MCP-ready →</span>
+    </a>
+  </div>
+</div>
+
+<!-- Main White Header & Navigation -->
 <header class="site-header">
-  <div class="container header-inner">
+  <div class="container-header header-inner">
     <a class="brand" href="/">
       <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">{SITE.brand}</span>
-      <span class="brand-sub">Blog</span>
+      <span class="brand-badge-pill">BLOG</span>
     </a>
+
     <nav class="nav" aria-label="Primary">
       {
         NAV.map((item) => (
@@ -19,7 +31,31 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           </a>
         ))
       }
-      <a class="nav-cta" href={SITE.marketingUrl}>{SITE.marketingLabel} ↗</a>
+      <a class="nav-link nav-link-external" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
+        Docs ↗
+      </a>
+      <a class="nav-cta" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
+        Visit {SITE.brand} →
+      </a>
     </nav>
+
+    <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 6h16"></path>
+        <path d="M4 12h16"></path>
+        <path d="M4 18h16"></path>
+      </svg>
+    </button>
   </div>
 </header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>

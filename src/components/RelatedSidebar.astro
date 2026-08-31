@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  currentSlug?: string;
+}
+
+const { posts, currentSlug } = Astro.props;
+const displayPosts = posts.filter((p) => p.slug !== currentSlug).slice(0, 5);
+---
+
+<aside class="sidebar sidebar-right">
+  <span class="sidebar-badge">More Articles</span>
+
+  {displayPosts.map((p) => (
+    <a class="related-sidebar-item" href={`/blog/${p.slug}/`}>
+      <p class="related-sidebar-title">{p.data.title}</p>
+      <p class="related-sidebar-meta">
+        <FormattedDate date={p.data.pubDate} />
+      </p>
+    </a>
+  ))}
+
+  <a class="sidebar-view-all" href="/">View All Articles →</a>
+</aside>

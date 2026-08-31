@@ -2,8 +2,10 @@
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import RelatedSidebar from '../components/RelatedSidebar.astro';
 import { SITE } from '../config';
-import { readingTime } from '../utils/posts';
+import { readingTime, getRelatedPosts, getPublishedPosts } from '../utils/posts';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -12,6 +14,49 @@ const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, author, tags, cover } = post.data;
 const minutes = readingTime(post.body);
 const canonical = new URL(`/blog/${post.slug}/`, Astro.site).href;
+
+const allPosts = await getPublishedPosts();
+const related = getRelatedPosts(post, allPosts, 3);
+
+// For the right sidebar: related posts + fill with latest if not enough
+const sidebarPosts = [...related];
+if (sidebarPosts.length < 6) {
+  for (const p of allPosts) {
+    if (sidebarPosts.length >= 6) break;
+    if (p.slug !== post.slug && !sidebarPosts.find((s) => s.slug === p.slug)) {
+      sidebarPosts.push(p);
+    }
+  }
+}
+
+// Get headings for TOC
+const { Content, headings } = await post.render();
+
+// Tag color mapping for badges
+const tagColorMap: Record<string, string> = {
+  aeo: 'var(--cat-aeo)',
+  geo: 'var(--cat-geo)',
+  'ai-search': 'var(--cat-ai-search)',
+  rag: 'var(--cat-rag)',
+  citations: 'var(--cat-citations)',
+  guides: 'var(--cat-guides)',
+  announcements: 'var(--cat-announcements)',
+  'robots-txt': 'var(--cat-robots-txt)',
+  seo: 'var(--cat-seo)',
+};
+
+// Clean Human-Readable Display Names
+const tagDisplayNames: Record<string, string> = {
+  aeo: 'AEO',
+  geo: 'GEO',
+  'ai-search': 'AI Search',
+  rag: 'RAG',
+  citations: 'Citations',
+  guides: 'Guides',
+  announcements: 'Announcements',
+  'robots-txt': 'Robots.txt',
+  seo: 'SEO',
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -31,6 +76,11 @@ const jsonLd = {
   title={title}
   description={description}
   image={cover}
+  metaTitle={post.data.metaTitle}
+  metaDescription={post.data.metaDescription}
+  primaryKeyword={post.data.primaryKeyword}
+  secondaryKeywords={post.data.secondaryKeywords}
+  keywords={post.data.keywords}
   article={{
     publishedTime: pubDate.toISOString(),
     modifiedTime: (updatedDate ?? pubDate).toISOString(),
@@ -38,36 +88,81 @@ const jsonLd = {
     tags,
   }}
 >
-  <article class="post">
-    <header class="post-header">
-      <p class="post-eyebrow"><a href="/">← All posts</a></p>
-      <h1 class="post-title">{title}</h1>
-      <p class="post-meta">
-        <FormattedDate date={pubDate} />
-        <span aria-hidden="true">·</span>
-        <span>{minutes} min read</span>
-        {author && <span aria-hidden="true">·</span>}
-        {author && <span>{author}</span>}
-      </p>
-      {
-        tags && tags.length > 0 && (
-          <p class="post-tags">
-            {tags.map((t) => (
-              <a class="tag" href={`/tags/${t}/`}>
-                #{t}
-              </a>
-            ))}
+  <div class="page-grid">
+    <TableOfContents headings={headings} />
+
+    <article class="post main-content">
+      <header class="post-header">
+        {
+          tags && tags.length > 0 && (
+            <div class="post-badges">
+              {tags.map((t) => (
+                <a
+                  class="badge"
+                  href={`/tags/${t}/`}
+                  style={`background: ${tagColorMap[t] || 'var(--cat-guides)'}`}
+                >
+                  {tagDisplayNames[t] || t}
+                </a>
+              ))}
+            </div>
+          )
+        }
+        <h1 class="post-title">{title}</h1>
+        <p class="post-dek">{description}</p>
+        <div class="post-meta-bar">
+          <div class="post-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <FormattedDate date={pubDate} />
+          </div>
+          <span class="post-meta-dot" aria-hidden="true">•</span>
+          <div class="post-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>{minutes} min read</span>
+          </div>
+          {author && (
+            <>
+              <span class="post-meta-dot" aria-hidden="true">•</span>
+              <div class="post-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>{author}</span>
+              </div>
+            </>
+          )}
+        </div>
+      </header>
+
+      {cover && <img class="post-cover" src={cover} alt="" loading="lazy" />}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div class="author-box">
+        <div class="author-avatar" aria-hidden="true">{SITE.brand.charAt(0)}</div>
+        <div>
+          <p class="author-name">{author ?? SITE.author}</p>
+          <p class="author-bio">
+            {SITE.description} Written by the {SITE.brand} team to help AI teams,
+            RevOps, and data engineers work with the live web.
           </p>
-        )
-      }
-    </header>
-    {cover && <img class="post-cover" src={cover} alt="" loading="lazy" />}
-    <div class="prose">
-      <slot />
-    </div>
-    <footer class="post-footer">
-      <a class="btn" href={SITE.marketingUrl}>Learn more about {SITE.brand} →</a>
-    </footer>
-  </article>
+        </div>
+      </div>
+    </article>
+
+    <RelatedSidebar posts={sidebarPosts} currentSlug={post.slug} />
+  </div>
+
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </BaseLayout>

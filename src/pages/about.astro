@@ -1,17 +1,59 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LeftSidebar from '../components/LeftSidebar.astro';
+import RightSidebar from '../components/RightSidebar.astro';
 import { SITE } from '../config';
 ---
 
-<BaseLayout title="About" description={`About the ${SITE.brand} blog.`}>
-  <article class="post">
-    <h1 class="post-title">About</h1>
-    <div class="prose">
-      <p>Welcome to the {SITE.brand} blog — {SITE.description}</p>
-      <p>
-        Looking for the product itself? Head to
-        <a href={SITE.marketingUrl}>{SITE.marketingLabel}</a>.
-      </p>
-    </div>
-  </article>
+<BaseLayout title="About OllaGraph Blog" description={`About the ${SITE.brand} engineering blog and web intelligence platform.`}>
+  <div class="page-grid">
+    <LeftSidebar />
+
+    <article class="post main-content">
+      <header class="post-header">
+        <div class="newest-label" style="margin-bottom: 0.75rem;">
+          <span class="newest-pill">⚡ Technical Editorial</span>
+          <span class="newest-sub">Infrastructure for AI Agents</span>
+        </div>
+        <h1 class="post-title" style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900; margin: 0 0 0.5rem;">
+          About {SITE.brand} Blog
+        </h1>
+        <p class="post-dek">
+          {SITE.description}
+        </p>
+      </header>
+
+      <div class="prose">
+        <p>
+          Welcome to the official technical publication of <strong>{SITE.brand}</strong>. 
+          This blog is built for AI developers, ML engineers, RevOps architects, and SEO leaders navigating the fundamental shift from legacy search indexers to autonomous AI agents and Answer Engine Optimization (AEO).
+        </p>
+
+        <h2>What We Cover</h2>
+        <ul>
+          <li><strong>Answer Engine Optimization (AEO & GEO):</strong> Mathematical frameworks, metrics (AISVS, CRS), and optimization strategies for ChatGPT Search, Perplexity, Claude, and Gemini.</li>
+          <li><strong>Web Scraping & Crawling Infrastructure:</strong> High-throughput data extraction, stealth Chromium rendering, proxy orchestration, and anti-bot mitigation.</li>
+          <li><strong>Robots.txt & Governance:</strong> Auditing RFC 9309 crawler standards, protecting proprietary training IP, and ensuring search engine accessibility.</li>
+          <li><strong>RAG & Vector Grounding:</strong> Semantic chunking, Named Entity Recognition, JSON-LD Schema structures, and real-time retrieval accuracy.</li>
+        </ul>
+
+        <h2>About the {SITE.brand} Platform</h2>
+        <p>
+          {SITE.brand} is unified web intelligence and scraping infrastructure built specifically for AI agents. With a single API key covering 147 endpoints at a flat 1 credit per call, native Model Context Protocol (MCP) support, automatic refunds on upstream failures, and a strict zero content retention policy, Ollagraph powers modern agentic workflows across the globe.
+        </p>
+
+        <div class="cta-box">
+          <h2>Ready to explore the API?</h2>
+          <p>
+            Start building with high-speed stealth scrapers, real-time search aggregation, and model-ready extraction tools.
+          </p>
+          <a class="btn" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
+            Explore {SITE.brand} Infrastructure →
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <RightSidebar />
+  </div>
 </BaseLayout>

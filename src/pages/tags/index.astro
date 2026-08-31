@@ -3,21 +3,128 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedPosts } from '../../utils/posts';
 
 const posts = await getPublishedPosts();
-const counts = new Map<string, number>();
-for (const p of posts) for (const t of p.data.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
-const tags = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+
+// Tag color mapping
+const tagColorMap: Record<string, string> = {
+  aeo: 'var(--cat-aeo)',
+  geo: 'var(--cat-geo)',
+  'ai-search': 'var(--cat-ai-search)',
+  rag: 'var(--cat-rag)',
+  citations: 'var(--cat-citations)',
+  guides: 'var(--cat-guides)',
+  announcements: 'var(--cat-announcements)',
+  'robots-txt': 'var(--cat-robots-txt)',
+  seo: 'var(--cat-seo)',
+};
+
+// Clean Human-Readable Display Names
+const tagDisplayNames: Record<string, string> = {
+  aeo: 'AEO',
+  geo: 'GEO',
+  'ai-search': 'AI Search',
+  rag: 'RAG',
+  citations: 'Citations',
+  guides: 'Guides',
+  announcements: 'Announcements',
+  'robots-txt': 'Robots.txt',
+  seo: 'SEO',
+};
+
+// Map each tag to its list of posts
+const tagMap = new Map<string, typeof posts>();
+for (const p of posts) {
+  for (const t of p.data.tags) {
+    if (!tagMap.has(t)) tagMap.set(t, []);
+    tagMap.get(t)!.push(p);
+  }
+}
+
+// Sort tags by number of posts descending
+const sortedTags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length);
 ---
 
-<BaseLayout title="Tags" description="Browse posts by topic.">
-  <h1 class="page-title">Tags</h1>
-  {tags.length === 0 && <p class="empty">No tags yet.</p>}
-  <div class="tag-cloud">
-    {
-      tags.map(([t, n]) => (
-        <a class="tag tag-lg" href={`/tags/${t}/`}>
-          #{t} <span class="tag-count">{n}</span>
-        </a>
-      ))
-    }
+<BaseLayout title="Topics & Categories" description="Explore technical articles, frameworks, and guides across AEO, AI Search, Web Crawlers, and RAG.">
+  <div class="main-content" style="max-width: var(--maxw-wide); margin: 0 auto;">
+    <section class="hero" style="margin-bottom: 2rem;">
+      <div class="newest-label">
+        <span class="newest-pill">📚 Knowledge Categories</span>
+        <span class="newest-sub">Curated by technical concept</span>
+      </div>
+      <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900; margin-bottom: 0.5rem;">
+        Explore by Topic
+      </h1>
+      <p class="hero-subtitle" style="max-width: 42rem;">
+        Browse our comprehensive editorial library across Answer Engine Optimization (AEO), AI search intelligence, robots.txt governance, and RAG grounding.
+      </p>
+    </section>
+
+    <!-- Quick Filter Bar -->
+    <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 2rem;">
+      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); display: block; margin-bottom: 0.75rem;">
+        Quick Jump
+      </span>
+      <div class="tag-cloud" style="margin-top: 0; gap: 0.5rem;">
+        {
+          sortedTags.map(([tag, tagPosts]) => {
+            const label = tagDisplayNames[tag] || tag;
+            const dotColor = tagColorMap[tag] || 'var(--accent)';
+            return (
+              <a class="tag tag-lg" href={`/tags/${tag}/`}>
+                <span style={`width: 8px; height: 8px; border-radius: 50%; background: ${dotColor}; display: inline-block;`}></span>
+                {label}
+                <span class="tag-count">{tagPosts.length}</span>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <!-- Topic Showcase Grid -->
+    <div class="topic-grid">
+      {
+        sortedTags.map(([tag, tagPosts]) => {
+          const badgeColor = tagColorMap[tag] || 'var(--cat-guides)';
+          const label = tagDisplayNames[tag] || tag.toUpperCase();
+          const previewPosts = tagPosts.slice(0, 3);
+          return (
+            <div class="topic-card">
+              <div class="topic-card-top">
+                <span class="badge" style={`background: ${badgeColor}; font-size: 0.72rem; padding: 0.2rem 0.65rem;`}>
+                  {label}
+                </span>
+                <span class="topic-card-count">
+                  {tagPosts.length} {tagPosts.length === 1 ? 'article' : 'articles'}
+                </span>
+              </div>
+
+              <h2 class="topic-card-title" style="margin-bottom: 0.85rem; font-size: 1.15rem;">
+                <a href={`/tags/${tag}/`} style="color: var(--text);">
+                  {label}
+                </a>
+              </h2>
+
+              <ul class="topic-card-posts">
+                {previewPosts.map((p) => (
+                  <li>
+                    <a href={`/blog/${p.slug}/`} title={p.data.title}>
+                      <span style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                        {p.data.title}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <div class="topic-card-footer">
+                <a class="topic-card-more" href={`/tags/${tag}/`}>
+                  Explore all {label} articles →
+                </a>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
   </div>
 </BaseLayout>

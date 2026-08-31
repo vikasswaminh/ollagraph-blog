@@ -1,0 +1,71 @@
+---
+/**
+ * Table of Contents — auto-generated from headings.
+ * Expects `headings` prop: array of { depth, slug, text }.
+ * Astro provides this from `post.render()`.
+ */
+interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { headings } = Astro.props;
+const tocItems = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+<aside class="sidebar sidebar-left">
+  <a class="toc-back" href="/">← All posts</a>
+
+  {tocItems.length > 0 && (
+    <nav aria-label="Table of contents">
+      <span class="toc-label">On this page</span>
+      <ul class="toc-list" id="toc-list">
+        {tocItems.map((h) => (
+          <li class={h.depth === 3 ? 'toc-h3' : ''}>
+            <a href={`#${h.slug}`} data-toc-link>{h.text}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )}
+</aside>
+
+<script>
+  // Intersection Observer to highlight active TOC item
+  document.addEventListener('DOMContentLoaded', () => {
+    const tocLinks = document.querySelectorAll('[data-toc-link]');
+    if (!tocLinks.length) return;
+
+    const headingEls: Element[] = [];
+    tocLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) headingEls.push(target);
+      }
+    });
+
+    if (!headingEls.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            tocLinks.forEach((link) => {
+              link.classList.toggle(
+                'active',
+                link.getAttribute('href') === `#${id}`
+              );
+            });
+          }
+        });
+      },
+      {
+        rootMargin: '-80px 0px -70% 0px',
+        threshold: 0,
+      }
+    );
+
+    headingEls.forEach((el) => observer.observe(el));
+  });
+</script>

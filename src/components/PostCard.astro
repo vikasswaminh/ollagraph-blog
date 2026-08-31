@@ -10,25 +10,47 @@ interface Props {
   minutes?: number;
 }
 const { url, title, description, pubDate, tags = [], minutes } = Astro.props;
+
+// Map first tag to a badge color
+const tagColorMap: Record<string, string> = {
+  aeo: 'var(--cat-aeo)',
+  geo: 'var(--cat-geo)',
+  'ai-search': 'var(--cat-ai-search)',
+  rag: 'var(--cat-rag)',
+  citations: 'var(--cat-citations)',
+  guides: 'var(--cat-guides)',
+  announcements: 'var(--cat-announcements)',
+  'robots-txt': 'var(--cat-robots-txt)',
+  seo: 'var(--cat-seo)',
+};
+const tagDisplayNames: Record<string, string> = {
+  aeo: 'AEO',
+  geo: 'GEO',
+  'ai-search': 'AI Search',
+  rag: 'RAG',
+  citations: 'Citations',
+  guides: 'Guides',
+  announcements: 'Announcements',
+  'robots-txt': 'Robots.txt',
+  seo: 'SEO',
+};
+
+const firstTag = tags[0];
+const badgeColor = firstTag ? (tagColorMap[firstTag] || 'var(--cat-guides)') : null;
+const badgeLabel = firstTag ? (tagDisplayNames[firstTag] || firstTag) : '';
 ---
 
 <article class="post-card">
+  {firstTag && (
+    <span class="post-card-badge" style={`background: ${badgeColor}`}>
+      {badgeLabel}
+    </span>
+  )}
   <h2 class="post-card-title"><a href={url}>{title}</a></h2>
+  <p class="post-card-desc">{description}</p>
   <p class="post-card-meta">
     <FormattedDate date={pubDate} />
     {minutes ? <span aria-hidden="true">·</span> : null}
     {minutes ? <span>{minutes} min read</span> : null}
   </p>
-  <p class="post-card-desc">{description}</p>
-  {
-    tags.length > 0 && (
-      <p class="post-card-tags">
-        {tags.map((t) => (
-          <a class="tag" href={`/tags/${t}/`}>
-            #{t}
-          </a>
-        ))}
-      </p>
-    )
-  }
 </article>
