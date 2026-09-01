@@ -46,7 +46,7 @@ const featuredBadgeLabel = featuredTag ? (tagDisplayNames[featuredTag] || featur
     <LeftSidebar />
 
     <div class="main-content">
-      <!-- Clean Hero Headline (NetworkersHome style) -->
+      <!-- Clean Hero Headline -->
       <section class="hero" style="margin-bottom: 1.25rem;">
         <h1 class="hero-title" style="font-size: clamp(2rem, 3.8vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.4rem; color: #111827;">
           {SITE.brand} Blog
@@ -68,7 +68,7 @@ const featuredBadgeLabel = featuredTag ? (tagDisplayNames[featuredTag] || featur
 
       {posts.length === 0 && <p class="empty">No posts yet — check back soon.</p>}
 
-      <!-- Featured Post Card (NetworkersHome Style) -->
+      <!-- Featured Post Card -->
       {featured && (
         <a class="featured-card-nh" href={`/blog/${featured.slug}/`}>
           <div class="featured-card-nh-top">

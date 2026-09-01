@@ -17,7 +17,6 @@ export async function getStaticPaths() {
 
 const { posts, tag } = Astro.props;
 
-// Tag color mapping
 const tagColorMap: Record<string, string> = {
   aeo: 'var(--cat-aeo)',
   geo: 'var(--cat-geo)',
@@ -30,7 +29,18 @@ const tagColorMap: Record<string, string> = {
   seo: 'var(--cat-seo)',
 };
 
-// Clean Human-Readable Display Names
+const tagHexMap: Record<string, string> = {
+  aeo: '#E8443A',
+  geo: '#8B5CF6',
+  'ai-search': '#2563EB',
+  rag: '#0EA5E9',
+  citations: '#10B981',
+  guides: '#F59E0B',
+  announcements: '#EC4899',
+  'robots-txt': '#6B7280',
+  seo: '#14B8A6',
+};
+
 const tagDisplayNames: Record<string, string> = {
   aeo: 'AEO',
   geo: 'GEO',
@@ -43,38 +53,59 @@ const tagDisplayNames: Record<string, string> = {
   seo: 'SEO',
 };
 
+const tagDescriptions: Record<string, string> = {
+  aeo: 'Answer Engine Optimization — scoring models, visibility frameworks, and citation optimization for ChatGPT, Perplexity, Claude, and Gemini.',
+  geo: 'Generative Engine Optimization — measuring Generative Share of Voice, token-distance sentiment, and entity anchor prominence.',
+  'ai-search': 'AI Search & agent retrieval — autonomous search agents, RAG pipelines, headless DOM rendering, and synthetic SERPs.',
+  rag: 'RAG & vector grounding — chunk stability, Named Entity Recognition, model-ready markdown conversion, and token optimization.',
+  citations: 'Citations & verification — Citation Readiness Scoring, epistemic authority analysis, and techniques to maximize LLM source citations.',
+  guides: 'Engineering guides — step-by-step walkthroughs, CI/CD automated gatekeepers, and hands-on web scraping workflows.',
+  announcements: 'Product news & updates — changelogs, new endpoint releases, MCP features, and architectural updates.',
+  'robots-txt': 'Robots.txt & crawl governance — IETF RFC 9309 standards, bot differentiation, AI training scraper policies, and edge WAF configs.',
+  seo: 'Modern technical SEO — Schema.org JSON-LD architectures, TTFB optimization, canonical protocols, and indexability.',
+};
+
 const label = tagDisplayNames[tag] || tag;
 const badgeColor = tagColorMap[tag] || 'var(--cat-guides)';
+const hex = tagHexMap[tag] || '#6B7280';
+const desc = tagDescriptions[tag] || `Technical articles categorized under ${label}.`;
 ---
 
-<BaseLayout title={`${label} Articles`} description={`Explore all articles categorized under ${label} on the OllaGraph Blog.`}>
+<BaseLayout 
+  title={`${label} Articles · OllaGraph Blog`} 
+  description={`Explore all ${label} articles on the OllaGraph Blog. ${desc}`}
+>
   <div class="page-grid">
     <LeftSidebar />
 
     <div class="main-content">
-      <section class="hero" style="margin-bottom: 2rem;">
-        <p class="post-eyebrow" style="margin-bottom: 0.75rem;">
-          <a href="/tags/">← All Topics</a>
-        </p>
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-          <span class="badge" style={`background: ${badgeColor}; font-size: 0.82rem; padding: 0.25rem 0.75rem;`}>
-            {label}
-          </span>
-          <span style="font-size: 0.88rem; color: var(--text-muted); font-weight: 500;">
-            {posts.length} {posts.length === 1 ? 'published article' : 'published articles'}
+      <!-- Tag Hero Header -->
+      <div class="tag-hero" style={`--tag-hex: ${hex};`}>
+        <a class="tag-back" href="/tags/">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          All Topics
+        </a>
+
+        <div class="tag-hero-badge" style={`background: ${hex}18; border-color: ${hex}40; color: ${hex};`}>
+          <span class="tag-hero-dot" style={`background: ${hex};`}></span>
+          {label}
+        </div>
+
+        <h1 class="tag-hero-title">{label} Articles</h1>
+        <p class="tag-hero-desc">{desc}</p>
+
+        <div class="tag-hero-meta">
+          <span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            {posts.length} {posts.length === 1 ? 'article' : 'articles'} published
           </span>
         </div>
-        <h1 class="hero-title" style="font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; margin: 0.5rem 0 0.4rem;">
-          Articles in {label}
-        </h1>
-        <p class="hero-subtitle">
-          Showing all technical guides, benchmarks, and architectural analyses categorized under {label}.
-        </p>
-      </section>
+      </div>
 
-      <div class="post-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
-        {
-          posts.map((p) => (
+      <!-- Articles grid -->
+      {posts.length > 0 ? (
+        <div class="post-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          {posts.map((p) => (
             <PostCard
               url={`/blog/${p.slug}/`}
               title={p.data.title}
@@ -83,11 +114,103 @@ const badgeColor = tagColorMap[tag] || 'var(--cat-guides)';
               tags={p.data.tags}
               minutes={readingTime(p.body)}
             />
-          ))
-        }
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div class="tag-empty">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <p>No articles yet — check back soon.</p>
+          <a href="/tags/" class="tag-back">← Browse all topics</a>
+        </div>
+      )}
     </div>
 
     <RightSidebar />
   </div>
 </BaseLayout>
+
+<style>
+  .tag-hero {
+    padding: 1.5rem 0 2rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tag-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 1.25rem;
+    transition: color 0.15s;
+  }
+  .tag-back:hover { color: var(--accent); }
+
+  .tag-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    border: 1.5px solid;
+    margin-bottom: 1rem;
+  }
+
+  .tag-hero-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tag-hero-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #0f172a;
+    margin: 0 0 0.65rem;
+    line-height: 1.15;
+  }
+
+  .tag-hero-desc {
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.65;
+    margin: 0 0 1rem;
+    max-width: 580px;
+  }
+
+  .tag-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .tag-hero-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+  }
+
+  .tag-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+  }
+  .tag-empty svg { opacity: 0.35; }
+  .tag-empty p { margin: 0; font-size: 0.95rem; }
+</style>

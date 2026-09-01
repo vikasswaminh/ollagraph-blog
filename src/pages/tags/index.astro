@@ -17,7 +17,18 @@ const tagColorMap: Record<string, string> = {
   seo: 'var(--cat-seo)',
 };
 
-// Clean Human-Readable Display Names
+const tagHexMap: Record<string, string> = {
+  aeo: '#E8443A',
+  geo: '#8B5CF6',
+  'ai-search': '#2563EB',
+  rag: '#0EA5E9',
+  citations: '#10B981',
+  guides: '#F59E0B',
+  announcements: '#EC4899',
+  'robots-txt': '#6B7280',
+  seo: '#14B8A6',
+};
+
 const tagDisplayNames: Record<string, string> = {
   aeo: 'AEO',
   geo: 'GEO',
@@ -30,7 +41,55 @@ const tagDisplayNames: Record<string, string> = {
   seo: 'SEO',
 };
 
-// Map each tag to its list of posts
+const tagMeta: Record<string, { title: string; desc: string; icon: string }> = {
+  aeo: {
+    title: 'Answer Engine Optimization',
+    desc: 'Mathematical scoring models, visibility frameworks, and citation optimization for ChatGPT, Perplexity, Claude, and Gemini.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
+  },
+  'ai-search': {
+    title: 'AI Search & Agent Retrieval',
+    desc: 'Autonomous search agents, real-time RAG retrieval pipelines, headless DOM rendering, and synthetic SERPs.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>`,
+  },
+  'robots-txt': {
+    title: 'Robots.txt & Crawl Governance',
+    desc: 'IETF RFC 9309 crawler standards, user-agent bot differentiation, AI training scraper policies, and edge WAF configurations.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+  },
+  rag: {
+    title: 'RAG & Vector Grounding',
+    desc: 'Semantic chunk stability, Named Entity Recognition, model-ready markdown conversion, and token optimization.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
+  },
+  citations: {
+    title: 'Citations & Verification',
+    desc: 'Deterministic Citation Readiness Scoring (CRS), epistemic authority analysis, and techniques to maximize source citations in LLMs.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>`,
+  },
+  geo: {
+    title: 'Generative Engine Optimization',
+    desc: 'Measuring Generative Share of Voice (gSOV), token-distance sentiment metrics, and entity anchor prominence in zero-click answers.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+  },
+  seo: {
+    title: 'Modern Technical SEO',
+    desc: 'Validated Schema.org JSON-LD architectures, crawl latency (TTFB) optimization, canonical protocols, and search indexability.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
+  },
+  guides: {
+    title: 'Engineering Guides',
+    desc: 'Step-by-step integration walkthroughs, CI/CD automated deployment gatekeepers, and hands-on web scraping workflows.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+  },
+  announcements: {
+    title: 'Product News & Updates',
+    desc: 'Changelogs, new endpoint releases, Model Context Protocol (MCP) features, and architectural updates from OllaGraph.',
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>`,
+  },
+};
+
+// Map each tag to its posts
 const tagMap = new Map<string, typeof posts>();
 for (const p of posts) {
   for (const t of p.data.tags) {
@@ -43,88 +102,451 @@ for (const p of posts) {
 const sortedTags = [...tagMap.entries()].sort((a, b) => b[1].length - a[1].length);
 ---
 
-<BaseLayout title="Topics & Categories" description="Explore technical articles, frameworks, and guides across AEO, AI Search, Web Crawlers, and RAG.">
-  <div class="main-content" style="max-width: var(--maxw-wide); margin: 0 auto;">
-    <section class="hero" style="margin-bottom: 2rem;">
-      <div class="newest-label">
-        <span class="newest-pill">📚 Knowledge Categories</span>
-        <span class="newest-sub">Curated by technical concept</span>
+<BaseLayout 
+  title="Topics & Categories · OllaGraph Blog" 
+  description="Explore curated technical articles, architectural frameworks, and protocols across AEO, AI Search, Web Crawlers, and RAG."
+  metaTitle="Topics & Knowledge Categories · OllaGraph Blog"
+  metaDescription="Browse OllaGraph's technical publication by concept: AEO scoring models, robots.txt crawl governance, RAG grounding, and web extraction."
+>
+  <div class="tags-page">
+
+    <!-- Hero -->
+    <section class="tags-hero">
+      <div class="tags-hero-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        Knowledge Directory
       </div>
-      <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900; margin-bottom: 0.5rem;">
-        Explore by Topic
-      </h1>
-      <p class="hero-subtitle" style="max-width: 42rem;">
-        Browse our comprehensive editorial library across Answer Engine Optimization (AEO), AI search intelligence, robots.txt governance, and RAG grounding.
+      <h1 class="tags-hero-title">Explore by Topic</h1>
+      <p class="tags-hero-sub">
+        {sortedTags.length} disciplines · {posts.length} published articles
       </p>
     </section>
 
-    <!-- Quick Filter Bar -->
-    <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 2rem;">
-      <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); display: block; margin-bottom: 0.75rem;">
-        Quick Jump
-      </span>
-      <div class="tag-cloud" style="margin-top: 0; gap: 0.5rem;">
-        {
-          sortedTags.map(([tag, tagPosts]) => {
-            const label = tagDisplayNames[tag] || tag;
-            const dotColor = tagColorMap[tag] || 'var(--accent)';
-            return (
-              <a class="tag tag-lg" href={`/tags/${tag}/`}>
-                <span style={`width: 8px; height: 8px; border-radius: 50%; background: ${dotColor}; display: inline-block;`}></span>
-                {label}
-                <span class="tag-count">{tagPosts.length}</span>
-              </a>
-            );
-          })
-        }
-      </div>
+    <!-- Pill Cloud Nav -->
+    <div class="pill-cloud">
+      {sortedTags.map(([tag, tagPosts]) => {
+        const hex = tagHexMap[tag] || '#6B7280';
+        const label = tagDisplayNames[tag] || tag;
+        return (
+          <a class="pill" href={`/tags/${tag}/`} style={`--pill-color: ${hex};`}>
+            <span class="pill-dot" style={`background: ${hex};`}></span>
+            {label}
+            <span class="pill-badge">{tagPosts.length}</span>
+          </a>
+        );
+      })}
     </div>
 
-    <!-- Topic Showcase Grid -->
-    <div class="topic-grid">
-      {
-        sortedTags.map(([tag, tagPosts]) => {
-          const badgeColor = tagColorMap[tag] || 'var(--cat-guides)';
-          const label = tagDisplayNames[tag] || tag.toUpperCase();
-          const previewPosts = tagPosts.slice(0, 3);
-          return (
-            <div class="topic-card">
-              <div class="topic-card-top">
-                <span class="badge" style={`background: ${badgeColor}; font-size: 0.72rem; padding: 0.2rem 0.65rem;`}>
-                  {label}
-                </span>
-                <span class="topic-card-count">
-                  {tagPosts.length} {tagPosts.length === 1 ? 'article' : 'articles'}
-                </span>
-              </div>
+    <!-- Category Grid -->
+    <div class="cat-grid">
+      {sortedTags.map(([tag, tagPosts]) => {
+        const label = tagDisplayNames[tag] || tag;
+        const hex = tagHexMap[tag] || '#6B7280';
+        const meta = tagMeta[tag] || {
+          title: label,
+          desc: `Technical articles categorized under ${label}.`,
+          icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>`,
+        };
+        const recentPosts = tagPosts.slice(0, 2);
 
-              <h2 class="topic-card-title" style="margin-bottom: 0.85rem; font-size: 1.15rem;">
-                <a href={`/tags/${tag}/`} style="color: var(--text);">
-                  {label}
-                </a>
-              </h2>
+        return (
+          <a class="cat-card" href={`/tags/${tag}/`} style={`--card-accent: ${hex};`}>
+            <div class="cat-card-top">
+              <div class="cat-icon" set:html={meta.icon} style={`color: ${hex}; background: ${hex}18;`} />
+              <span class="cat-count">{tagPosts.length} {tagPosts.length === 1 ? 'article' : 'articles'}</span>
+            </div>
 
-              <ul class="topic-card-posts">
-                {previewPosts.map((p) => (
+            <h2 class="cat-title">{meta.title}</h2>
+            <p class="cat-desc">{meta.desc}</p>
+
+            {recentPosts.length > 0 && (
+              <ul class="cat-recent">
+                {recentPosts.map((p) => (
                   <li>
-                    <a href={`/blog/${p.slug}/`} title={p.data.title}>
-                      <span style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-                        {p.data.title}
-                      </span>
-                    </a>
+                    <span class="cat-recent-arrow" style={`color: ${hex};`}>›</span>
+                    <span class="cat-recent-title">{p.data.title}</span>
                   </li>
                 ))}
               </ul>
+            )}
 
-              <div class="topic-card-footer">
-                <a class="topic-card-more" href={`/tags/${tag}/`}>
-                  Explore all {label} articles →
-                </a>
-              </div>
+            <div class="cat-cta" style={`color: ${hex};`}>
+              Browse {label} <span class="cat-arrow">→</span>
             </div>
-          );
-        })
-      }
+            <div class="cat-accent-bar" style={`background: ${hex};`}></div>
+          </a>
+        );
+      })}
     </div>
+
+    <!-- Bottom CTA -->
+    <div class="tags-cta-block">
+      <div class="tags-cta-inner">
+        <div class="tags-cta-text">
+          <h2>Need the full API platform?</h2>
+          <p>OllaGraph powers 147 endpoints for smart crawling, live web search, structured extraction, and native MCP tools — all behind 1 credit flat rate.</p>
+        </div>
+        <div class="tags-cta-actions">
+          <a class="tags-cta-btn-primary" href="https://ollagraph.com/docs" target="_blank" rel="noopener noreferrer">
+            Explore Docs ↗
+          </a>
+          <a class="tags-cta-btn-ghost" href="/rss.xml">
+            RSS Feed
+          </a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </BaseLayout>
+
+<style>
+  .tags-page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0.25rem 1.25rem 4rem;
+  }
+
+  /* ── Hero ── */
+  .tags-hero {
+    text-align: center;
+    padding: 0.5rem 0 2rem;
+  }
+
+  .tags-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .tags-hero-title {
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: #0f172a;
+    margin: 0 0 0.75rem;
+    line-height: 1.1;
+  }
+
+  .tags-hero-sub {
+    font-size: 0.95rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Pill Cloud ── */
+  .pill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-bottom: 3.5rem;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    border: 1.5px solid color-mix(in srgb, var(--pill-color) 30%, transparent);
+    background: color-mix(in srgb, var(--pill-color) 8%, white);
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-decoration: none;
+    transition: all 0.18s ease;
+  }
+
+  .pill:hover {
+    background: color-mix(in srgb, var(--pill-color) 16%, white);
+    border-color: var(--pill-color);
+    color: var(--pill-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--pill-color) 20%, transparent);
+  }
+
+  .pill-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .pill-badge {
+    background: #e2e8f0;
+    color: #475569;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 9999px;
+    line-height: 1.4;
+  }
+
+  .pill:hover .pill-badge {
+    background: color-mix(in srgb, var(--pill-color) 20%, white);
+    color: var(--pill-color);
+  }
+
+  /* ── Category Grid ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+
+  .cat-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.6rem 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-accent);
+    opacity: 0;
+    transition: opacity 0.22s;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.06), 0 4px 8px rgba(0, 0, 0, 0.03);
+    border-color: color-mix(in srgb, var(--card-accent) 40%, #e2e8f0);
+  }
+
+  .cat-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Subtle glow on entire card (accent at bottom right) */
+  .cat-accent-bar {
+    display: none;
+  }
+
+  .cat-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.1rem;
+  }
+
+  .cat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cat-count {
+    font-size: 0.73rem;
+    font-weight: 700;
+    color: #64748b;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 0.22rem 0.6rem;
+    border-radius: 9999px;
+  }
+
+  .cat-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 0.55rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+  }
+
+  .cat-desc {
+    font-size: 0.84rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0 0 1.2rem;
+    flex-grow: 1;
+  }
+
+  /* Recent post links inside card */
+  .cat-recent {
+    list-style: none;
+    margin: 0 0 1.15rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+  }
+
+  .cat-recent li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .cat-recent-arrow {
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .cat-recent-title {
+    font-size: 0.79rem;
+    color: #374151;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .cat-cta {
+    font-size: 0.83rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #f1f5f9;
+    transition: gap 0.15s;
+  }
+
+  .cat-arrow {
+    display: inline-block;
+    transition: transform 0.18s ease;
+  }
+
+  .cat-card:hover .cat-arrow {
+    transform: translateX(4px);
+  }
+
+  /* ── Bottom CTA Block ── */
+  .tags-cta-block {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 18px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.14);
+  }
+
+  .tags-cta-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tags-cta-text {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .tags-cta-text h2 {
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    margin: 0 0 0.6rem;
+  }
+
+  .tags-cta-text p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .tags-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .tags-cta-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.4rem;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: 9px;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .tags-cta-btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  .tags-cta-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.4rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+
+  .tags-cta-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  @media (max-width: 640px) {
+    .cat-grid {
+      grid-template-columns: 1fr;
+    }
+    .tags-cta-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+    .tags-cta-actions {
+      justify-content: center;
+    }
+    .pill-cloud {
+      padding: 1.1rem;
+    }
+  }
+</style>

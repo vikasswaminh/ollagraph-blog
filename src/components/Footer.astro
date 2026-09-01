@@ -5,36 +5,79 @@ const year = new Date().getFullYear();
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-brand">
+    <!-- Brand Column -->
+    <div class="footer-brand-col">
       <a class="brand" href="/">
         <span class="brand-mark" aria-hidden="true"></span>
         <span class="brand-name">{SITE.brand}</span>
         <span class="brand-sub">Blog</span>
       </a>
-      <p class="footer-tagline">{SITE.description}</p>
+      <p class="footer-tagline">
+        Web infrastructure for AI agents. Fetch, extract, audit, and reason about the live web through one API.
+      </p>
+      <div class="footer-status-pill">
+        <span class="status-dot"></span>
+        <span>147 Endpoints · 1 Credit Flat Rate · Zero Retention</span>
+      </div>
     </div>
 
+    <!-- Column 1: Publication -->
     <div class="footer-col">
-      <h4>Explore</h4>
+      <h4>Publication</h4>
       <ul>
-        {NAV.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
-        ))}
+        <li><a href="/">Latest Articles</a></li>
+        <li><a href="/tags/">Explore by Topic</a></li>
+        <li><a href="/about/">Engineering Mission</a></li>
+        <li><a href="/rss.xml">RSS / Atom Feed</a></li>
       </ul>
     </div>
 
+    <!-- Column 2: Platform -->
     <div class="footer-col">
-      <h4>OllaGraph</h4>
+      <h4>Capabilities</h4>
       <ul>
-        <li><a href={SITE.marketingUrl}>{SITE.marketingLabel}</a></li>
-        <li><a href="/rss.xml">RSS Feed</a></li>
-        <li><a href="/tags/">All Tags</a></li>
+        <li><a href="https://ollagraph.com/scrape" target="_blank" rel="noopener noreferrer">Web Scraping API</a></li>
+        <li><a href="https://ollagraph.com/crawl" target="_blank" rel="noopener noreferrer">Smart Crawling</a></li>
+        <li><a href="https://ollagraph.com/search" target="_blank" rel="noopener noreferrer">AI Web Search</a></li>
+        <li><a href="https://ollagraph.com/aeo" target="_blank" rel="noopener noreferrer">AEO & Citations</a></li>
+        <li><a href="https://ollagraph.com/convert" target="_blank" rel="noopener noreferrer">Format Converter</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Developers -->
+    <div class="footer-col">
+      <h4>Developers</h4>
+      <ul>
+        <li><a href="https://ollagraph.com/docs" target="_blank" rel="noopener noreferrer">Documentation ↗</a></li>
+        <li><a href="https://ollagraph.com/mcp" target="_blank" rel="noopener noreferrer">Model Context Protocol</a></li>
+        <li><a href="https://api.ollagraph.com/openapi.json" target="_blank" rel="noopener noreferrer">OpenAPI Spec ↗</a></li>
+        <li><a href="https://ollagraph.com/pricing" target="_blank" rel="noopener noreferrer">Pricing (1 Credit Flat)</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 4: Account -->
+    <div class="footer-col">
+      <h4>Get Started</h4>
+      <ul>
+        <li><a href="https://ollagraph.com/contactus" class="footer-highlight-link" target="_blank" rel="noopener noreferrer">Request 1,000 Free Credits →</a></li>
+        <li><a href="https://ollagraph.com/pricing" target="_blank" rel="noopener noreferrer">Pay-as-you-go Packs</a></li>
+        <li><a href="https://ollagraph.com/enterprise" target="_blank" rel="noopener noreferrer">Enterprise SLAs</a></li>
+        <li><a href="https://app.ollagraph.com/login" target="_blank" rel="noopener noreferrer">Account Sign In ↗</a></li>
       </ul>
     </div>
   </div>
 
   <div class="container footer-bottom">
-    <p>© {year} {SITE.brand}. All rights reserved.</p>
-    <p>{SITE.tagline}</p>
+    <div class="footer-bottom-left">
+      <p>© {year} {SITE.brand}. All rights reserved.</p>
+    </div>
+    <div class="footer-standards">
+      <span>Built on open web standards:</span>
+      <code>RFC 9309</code>
+      <span aria-hidden="true">·</span>
+      <code>W3C JSON-LD</code>
+      <span aria-hidden="true">·</span>
+      <code>MCP Protocol</code>
+    </div>
   </div>
 </footer>

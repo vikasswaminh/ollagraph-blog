@@ -58,6 +58,7 @@ const tagDisplayNames: Record<string, string> = {
   seo: 'SEO',
 };
 
+const isOrgAuthor = !author || author === SITE.author || author.toLowerCase().includes('team');
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BlogPosting',
@@ -65,21 +66,44 @@ const jsonLd = {
   description,
   datePublished: pubDate.toISOString(),
   dateModified: (updatedDate ?? pubDate).toISOString(),
-  author: { '@type': 'Organization', name: author ?? SITE.author },
-  publisher: { '@type': 'Organization', name: SITE.brand },
-  mainEntityOfPage: canonical,
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonical,
+  },
+  url: canonical,
+  author: {
+    '@type': isOrgAuthor ? 'Organization' : 'Person',
+    name: author ?? SITE.author,
+    ...(isOrgAuthor ? { url: SITE.marketingUrl } : {}),
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.brand,
+    url: SITE.marketingUrl,
+    logo: {
+      '@type': 'ImageObject',
+      url: new URL('/favicon.svg', Astro.site).href,
+    },
+  },
+  ...(tags && tags.length > 0 ? { keywords: tags.join(', '), articleSection: tags[0] } : {}),
   ...(cover ? { image: new URL(cover, Astro.site).href } : {}),
 };
+
+const postData = post.data as Record<string, any>;
+const activeMetaTitle = postData.metaTitle || postData['meta-title'] || postData.meta_title;
+const activeMetaDescription = postData.metaDescription || postData['meta-description'] || postData.meta_description;
+const activePrimaryKeyword = postData.primaryKeyword || postData['primary-keyword'] || postData.primary_keyword || postData['Primary SEO Keyword'] || postData['Primary SEO Keywords'];
+const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondary-keywords'] || postData.secondary_keywords || postData['Secondary SEO Keyword'] || postData['Secondary SEO Keywords'] || postData['SEO Keywords'] || postData.keywords;
 ---
 
 <BaseLayout
   title={title}
   description={description}
   image={cover}
-  metaTitle={post.data.metaTitle}
-  metaDescription={post.data.metaDescription}
-  primaryKeyword={post.data.primaryKeyword}
-  secondaryKeywords={post.data.secondaryKeywords}
+  metaTitle={activeMetaTitle}
+  metaDescription={activeMetaDescription}
+  primaryKeyword={activePrimaryKeyword}
+  secondaryKeywords={activeSecondaryKeywords}
   keywords={post.data.keywords}
   article={{
     publishedTime: pubDate.toISOString(),
@@ -87,7 +111,11 @@ const jsonLd = {
     author: author ?? SITE.author,
     tags,
   }}
+  jsonLd={jsonLd}
 >
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress-bar" aria-hidden="true"></div>
+
   <div class="page-grid">
     <TableOfContents headings={headings} />
 
@@ -149,13 +177,56 @@ const jsonLd = {
         <Content />
       </div>
 
+      <!-- Post Share & Actions Toolbar -->
+      <div class="post-actions-bar">
+        <span class="post-actions-label">Share this guide:</span>
+        <button class="action-btn" id="share-copy-btn" title="Copy article link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <span id="share-copy-text">Copy Link</span>
+        </button>
+        <a 
+          class="action-btn" 
+          href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(canonical)}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>Share on X</span>
+        </a>
+        <a 
+          class="action-btn" 
+          href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(canonical)}`} 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76c.92 0 1.66-.74 1.66-1.66 0-.91-.74-1.66-1.66-1.66-.91 0-1.66.75-1.66 1.66 0 .92.75 1.66 1.66 1.66m1.39 9.74v-8.37H5.07v8.37h2.78z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+        <a class="action-btn" href="/rss.xml" title="Subscribe via RSS">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 11a9 9 0 0 1 9 9"></path>
+            <path d="M4 4a16 16 0 0 1 16 16"></path>
+            <circle cx="5" cy="19" r="1"></circle>
+          </svg>
+          <span>RSS Feed</span>
+        </a>
+      </div>
+
+      <!-- Author Box -->
       <div class="author-box">
         <div class="author-avatar" aria-hidden="true">{SITE.brand.charAt(0)}</div>
         <div>
           <p class="author-name">{author ?? SITE.author}</p>
           <p class="author-bio">
-            {SITE.description} Written by the {SITE.brand} team to help AI teams,
-            RevOps, and data engineers work with the live web.
+            {SITE.description} Written by the {SITE.brand} team to help AI developers, 
+            technical SEO leaders, and data engineers build and measure the autonomous web.
           </p>
         </div>
       </div>
@@ -164,5 +235,527 @@ const jsonLd = {
     <RelatedSidebar posts={sidebarPosts} currentSlug={post.slug} />
   </div>
 
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" aria-label="Scroll back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 </BaseLayout>
+
+<script>
+  function initPostInteractivity() {
+    // 1. Reading Progress Bar Tracker
+    const progressBar = document.getElementById('reading-progress-bar');
+    const backToTop = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+      const docEl = document.documentElement;
+      const scrollTotal = docEl.scrollHeight - docEl.clientHeight;
+      if (scrollTotal > 0 && progressBar) {
+        const progress = (window.scrollY / scrollTotal) * 100;
+        progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      }
+
+      if (backToTop) {
+        if (window.scrollY > 400) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      }
+    }, { passive: true });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // 2. Share Copy Link Button
+    const copyLinkBtn = document.getElementById('share-copy-btn');
+    const copyLinkText = document.getElementById('share-copy-text');
+    if (copyLinkBtn && copyLinkText) {
+      copyLinkBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyLinkText.innerText = 'Link Copied!';
+          copyLinkBtn.classList.add('copied');
+          setTimeout(() => {
+            copyLinkText.innerText = 'Copy Link';
+            copyLinkBtn.classList.remove('copied');
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy', err);
+        }
+      });
+    }
+
+    // 3. Interactive Copy Code Buttons on Code Blocks
+    const codeBlocks = document.querySelectorAll('.prose pre');
+    codeBlocks.forEach((pre) => {
+      if (pre.querySelector('.copy-code-btn')) return;
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-code-btn';
+      copyBtn.setAttribute('type', 'button');
+      copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+      copyBtn.innerHTML = `
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy</span>
+      `;
+
+      copyBtn.addEventListener('click', async () => {
+        const codeEl = pre.querySelector('code');
+        const codeText = codeEl ? codeEl.innerText : pre.innerText;
+        try {
+          await navigator.clipboard.writeText(codeText.trim());
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = `
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Copied!</span>
+          `;
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = `
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy code', err);
+        }
+      });
+
+      pre.appendChild(copyBtn);
+    });
+
+    // 4. Heading Anchor Links on Hover
+    const headings = document.querySelectorAll('.prose h2, .prose h3');
+    headings.forEach((h) => {
+      if (h.id && !h.querySelector('.heading-anchor')) {
+        const anchor = document.createElement('a');
+        anchor.className = 'heading-anchor';
+        anchor.href = `#${h.id}`;
+        anchor.setAttribute('aria-label', `Direct link to ${h.textContent}`);
+        anchor.innerHTML = '#';
+        h.appendChild(anchor);
+      }
+    });
+
+    // 5. Responsive Table Scroll Wrappers
+    const tables = document.querySelectorAll('.prose table');
+    tables.forEach((table) => {
+      if (!table.parentElement?.classList.contains('table-scroll-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-scroll-wrapper';
+        table.parentNode?.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      }
+    });
+
+    // 6. Key Takeaways TL;DR Highlight Card
+    const keyTakeawaysH2 = Array.from(document.querySelectorAll('.prose h2')).find((h) => 
+      /key takeaways/i.test(h.textContent || '')
+    );
+    if (keyTakeawaysH2 && !keyTakeawaysH2.closest('.key-takeaways-box')) {
+      const box = document.createElement('div');
+      box.className = 'key-takeaways-box';
+      if (keyTakeawaysH2.id) {
+        box.id = keyTakeawaysH2.id;
+      }
+      
+      const headerDiv = document.createElement('div');
+      headerDiv.className = 'key-takeaways-header';
+      headerDiv.innerHTML = `
+        <span class="tldr-badge">⚡ TL;DR</span>
+      `;
+
+      // Collect all content nodes until next heading or divider
+      const nodes: Element[] = [];
+      let next = keyTakeawaysH2.nextElementSibling;
+      while (next && next.tagName !== 'H2' && next.tagName !== 'HR') {
+        nodes.push(next);
+        next = next.nextElementSibling;
+      }
+
+      keyTakeawaysH2.parentNode?.insertBefore(box, keyTakeawaysH2);
+      box.appendChild(headerDiv);
+      nodes.forEach((n) => box.appendChild(n));
+      keyTakeawaysH2.remove();
+    }
+
+    // 4. Universal Interactive FAQ Accordion Generator
+    const faqHeadings = Array.from(document.querySelectorAll('.prose h2')).filter((h) => 
+      /faq/i.test(h.textContent || '') || /frequently asked questions/i.test(h.textContent || '')
+    );
+
+    faqHeadings.forEach((faqH2) => {
+      let curr = faqH2.nextElementSibling;
+      const faqGroup = document.createElement('div');
+      faqGroup.className = 'faq-accordion-group';
+
+      const nodesToProcess: Element[] = [];
+      while (curr && curr.tagName !== 'H2' && curr.tagName !== 'HR') {
+        nodesToProcess.push(curr);
+        curr = curr.nextElementSibling;
+      }
+
+      let currentDetails: HTMLDetailsElement | null = null;
+      let currentBody: HTMLDivElement | null = null;
+
+      const isQuestionNode = (node: Element) => {
+        if (node.tagName === 'H3' || node.tagName === 'H4') return true;
+        if (node.tagName === 'P') {
+          const strong = node.querySelector('strong');
+          if (strong && (strong.textContent?.trim().endsWith('?') || /^\s*(\d+\.|Q\d*[:.])/i.test(strong.textContent || ''))) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      const getQuestionHtml = (node: Element) => {
+        if (node.tagName === 'H3' || node.tagName === 'H4') return node.innerHTML;
+        const strong = node.querySelector('strong');
+        return strong ? strong.innerHTML : node.innerHTML;
+      };
+
+      nodesToProcess.forEach((node) => {
+        if (isQuestionNode(node)) {
+          currentDetails = document.createElement('details');
+          currentDetails.className = 'faq-accordion-item';
+
+          const summary = document.createElement('summary');
+          summary.className = 'faq-accordion-question';
+          summary.innerHTML = `
+            <span class="faq-q-text">${getQuestionHtml(node)}</span>
+            <span class="faq-q-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" class="faq-icon-vert"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+          `;
+
+          currentBody = document.createElement('div');
+          currentBody.className = 'faq-accordion-answer';
+
+          currentDetails.appendChild(summary);
+          currentDetails.appendChild(currentBody);
+          faqGroup.appendChild(currentDetails);
+          node.remove();
+        } else if (currentBody) {
+          currentBody.appendChild(node);
+        } else {
+          faqGroup.appendChild(node);
+        }
+      });
+
+      if (faqGroup.children.length > 0) {
+        faqH2.insertAdjacentElement('afterend', faqGroup);
+      }
+    });
+
+    // 5. Code Block Copy to Clipboard
+    const preBlocks = document.querySelectorAll('.prose pre');
+    preBlocks.forEach((pre) => {
+      const codeWrapper = document.createElement('div');
+      codeWrapper.className = 'code-block-wrapper';
+      pre.parentNode?.insertBefore(codeWrapper, pre);
+      codeWrapper.appendChild(pre);
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'copy-code-btn';
+      copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+      copyBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span>Copy</span>
+      `;
+
+      copyBtn.addEventListener('click', async () => {
+        const codeText = pre.querySelector('code')?.innerText || pre.innerText;
+        try {
+          await navigator.clipboard.writeText(codeText);
+          copyBtn.classList.add('copied');
+          copyBtn.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span style="color: #16a34a;">Copied!</span>
+          `;
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+            copyBtn.innerHTML = `
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            `;
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy', err);
+        }
+      });
+
+      codeWrapper.appendChild(copyBtn);
+    });
+  }
+
+  // Execute when DOM is ready or after page navigation
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPostInteractivity);
+  } else {
+    initPostInteractivity();
+  }
+  document.addEventListener('astro:page-load', initPostInteractivity);
+</script>
+
+<style is:global>
+  /* Reading Progress Indicator */
+  #reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent) 0%, #7C3AED 100%);
+    z-index: 99999;
+    transition: width 0.1s ease-out;
+  }
+
+  /* Table Horizontal Scroll Container */
+  .table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 2rem 0;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  }
+
+  .table-scroll-wrapper table {
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Post Share & Actions Bar */
+  .post-actions-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 0;
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .post-actions-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .action-btn:hover {
+    background: #ffffff;
+    border-color: var(--border-strong);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .action-btn.copied {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #16a34a;
+  }
+
+  /* Back to Top Floating Button */
+  .back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #111827;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 999;
+  }
+
+  .back-to-top-btn:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Code Block Wrapper & Copy Button */
+  .code-block-wrapper {
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  .code-block-wrapper pre {
+    margin: 0 !important;
+  }
+
+  .copy-code-btn {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.15s ease;
+    z-index: 10;
+  }
+
+  .copy-code-btn:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  /* FAQ Accordion Component */
+  .faq-accordion-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .faq-accordion-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .faq-accordion-item:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  }
+
+  .faq-accordion-item[open] {
+    border-color: #cbd5e1;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .faq-accordion-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 1.35rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #111827;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition: color 0.15s, background-color 0.15s;
+  }
+
+  .faq-accordion-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-accordion-question:hover {
+    background-color: var(--bg-soft);
+    color: var(--accent);
+  }
+
+  .faq-q-text {
+    flex-grow: 1;
+    padding-right: 1rem;
+    line-height: 1.45;
+  }
+
+  .faq-q-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563EB;
+    flex-shrink: 0;
+    transition: transform 0.25s ease, color 0.2s;
+  }
+
+  .faq-accordion-item[open] .faq-q-icon {
+    transform: rotate(45deg);
+    color: var(--accent);
+  }
+
+  .faq-accordion-answer {
+    padding: 0 1.35rem 1.25rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #4B5563;
+    border-top: 1px solid #f3f4f6;
+    margin-top: 0.25rem;
+    padding-top: 1rem;
+  }
+
+  .faq-accordion-answer p:last-child {
+    margin-bottom: 0;
+  }
+</style>

@@ -40,17 +40,17 @@ const badgeColor = firstTag ? (tagColorMap[firstTag] || 'var(--cat-guides)') : n
 const badgeLabel = firstTag ? (tagDisplayNames[firstTag] || firstTag) : '';
 ---
 
-<article class="post-card">
+<a class="post-card" href={url}>
   {firstTag && (
     <span class="post-card-badge" style={`background: ${badgeColor}`}>
       {badgeLabel}
     </span>
   )}
-  <h2 class="post-card-title"><a href={url}>{title}</a></h2>
+  <h2 class="post-card-title">{title}</h2>
   <p class="post-card-desc">{description}</p>
   <p class="post-card-meta">
     <FormattedDate date={pubDate} />
     {minutes ? <span aria-hidden="true">·</span> : null}
     {minutes ? <span>{minutes} min read</span> : null}
   </p>
-</article>
+</a>

@@ -1,59 +1,581 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import LeftSidebar from '../components/LeftSidebar.astro';
-import RightSidebar from '../components/RightSidebar.astro';
 import { SITE } from '../config';
 ---
 
-<BaseLayout title="About OllaGraph Blog" description={`About the ${SITE.brand} engineering blog and web intelligence platform.`}>
-  <div class="page-grid">
-    <LeftSidebar />
+<BaseLayout 
+  title="About OllaGraph · Web Infrastructure for AI Agents" 
+  description="Learn about OllaGraph: the unified web scraping, crawling, and AI search intelligence platform built for autonomous agents, developers, and data teams."
+  metaTitle="About OllaGraph · Web Infrastructure for AI Agents"
+  metaDescription="Fetch, extract, audit, and reason about the live web through one API. Discover OllaGraph's engineering mission, zero-retention architecture, and AEO intelligence."
+>
+  <div class="about-container">
+    <!-- Hero Header -->
+    <header class="about-hero">
+      <div class="newest-label">
+        <span class="newest-pill">⚡ Official Technical Publication</span>
+        <span class="newest-sub">Infrastructure for AI Agents</span>
+      </div>
+      <h1 class="about-title">
+        Web Scraping, Crawling & Search for AI Agents
+      </h1>
+      <p class="about-subtitle">
+        Fetch, extract, audit, and reason about the live web through one API. 
+        <strong>{SITE.brand}</strong> consolidates the modern web data stack behind one API key, 
+        one bill, and one native MCP server with flat 1-credit pricing and auto-refunds on failure.
+      </p>
+    </header>
 
-    <article class="post main-content">
-      <header class="post-header">
-        <div class="newest-label" style="margin-bottom: 0.75rem;">
-          <span class="newest-pill">⚡ Technical Editorial</span>
-          <span class="newest-sub">Infrastructure for AI Agents</span>
-        </div>
-        <h1 class="post-title" style="font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 900; margin: 0 0 0.5rem;">
-          About {SITE.brand} Blog
-        </h1>
-        <p class="post-dek">
-          {SITE.description}
-        </p>
-      </header>
+    <!-- Key Metrics Grid -->
+    <section class="stats-grid" aria-label="Platform Highlights">
+      <div class="stat-card">
+        <div class="stat-num">147</div>
+        <div class="stat-label">Unified Endpoints</div>
+        <p class="stat-desc">Scrape, crawl, search, convert, and audit behind a single API key.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1 Credit</div>
+        <div class="stat-label">Flat Rate per Call</div>
+        <p class="stat-desc">No render or extract multipliers. Unmetered JavaScript rendering included.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Zero Content Retention</div>
+        <p class="stat-desc">Processed entirely in-memory. Extracted content is never persisted on disk.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Native MCP</div>
+        <div class="stat-label">Model Context Protocol</div>
+        <p class="stat-desc">Plug-and-play tools for Claude Desktop, Cursor, and autonomous agent loops.</p>
+      </div>
+    </section>
 
-      <div class="prose">
-        <p>
-          Welcome to the official technical publication of <strong>{SITE.brand}</strong>. 
-          This blog is built for AI developers, ML engineers, RevOps architects, and SEO leaders navigating the fundamental shift from legacy search indexers to autonomous AI agents and Answer Engine Optimization (AEO).
-        </p>
+    <!-- Mission & Engineering Philosophy -->
+    <section class="mission-section">
+      <div class="section-badge">Engineering Mission</div>
+      <h2 class="section-title">Consolidating the Web Data Stack</h2>
+      <p class="section-desc">
+        Modern AI applications require fresh, structured, and verifiable data from the live web. 
+        Historically, engineering teams were forced to duct-tape a proxy rotator, a headless browser cluster, 
+        a SERP scraper, and an HTML parser together. {SITE.brand} replaces that fragile pipeline with unified, 
+        model-ready infrastructure.
+      </p>
 
-        <h2>What We Cover</h2>
-        <ul>
-          <li><strong>Answer Engine Optimization (AEO & GEO):</strong> Mathematical frameworks, metrics (AISVS, CRS), and optimization strategies for ChatGPT Search, Perplexity, Claude, and Gemini.</li>
-          <li><strong>Web Scraping & Crawling Infrastructure:</strong> High-throughput data extraction, stealth Chromium rendering, proxy orchestration, and anti-bot mitigation.</li>
-          <li><strong>Robots.txt & Governance:</strong> Auditing RFC 9309 crawler standards, protecting proprietary training IP, and ensuring search engine accessibility.</li>
-          <li><strong>RAG & Vector Grounding:</strong> Semantic chunking, Named Entity Recognition, JSON-LD Schema structures, and real-time retrieval accuracy.</li>
-        </ul>
-
-        <h2>About the {SITE.brand} Platform</h2>
-        <p>
-          {SITE.brand} is unified web intelligence and scraping infrastructure built specifically for AI agents. With a single API key covering 147 endpoints at a flat 1 credit per call, native Model Context Protocol (MCP) support, automatic refunds on upstream failures, and a strict zero content retention policy, Ollagraph powers modern agentic workflows across the globe.
-        </p>
-
-        <div class="cta-box">
-          <h2>Ready to explore the API?</h2>
-          <p>
-            Start building with high-speed stealth scrapers, real-time search aggregation, and model-ready extraction tools.
+      <div class="guarantees-grid">
+        <div class="guarantee-card">
+          <div class="guarantee-icon" style="background: rgba(232, 68, 58, 0.1); color: var(--accent);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h3 class="guarantee-title">Predictable Economics</h3>
+          <p class="guarantee-text">
+            Flat 1 credit per request with automatic instant refunds before response delivery if an upstream target fails. No surprise multipliers or hidden surcharges.
           </p>
-          <a class="btn" href={SITE.marketingUrl} target="_blank" rel="noopener noreferrer">
-            Explore {SITE.brand} Infrastructure →
+        </div>
+
+        <div class="guarantee-card">
+          <div class="guarantee-icon" style="background: rgba(124, 58, 237, 0.1); color: #7C3AED;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h3 class="guarantee-title">Zero Data Retention</h3>
+          <p class="guarantee-text">
+            Your extraction payloads, proprietary datasets, and agent queries are processed strictly in-memory and immediately discarded. Only billing metadata is retained.
+          </p>
+        </div>
+
+        <div class="guarantee-card">
+          <div class="guarantee-icon" style="background: rgba(2, 132, 199, 0.1); color: #0284C7;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <h3 class="guarantee-title">Sub-Second Execution</h3>
+          <p class="guarantee-text">
+            Global edge-cached scraping infrastructure delivering static scrapes in as fast as ~146ms, with automatic residential fallback when SPAs or anti-bot protections trigger.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Platform Capabilities -->
+    <section class="capabilities-section">
+      <div class="section-badge">Capabilities</div>
+      <h2 class="section-title">Comprehensive Web Intelligence Suite</h2>
+      <p class="section-desc">
+        Explore the 147 unified endpoints powering autonomous AI agents, enterprise search pipelines, and competitive intelligence.
+      </p>
+
+      <div class="capabilities-grid">
+        <div class="capability-card">
+          <div class="capability-badge" style="background: var(--cat-ai-search);">Search & Retrieval</div>
+          <h3 class="capability-heading">Merged Web Search</h3>
+          <p class="capability-text">
+            Live web search aggregated across engines, merged and deduplicated by URL, with ranked result payloads. Eliminates custom SERP scraper maintenance.
+          </p>
+          <code class="capability-code">POST /v1/search</code>
+        </div>
+
+        <div class="capability-card">
+          <div class="capability-badge" style="background: var(--cat-robots-txt);">Crawl & Extract</div>
+          <h3 class="capability-heading">Smart Crawling & Stealth Headless</h3>
+          <p class="capability-text">
+            Render-aware crawling that follows link trees, honors RFC 9309 crawler standards, bypasses anti-bot defenses, and outputs token-efficient clean Markdown.
+          </p>
+          <code class="capability-code">POST /v1/crawl · POST /v1/scrape</code>
+        </div>
+
+        <div class="capability-card">
+          <div class="capability-badge" style="background: var(--cat-aeo);">AEO Intelligence</div>
+          <h3 class="capability-heading">Answer Engine Optimization Audits</h3>
+          <p class="capability-text">
+            Audit how AI answer engines (ChatGPT, Perplexity, Claude, Gemini) see, cite, and rank your content. Generate <a href="/blog/citation-readiness-score-how-to-build-reliable-scoring-model/">Citation Readiness Scores</a> and test crawler simulation.
+          </p>
+          <code class="capability-code">POST /v1/aeo/citation-readiness</code>
+        </div>
+
+        <div class="capability-card">
+          <div class="capability-badge" style="background: var(--cat-rag);">Document Processing</div>
+          <h3 class="capability-heading">Universal Format Conversion</h3>
+          <p class="capability-text">
+            Transform CSV, DOCX, HTML, PDF, PPTX, and XLSX documents into clean, chunk-stable Markdown with preserved table formatting for RAG context windows.
+          </p>
+          <code class="capability-code">POST /v1/convert/pdf · /docx</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- Flagship Editorial Research -->
+    <section class="research-section">
+      <div class="section-badge">Flagship Editorial</div>
+      <h2 class="section-title">Explore Our Research & Frameworks</h2>
+      <p class="section-desc">
+        Dive into the open engineering frameworks authored by the {SITE.brand} team:
+      </p>
+
+      <div class="framework-grid">
+        <a class="framework-item" href="/blog/ai-search-visibility-score-practical-framework-measuring-brand-presence/">
+          <span class="framework-tag" style="background: var(--cat-aeo);">AEO & GEO Framework</span>
+          <h3 class="framework-title">AI Search Visibility Score (AISVS)</h3>
+          <p class="framework-desc">
+            A mathematical framework to measure, track, and optimize brand citations across ChatGPT, Perplexity, Claude, and Gemini.
+          </p>
+          <span class="framework-link">Read Architectural Guide →</span>
+        </a>
+
+        <a class="framework-item" href="/blog/citation-readiness-score-how-to-build-reliable-scoring-model/">
+          <span class="framework-tag" style="background: var(--cat-citations);">RAG Scoring Model</span>
+          <h3 class="framework-title">Citation Readiness Score (CRS)</h3>
+          <p class="framework-desc">
+            The engineering blueprint to calculate markdown extraction efficiency, entity density, and chunk stability for LLM context.
+          </p>
+          <span class="framework-link">Read Architectural Guide →</span>
+        </a>
+
+        <a class="framework-item" href="/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/">
+          <span class="framework-tag" style="background: var(--cat-robots-txt);">Crawl Governance</span>
+          <h3 class="framework-title">Robots.txt AI Crawler Audit</h3>
+          <p class="framework-desc">
+            How to audit RFC 9309 crawler directives to block unauthorized LLM training scrapers without losing visibility on search engines.
+          </p>
+          <span class="framework-link">Read Architectural Guide →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Developer CTA -->
+    <section class="about-cta">
+      <div class="cta-inner">
+        <div class="cta-badge">1,000 Free Credits on Signup · No Card Required</div>
+        <h2 class="cta-title">Start Building with {SITE.brand}</h2>
+        <p class="cta-subtitle">
+          Ship AI agents that actually understand the live web. Access all 147 endpoints with one API key, native MCP integration, and flat 1-credit pricing.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://ollagraph.com/contactus" target="_blank" rel="noopener noreferrer">
+            Request Access & API Key →
+          </a>
+          <a class="btn btn-secondary" href="https://ollagraph.com/docs" target="_blank" rel="noopener noreferrer">
+            Explore API Documentation ↗
+          </a>
+          <a class="btn btn-secondary" href="https://ollagraph.com/pricing" target="_blank" rel="noopener noreferrer">
+            View Pricing ↗
           </a>
         </div>
       </div>
-    </article>
-
-    <RightSidebar />
+    </section>
   </div>
 </BaseLayout>
+
+<style>
+  .about-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4.5rem;
+  }
+
+  .about-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .about-hero .newest-label {
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-title {
+    font-size: clamp(2.2rem, 5vw, 3.25rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: #111827;
+    margin: 0 auto 1.25rem;
+    max-width: 800px;
+  }
+
+  .about-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.65;
+    color: #4B5563;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem 1.25rem;
+    text-align: center;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    border-color: var(--border-strong);
+  }
+
+  .stat-num {
+    font-size: 2.1rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-desc {
+    font-size: 0.78rem;
+    color: #6B7280;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  /* Section Styling */
+  .mission-section,
+  .capabilities-section,
+  .research-section {
+    margin-bottom: 4.5rem;
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #111827;
+    margin: 0 0 0.5rem;
+  }
+
+  .section-desc {
+    font-size: 1.02rem;
+    color: #4B5563;
+    max-width: 680px;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  /* Guarantees Grid */
+  .guarantees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .guarantee-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .guarantee-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-strong);
+  }
+
+  .guarantee-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .guarantee-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.5rem;
+  }
+
+  .guarantee-text {
+    font-size: 0.88rem;
+    color: #4B5563;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Capabilities Grid */
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .capability-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .capability-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    border-color: var(--border-strong);
+  }
+
+  .capability-badge {
+    align-self: flex-start;
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .capability-heading {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.6rem;
+  }
+
+  .capability-text {
+    font-size: 0.88rem;
+    color: #4B5563;
+    line-height: 1.6;
+    margin: 0 0 1.25rem;
+    flex-grow: 1;
+  }
+
+  .capability-code {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Framework Links */
+  .framework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .framework-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .framework-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+    border-color: var(--accent);
+  }
+
+  .framework-tag {
+    align-self: flex-start;
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .framework-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 0.6rem;
+    line-height: 1.35;
+  }
+
+  .framework-desc {
+    font-size: 0.85rem;
+    color: #4B5563;
+    line-height: 1.55;
+    margin: 0 0 1.25rem;
+    flex-grow: 1;
+  }
+
+  .framework-link {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  /* CTA Section */
+  .about-cta {
+    background: linear-gradient(135deg, #181E2A 0%, #0F172A 100%);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.15);
+  }
+
+  .cta-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta-badge {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #38BDF8;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .cta-title {
+    font-size: clamp(1.85rem, 4vw, 2.4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin: 0 0 0.85rem;
+  }
+
+  .cta-subtitle {
+    font-size: 1rem;
+    color: #94A3B8;
+    line-height: 1.6;
+    margin: 0 0 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.88rem;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform 0.15s, opacity 0.15s, background-color 0.15s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .capabilities-grid,
+    .guarantees-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
