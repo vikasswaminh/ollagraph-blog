@@ -3,8 +3,8 @@ title: 'AI Search Visibility Score: A Practical Framework for Measuring Brand Pr
 description: 'Master the AI Search Visibility Score (AISVS) framework. Learn how to quantify, measure, and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini using Ollagraph’s AEO intelligence suite.'
 metaTitle: 'AI Search Visibility Score: A Practical Framework for Measuring Brand Presence'
 metaDescription: 'Master the AI Search Visibility Score (AISVS) framework. Learn how to quantify, measure, and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini using Ollagraph’s AEO intelligence suite.'
-primaryKeyword: 'AI Search Visibility Score, AISVS framework, Answer Engine Optimization, AEO audit framework, LLM brand visibility, measuring AI search presence, Ollagraph AEO audit'
-secondaryKeywords: 'Generative Engine Optimization, GEO metrics, LLM citation tracking, RAG brand retrieval, AI search monitoring API, synthetic SERP tracking'
+primaryKeyword: 'AI Search Visibility Score'
+secondaryKeywords: 'AISVS framework, Answer Engine Optimization, AEO audit framework, LLM brand visibility, measuring AI search presence, Ollagraph AEO audit, Generative Engine Optimization, GEO metrics, LLM citation tracking, RAG brand retrieval, AI search monitoring API, synthetic SERP tracking'
 pubDate: 2026-08-24
 author: 'Amit Sharma'
 tags: ['ai-search', 'aeo', 'citations', 'seo']
