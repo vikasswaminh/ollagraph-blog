@@ -171,7 +171,17 @@ const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondar
         </div>
       </header>
 
-      {cover && <img class="post-cover" src={cover} alt="" loading="lazy" />}
+      {cover && (
+        <img
+          class="post-cover"
+          src={cover}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="420"
+        />
+      )}
 
       <div class="prose">
         <Content />

@@ -50,12 +50,36 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 </header>
 
 <script>
-  const toggle = document.querySelector('.nav-toggle');
-  const nav = document.querySelector('.nav');
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
-      const open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
-    });
+  function initHeaderNav() {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.querySelector('.nav');
+    const header = document.querySelector('.site-header');
+
+    if (toggle && nav) {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+
+      // Close when clicking any link inside the mobile nav
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+      // Close when clicking anywhere outside the header
+      document.addEventListener('click', (e) => {
+        if (header && !header.contains(e.target as Node) && nav.classList.contains('is-open')) {
+          nav.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   }
+
+  document.addEventListener('DOMContentLoaded', initHeaderNav);
+  document.addEventListener('astro:page-load', initHeaderNav);
 </script>

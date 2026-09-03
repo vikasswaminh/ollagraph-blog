@@ -581,9 +581,40 @@ import { SITE } from '../config';
   }
 
   @media (max-width: 768px) {
+    .about-container {
+      padding: 1.25rem 0.85rem 3.5rem;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      padding: 1.25rem 0.85rem;
+    }
+    .stat-num {
+      font-size: 1.75rem;
+    }
     .capabilities-grid,
-    .guarantees-grid {
+    .guarantees-grid,
+    .research-grid,
+    .framework-grid {
       grid-template-columns: 1fr;
+    }
+    .about-cta {
+      padding: 2.5rem 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-title {
+      font-size: 1.85rem;
+    }
+    .section-title {
+      font-size: 1.45rem;
     }
   }
 </style>
