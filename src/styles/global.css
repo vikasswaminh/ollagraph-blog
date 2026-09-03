@@ -1,7 +1,27 @@
 /* ==========================================================================
    OllaGraph Blog — Global Stylesheet
-   3-Column Editorial Layout · White Background · Inter Font
+   3-Column Editorial Layout · White Background · Inter Font (Self-Hosted)
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Self-Hosted Inter Variable Font (400–900)
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 /* --------------------------------------------------------------------------
    CSS Custom Properties
@@ -1382,6 +1402,68 @@ main.container {
 .prose ol li::marker {
   color: var(--accent);
   font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Markdown Task Lists / Checklists (- [x] / - [ ])
+   -------------------------------------------------------------------------- */
+.prose ul.contains-task-list,
+.prose ul:has(li.task-list-item),
+.prose ul:has(input[type="checkbox"]) {
+  list-style: none !important;
+  padding-left: 0.15rem !important;
+}
+
+.prose li.task-list-item,
+.prose li:has(input[type="checkbox"]) {
+  list-style: none !important;
+  list-style-type: none !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.65rem;
+  margin-top: 0.6rem;
+}
+
+.prose li.task-list-item::marker,
+.prose li:has(input[type="checkbox"])::marker {
+  display: none !important;
+  content: "" !important;
+}
+
+.prose li.task-list-item input[type="checkbox"],
+.prose li input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 4px;
+  border: 1.5px solid #10B981;
+  background-color: #ECFDF5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.22rem 0 0 0;
+  flex-shrink: 0;
+  cursor: default;
+  position: relative;
+  transition: all 0.15s ease;
+}
+
+.prose li.task-list-item input[type="checkbox"]:checked,
+.prose li input[type="checkbox"]:checked {
+  background-color: #10B981;
+  border-color: #10B981;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3E%3Cpath fill-rule='evenodd' d='M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-size: 85% 85%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.25);
+}
+
+.prose li.task-list-item input[type="checkbox"]:not(:checked),
+.prose li input[type="checkbox"]:not(:checked) {
+  border-color: #CBD5E1;
+  background-color: #F8FAFC;
 }
 
 .prose img {
