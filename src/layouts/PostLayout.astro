@@ -432,15 +432,21 @@ const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondar
       };
 
       const getQuestionHtml = (node: Element) => {
-        if (node.tagName === 'H3' || node.tagName === 'H4') return node.innerHTML;
-        const strong = node.querySelector('strong');
-        return strong ? strong.innerHTML : node.innerHTML;
+        const clone = node.cloneNode(true) as Element;
+        // Remove nested interactive elements (e.g., heading anchor links) so <summary> contains no interactive children
+        clone.querySelectorAll('a, button, input, select, textarea').forEach((el) => el.remove());
+        if (clone.tagName === 'H3' || clone.tagName === 'H4') return clone.innerHTML.trim();
+        const strong = clone.querySelector('strong');
+        return strong ? strong.innerHTML.trim() : clone.innerHTML.trim();
       };
 
       nodesToProcess.forEach((node) => {
         if (isQuestionNode(node)) {
           currentDetails = document.createElement('details');
           currentDetails.className = 'faq-accordion-item';
+          if (node.id) {
+            currentDetails.id = node.id;
+          }
 
           const summary = document.createElement('summary');
           summary.className = 'faq-accordion-question';
