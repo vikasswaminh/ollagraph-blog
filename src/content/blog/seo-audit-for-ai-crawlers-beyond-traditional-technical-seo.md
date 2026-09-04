@@ -495,7 +495,7 @@ The teams that build this capability now will have a significant advantage as AI
 - **PerplexityBot Documentation:** [https://docs.perplexity.ai/docs/perplexitybot](https://docs.perplexity.ai/docs/perplexitybot)
 - **Google-Extended Documentation:** [https://developers.google.com/search/docs/crawling-indexing/google-extended](https://developers.google.com/search/docs/crawling-indexing/google-extended)
 - **llms.txt Standard:** [https://llmstxt.org](https://llmstxt.org)
-- **ai-license.txt Standard:** [https://ai-license.txt](https://ai-license.txt)
+- **ai-license.txt Standard:** Proposed file specification convention (/.well-known/ai-license.txt) for declaring AI crawler permissions.
 - **W3C WebDriver (Headless Browser Standard):** [https://www.w3.org/TR/webdriver/](https://www.w3.org/TR/webdriver/)
 - **Google Core Web Vitals:** [https://web.dev/vitals/](https://web.dev/vitals/)
 - **Schema.org Structured Data:** [https://schema.org](https://schema.org)

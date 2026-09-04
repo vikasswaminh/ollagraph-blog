@@ -69,11 +69,41 @@ const label = tagDisplayNames[tag] || tag;
 const badgeColor = tagColorMap[tag] || 'var(--cat-guides)';
 const hex = tagHexMap[tag] || '#6B7280';
 const desc = tagDescriptions[tag] || `Technical articles categorized under ${label}.`;
+
+const tagCanonical = new URL(`/tags/${tag}/`, Astro.site).href;
+const topicsCanonical = new URL('/tags/', Astro.site).href;
+const homeCanonical = new URL('/', Astro.site).href;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: homeCanonical,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Topics',
+      item: topicsCanonical,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: `${label} Articles`,
+      item: tagCanonical,
+    },
+  ],
+};
 ---
 
 <BaseLayout 
-  title={`${label} Articles · OllaGraph Blog`} 
+  title={`${label} Articles`} 
   description={`Explore all ${label} articles on the OllaGraph Blog. ${desc}`}
+  jsonLd={breadcrumbLd}
 >
   <div class="page-grid">
     <LeftSidebar />

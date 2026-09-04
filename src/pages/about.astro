@@ -1,13 +1,36 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../config';
+
+const aboutCanonical = new URL('/about/', Astro.site).href;
+const homeCanonical = new URL('/', Astro.site).href;
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: homeCanonical,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'About',
+      item: aboutCanonical,
+    },
+  ],
+};
 ---
 
 <BaseLayout 
-  title="About OllaGraph · Web Infrastructure for AI Agents" 
+  title="About OllaGraph" 
   description="Learn about OllaGraph: the unified web scraping, crawling, and AI search intelligence platform built for autonomous agents, developers, and data teams."
-  metaTitle="About OllaGraph · Web Infrastructure for AI Agents"
+  metaTitle="About OllaGraph — Web Infrastructure for AI Agents"
   metaDescription="Fetch, extract, audit, and reason about the live web through one API. Discover OllaGraph's engineering mission, zero-retention architecture, and AEO intelligence."
+  jsonLd={breadcrumbLd}
 >
   <div class="about-container">
     <!-- Hero Header -->

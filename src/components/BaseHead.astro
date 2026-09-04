@@ -37,12 +37,37 @@ const cleanPath = pathname === '/' || pathname.endsWith('/') ? pathname : `${pat
 const canonical = new URL(cleanPath, Astro.site).href;
 const ogImage = image ? new URL(image, Astro.site).href : undefined;
 
-// Determine final title
-const activeTitle = metaTitle || title;
-const fullTitle = activeTitle === SITE.title ? activeTitle : `${activeTitle} · ${SITE.brand} Blog`;
+// Determine final title without duplicate branding
+const brandSuffix = ` · ${SITE.brand} Blog`;
+let rawTitle = (metaTitle || title || SITE.title).trim();
+
+// Strip any existing trailing brand references to prevent duplicate branding
+rawTitle = rawTitle
+  .replace(/\s*[·|—\-]\s*OllaGraph\s+Blog$/i, '')
+  .replace(/\s*[·|—\-]\s*OllaGraph$/i, '')
+  .trim();
+
+const fullTitle = rawTitle === SITE.title || rawTitle === `${SITE.brand} Blog` || rawTitle === SITE.brand
+  ? SITE.title
+  : `${rawTitle}${brandSuffix}`;
 
 // Determine final description
 const activeDescription = metaDescription || description;
+
+// Global Structured Data
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: `${SITE.brand} Blog`,
+  url: Astro.site ? new URL('/', Astro.site).href : SITE.url,
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE.brand,
+  url: SITE.marketingUrl,
+};
 
 // Format keyword strings with resilient fallback
 const props = Astro.props as Record<string, any>;
@@ -107,4 +132,6 @@ const secondaryKeywordsStr = secondaryKw
 }
 
 <link rel="sitemap" href="/sitemap-index.xml" />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(siteSchema)}></script>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>}
