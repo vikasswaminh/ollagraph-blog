@@ -217,4 +217,5 @@ const cleanHeadingText = (text: string) => {
   } else {
     initTableOfContents();
   }
+  document.addEventListener('astro:page-load', initTableOfContents);
 </script>

@@ -1,5 +1,6 @@
 ---
 import { SITE, NAV } from '../config';
+import BrandMark from './BrandMark.astro';
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
@@ -18,7 +19,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
 <header class="site-header">
   <div class="container-header header-inner">
     <a class="brand" href="/">
-      <span class="brand-mark" aria-hidden="true"></span>
+      <BrandMark size={28} />
       <span class="brand-name">{SITE.brand}</span>
       <span class="brand-badge-pill">BLOG</span>
     </a>

@@ -132,7 +132,10 @@ const breadcrumbLd = {
           <p class="capability-text">
             Live web search aggregated across engines, merged and deduplicated by URL, with ranked result payloads. Eliminates custom SERP scraper maintenance.
           </p>
-          <code class="capability-code">POST /v1/search</code>
+          <div class="endpoint-spec">
+            <span class="http-method post">POST</span>
+            <span class="http-path">/v1/search</span>
+          </div>
         </div>
 
         <div class="capability-card">
@@ -141,7 +144,10 @@ const breadcrumbLd = {
           <p class="capability-text">
             Render-aware crawling that follows link trees, honors RFC 9309 crawler standards, bypasses anti-bot defenses, and outputs token-efficient clean Markdown.
           </p>
-          <code class="capability-code">POST /v1/crawl · POST /v1/scrape</code>
+          <div class="endpoint-spec">
+            <span class="http-method post">POST</span>
+            <span class="http-path">/v1/crawl · /v1/scrape</span>
+          </div>
         </div>
 
         <div class="capability-card">
@@ -150,7 +156,10 @@ const breadcrumbLd = {
           <p class="capability-text">
             Audit how AI answer engines (ChatGPT, Perplexity, Claude, Gemini) see, cite, and rank your content. Generate <a href="/blog/citation-readiness-score-how-to-build-reliable-scoring-model/">Citation Readiness Scores</a> and test crawler simulation.
           </p>
-          <code class="capability-code">POST /v1/aeo/citation-readiness</code>
+          <div class="endpoint-spec">
+            <span class="http-method post">POST</span>
+            <span class="http-path">/v1/aeo/citation-readiness</span>
+          </div>
         </div>
 
         <div class="capability-card">
@@ -159,7 +168,10 @@ const breadcrumbLd = {
           <p class="capability-text">
             Transform CSV, DOCX, HTML, PDF, PPTX, and XLSX documents into clean, chunk-stable Markdown with preserved table formatting for RAG context windows.
           </p>
-          <code class="capability-code">POST /v1/convert/pdf · /docx</code>
+          <div class="endpoint-spec">
+            <span class="http-method post">POST</span>
+            <span class="http-path">/v1/convert/:format</span>
+          </div>
         </div>
       </div>
     </section>
@@ -270,28 +282,48 @@ const breadcrumbLd = {
   }
 
   .stat-card {
+    position: relative;
     background: #ffffff;
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.6rem 1.25rem;
+    padding: 1.75rem 1.25rem;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
     transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), border-color 0.2s;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent) 0%, #7C3AED 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 
   .stat-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
     border-color: var(--border-strong);
   }
 
+  .stat-card:hover::before {
+    opacity: 1;
+  }
+
   .stat-num {
-    font-size: 2.1rem;
+    font-size: 2.2rem;
     font-weight: 900;
-    letter-spacing: -0.03em;
-    color: var(--accent);
+    letter-spacing: -0.035em;
+    background: linear-gradient(135deg, var(--accent) 0%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     line-height: 1.1;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
   }
 
   .stat-label {
@@ -441,15 +473,39 @@ const breadcrumbLd = {
     flex-grow: 1;
   }
 
-  .capability-code {
-    align-self: flex-start;
+  .endpoint-spec {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--mono);
-    font-size: 0.76rem;
-    color: #475569;
-    background: #f1f5f9;
-    padding: 0.35rem 0.65rem;
+    font-size: 0.74rem;
+    background: #0f172a;
+    padding: 0.35rem 0.7rem;
     border-radius: 6px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #1e293b;
+    width: fit-content;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+  }
+
+  .http-method {
+    font-weight: 800;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.12rem 0.4rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .http-method.post {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+  }
+
+  .http-path {
+    color: #e2e8f0;
+    font-weight: 500;
   }
 
   /* Framework Links */

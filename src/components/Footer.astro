@@ -1,5 +1,6 @@
 ---
 import { SITE, NAV } from '../config';
+import BrandMark from './BrandMark.astro';
 const year = new Date().getFullYear();
 ---
 
@@ -8,7 +9,7 @@ const year = new Date().getFullYear();
     <!-- Brand Column -->
     <div class="footer-brand-col">
       <a class="brand" href="/">
-        <span class="brand-mark" aria-hidden="true"></span>
+        <BrandMark size={26} />
         <span class="brand-name">{SITE.brand}</span>
         <span class="brand-sub">Blog</span>
       </a>

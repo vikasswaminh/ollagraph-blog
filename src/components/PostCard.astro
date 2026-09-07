@@ -38,19 +38,39 @@ const tagDisplayNames: Record<string, string> = {
 const firstTag = tags[0];
 const badgeColor = firstTag ? (tagColorMap[firstTag] || 'var(--cat-guides)') : null;
 const badgeLabel = firstTag ? (tagDisplayNames[firstTag] || firstTag) : '';
+
+// Normalize tags and text for fast client-side searching
+const searchDataTags = tags.map((t) => t.toLowerCase()).join(' ');
+const searchDataTitle = title.toLowerCase();
+const searchDataDesc = description.toLowerCase();
 ---
 
-<a class="post-card" href={url}>
+<a
+  class="post-card"
+  href={url}
+  data-tags={searchDataTags}
+  data-title={searchDataTitle}
+  data-desc={searchDataDesc}
+>
   {firstTag && (
-    <span class="post-card-badge" style={`background: ${badgeColor}`}>
+    <span class="post-card-badge" style={`--badge-color: ${badgeColor};`}>
       {badgeLabel}
     </span>
   )}
   <h2 class="post-card-title">{title}</h2>
   <p class="post-card-desc">{description}</p>
-  <p class="post-card-meta">
-    <FormattedDate date={pubDate} />
-    {minutes ? <span aria-hidden="true">·</span> : null}
-    {minutes ? <span>{minutes} min read</span> : null}
-  </p>
+  <div class="post-card-meta">
+    <span class="meta-item">
+      <svg class="meta-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <FormattedDate date={pubDate} />
+    </span>
+    {minutes ? <span class="meta-sep" aria-hidden="true">·</span> : null}
+    {minutes ? (
+      <span class="meta-item">
+        <svg class="meta-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>{minutes} min read</span>
+      </span>
+    ) : null}
+    <span class="card-arrow" aria-hidden="true">→</span>
+  </div>
 </a>

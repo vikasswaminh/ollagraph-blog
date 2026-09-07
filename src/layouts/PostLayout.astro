@@ -478,54 +478,6 @@ const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondar
         faqH2.insertAdjacentElement('afterend', faqGroup);
       }
     });
-
-    // 5. Code Block Copy to Clipboard
-    const preBlocks = document.querySelectorAll('.prose pre');
-    preBlocks.forEach((pre) => {
-      const codeWrapper = document.createElement('div');
-      codeWrapper.className = 'code-block-wrapper';
-      pre.parentNode?.insertBefore(codeWrapper, pre);
-      codeWrapper.appendChild(pre);
-
-      const copyBtn = document.createElement('button');
-      copyBtn.className = 'copy-code-btn';
-      copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
-      copyBtn.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-        </svg>
-        <span>Copy</span>
-      `;
-
-      copyBtn.addEventListener('click', async () => {
-        const codeText = pre.querySelector('code')?.innerText || pre.innerText;
-        try {
-          await navigator.clipboard.writeText(codeText);
-          copyBtn.classList.add('copied');
-          copyBtn.innerHTML = `
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            <span style="color: #16a34a;">Copied!</span>
-          `;
-          setTimeout(() => {
-            copyBtn.classList.remove('copied');
-            copyBtn.innerHTML = `
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-              <span>Copy</span>
-            `;
-          }, 2000);
-        } catch (err) {
-          console.error('Failed to copy', err);
-        }
-      });
-
-      codeWrapper.appendChild(copyBtn);
-    });
   }
 
   // Execute when DOM is ready or after page navigation
@@ -546,7 +498,9 @@ const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondar
     height: 3px;
     width: 0%;
     background: linear-gradient(90deg, var(--accent) 0%, #7C3AED 100%);
+    box-shadow: 0 0 10px rgba(232, 68, 58, 0.45);
     z-index: 99999;
+    pointer-events: none;
     transition: width 0.1s ease-out;
   }
 
@@ -650,44 +604,6 @@ const activeSecondaryKeywords = postData.secondaryKeywords || postData['secondar
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-  }
-
-  /* Code Block Wrapper & Copy Button */
-  .code-block-wrapper {
-    position: relative;
-    margin: 1.5rem 0;
-  }
-
-  .code-block-wrapper pre {
-    margin: 0 !important;
-  }
-
-  .copy-code-btn {
-    position: absolute;
-    top: 0.65rem;
-    right: 0.65rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 0.25rem 0.6rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #475569;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: all 0.15s ease;
-    z-index: 10;
-  }
-
-  .copy-code-btn:hover {
-    background: #ffffff;
-    border-color: #cbd5e1;
-    color: var(--accent);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
 
   /* FAQ Accordion Component */
