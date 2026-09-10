@@ -55,7 +55,7 @@ The cost is now straightforward to model with published figures rather than gues
 
 ## 2. History & Context
 
-Featured snippets arrived in 2014 and taught the industry its first extraction lesson: Google will lift a 40-to-60-word passage out of a page and display it above everything else. The optimization that followed was crude but effective — put a tight definitional paragraph directly under a question-shaped heading. It worked because the extraction unit was a contiguous block of HTML and the selection logic was largely heuristic.
+[Featured snippets](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/) arrived in 2014 and taught the industry its first extraction lesson: Google will lift a 40-to-60-word passage out of a page and display it above everything else. The optimization that followed was crude but effective — put a tight definitional paragraph directly under a question-shaped heading. It worked because the extraction unit was a contiguous block of HTML and the selection logic was largely heuristic.
 
 Passage ranking, announced in 2020 and rolled out through 2021, changed the unit. Google began ranking individual passages within a page independently of the document as a whole. A page could now rank for a long-tail query on the strength of one section. Extraction had become sub-document.
 
@@ -434,8 +434,8 @@ Ollagraph's AEO endpoints give you the pipeline behind one bearer token: `/v1/ae
 - **Ahrefs:** AI Overviews reduce clicks — 300,000 keyword study — [https://ahrefs.com/blog/ai-overviews-reduce-clicks/](https://ahrefs.com/blog/ai-overviews-reduce-clicks/)
 - **Cognizo:** Google AI Overviews statistics — coverage, click loss and citations — [https://www.cognizo.ai/blog/google-ai-overviews-statistics](https://www.cognizo.ai/blog/google-ai-overviews-statistics)
 - **Omnibound:** Google AI Overviews Statistics 2026 — citation source analysis — [https://www.omnibound.ai/blog/google-ai-overviews-statistics](https://www.omnibound.ai/blog/google-ai-overviews-statistics)
-- **Google Search Central:** AI features and your website — [https://developers.google.com/search/docs/appearance/ai-features](https://developers.google.com/search/docs/appearance/ai-features)
 - **Google Search Central:** Featured snippets and how they work — [https://developers.google.com/search/docs/appearance/featured-snippets](https://developers.google.com/search/docs/appearance/featured-snippets)
+- **Ollagraph:** [Featured Snippet Opportunity API: How to Find and Prioritize Position-Zero Opportunities](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/)
 
 ---
 

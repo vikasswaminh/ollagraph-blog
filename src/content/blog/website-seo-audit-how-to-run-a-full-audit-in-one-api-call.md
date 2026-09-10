@@ -150,7 +150,7 @@ The architecture is straightforward. Your application makes parallel HTTP POST r
 
 9. **`POST /v1/seo/snippet-candidates`**
    - **What It Checks:** Paragraph, list, table, and definition blocks that match featured-snippet formats.
-   - **Why It Matters:** 42% of search clicks go to the featured snippet. If your content isn't snippet-shaped, you can't win the position-zero slot.
+   - **Why It Matters:** 42% of search clicks go to the [featured snippet](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/). If your content isn't snippet-shaped, you can't win the [position-zero](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/) slot.
 
 ### Workflow: One Audit Cycle
 
@@ -594,7 +594,7 @@ The homepage is usually the most optimized page. Real issues live on product pag
 We audited a site six months post-HTTPS migration. The `mixed-content` endpoint found 47 HTTP image references across 12 pages. The SEO team had no idea.
 
 ### 7. Not Checking Snippet Candidates
-Featured snippets drive 42% of click-throughs on informational queries. If your content isn't formatted as a paragraph, list, table, or definition, you can't win position zero.
+[Featured snippets](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/) drive 42% of click-throughs on informational queries. If your content isn't formatted as a paragraph, list, table, or definition, you can't win position zero.
 
 ## 13. Alternatives & Comparison
 
@@ -698,7 +698,7 @@ The shift from desktop-crawler-in-a-VM to API-call-in-a-CI-pipeline is the defin
 ### Next steps:
 Sign up for an Ollagraph account, run the Python script against your own site, set up the GitHub Actions workflow for post-deploy audits, and explore the complementary AEO audit endpoints for AI citation readiness.
 
-For deeper dives, check out our guides on [Schema Markup Validation](/blog/schema-markup-validator-api-validate-json-ld-at-scale/), [Programmatic Broken Link Auditing](/blog/broken-links-checker-api-detect-and-fix-404s-at-scale/), and [AEO Audit Automation](/blog/aeo-audit-tool-what-should-an-answer-engine-optimization-audit-actually-measure/).
+For deeper dives, check out our guides on [Featured Snippet Opportunity Auditing](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/), [Schema Markup Validation](/blog/schema-markup-validator-api-validate-json-ld-at-scale/), [Programmatic Broken Link Auditing](/blog/broken-links-checker-api-detect-and-fix-404s-at-scale/), and [AEO Audit Automation](/blog/aeo-audit-tool-what-should-an-answer-engine-optimization-audit-actually-measure/).
 
 ## 17. References
 

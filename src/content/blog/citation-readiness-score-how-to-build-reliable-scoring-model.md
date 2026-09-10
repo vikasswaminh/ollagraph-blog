@@ -18,7 +18,7 @@ A Citation Readiness Score (CRS) is a quantitative, deterministic framework (sca
 
 This guide provides the complete engineering blueprint for building a production-grade Citation Readiness Scoring engine. We explore the five core mathematical dimensions of CRS: Structural Extractability, Grounding and Fact Density, Epistemic Authority and Provenance, Crawlability and Rendering Overhead, and Semantic Chunk Stability.
 
-By pairing this scoring model with model-ready extraction infrastructure like [OllaGraph](https://ollagraph.com/)—which converts unstructured DOM trees into clean, agent-ready markdown behind a high-speed API—engineering and content teams can programmatically audit, measure, and remediate technical web pages to ensure maximum citation fidelity across the generative AI ecosystem. To benchmark broader search presence across answer engines, evaluate our [AI Search Visibility Score framework](/blog/ai-search-visibility-score-practical-framework-measuring-brand-presence/) and audit your crawler access rules with our [robots.txt audit for AI crawlers guide](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/).
+By pairing this scoring model with model-ready extraction infrastructure like [OllaGraph](https://ollagraph.com/)—which converts unstructured DOM trees into clean, agent-ready markdown behind a high-speed API—engineering and content teams can programmatically audit, measure, and remediate technical web pages to ensure maximum citation fidelity across the generative AI ecosystem. To benchmark broader search presence across answer engines, evaluate our [AI Search Visibility Score framework](/blog/ai-search-visibility-score-practical-framework-measuring-brand-presence/), audit your crawler access rules with our [robots.txt audit for AI crawlers guide](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/), or capture position-zero search real estate with our [Featured Snippet Opportunity API guide](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/).
 
 ## Key Takeaways
 
@@ -430,6 +430,7 @@ Large Language Models prioritize claims that are explicitly grounded in identifi
 - **Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks:** Lewis et al., Meta AI Research. [NeurIPS Research Paper](https://arxiv.org/abs/2005.11401)
 - **Schema.org TechArticle Type Definition:** Standardized Vocabulary Specifications for Technical Documentation. [Schema.org TechArticle](https://schema.org/TechArticle)
 - **OllaGraph Platform:** Model-Ready Web Ingestion and Extraction Documentation. [OllaGraph Documentation](https://ollagraph.com/)
+- **OllaGraph:** Featured Snippet Opportunity API and Passage Optimization. [Featured Snippet Opportunity API Guide](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/)
 
 ## 21. Conclusion
 
