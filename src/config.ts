@@ -4,8 +4,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 export const SITE = {
   brand: 'OllaGraph',
-  title: 'OllaGraph Blog',
-  description: 'Guides, tips, and product updates from the OllaGraph team.',
+  title: 'OllaGraph Blog — Web Scraping & AI Search Intelligence',
+  description:
+    'Technical guides, architecture patterns, and engineering insights on web scraping, AI search intelligence, RAG vector pipelines, and crawl governance.',
   url: 'https://blogs.ollagraph.com',
   marketingUrl: 'https://ollagraph.com',
   marketingLabel: 'ollagraph.com',

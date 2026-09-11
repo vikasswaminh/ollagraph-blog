@@ -62,7 +62,13 @@ const featuredBadgeColor = featuredTag ? (tagColorMap[featuredTag] || 'var(--cat
 const featuredBadgeLabel = featuredTag ? (tagDisplayNames[featuredTag] || featuredTag) : '';
 ---
 
-<BaseLayout>
+<BaseLayout
+  title={SITE.title}
+  description={SITE.description}
+  metaTitle={SITE.title}
+  metaDescription={SITE.description}
+  image="/og-image.webp"
+>
   <div class="page-grid">
     <LeftSidebar />
 
