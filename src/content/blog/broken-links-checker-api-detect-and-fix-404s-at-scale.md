@@ -1,8 +1,8 @@
 ---
 title: 'Broken Links Checker API: Detect and Fix 404s at Scale'
-description: 'Build or integrate a broken links checker API to find and fix 404 errors at scale. Covers architecture, crawl strategies, redirect mapping, CI/CD integration, and production deployment patterns for 2026.'
-metaTitle: 'Broken Links Checker API: Detect and Fix 404s at Scale'
-metaDescription: 'Build or integrate a broken links checker API to find and fix 404 errors at scale. Covers architecture, crawl strategies, redirect mapping, CI/CD integration, and production deployment patterns for 2026.'
+description: 'Detect and remediate broken links and 404 errors across enterprise domains with an automated broken links checker API and CI/CD workflows.'
+metaTitle: 'Broken Links Checker API: Detect and Fix 404s'
+metaDescription: 'Detect and remediate broken links and 404 errors across enterprise domains with an automated broken links checker API and CI/CD workflows.'
 primaryKeyword: 'broken links checker API'
 secondaryKeywords: 'find broken links programmatically, fix 404 errors, link checker API, automated link audit, broken link detection, crawl budget optimization'
 pubDate: 2026-08-01
@@ -22,14 +22,14 @@ Broken links erode user trust, waste crawl budget, and directly impact search ra
 - Google treats broken links as a negative quality signal — sites with >3% broken link ratios see measurable ranking drops in our 2026 audit data.
 - Not all 404s are equal: prioritize fixes by page authority (inbound link equity), traffic volume, and user impact.
 - Automating link checks in CI/CD prevents broken links from reaching production — the cheapest fix is the one that never ships.
-- 301 redirect mapping is the highest-leverage fix: one redirect can preserve link equity from dozens of broken inbound paths.
-- The Ollagraph SEO API's `/v1/seo/broken-links-audit` endpoint ties all of this together — it returns per-URL status codes, response times, redirect chains, and suggested replacements in a single call.
+- 301 redirect mapping is the highest-leverage fix (see our [redirect chain audit guide](/blog/redirect-chain-audit-how-to-find-and-fix-loops/)): one redirect can preserve link equity from dozens of broken inbound paths.
+- The Ollagraph SEO API's `/v1/seo/broken-links-audit` endpoint ties all of this together — it returns per-URL status codes, response times, redirect chains, and suggested replacements in a single call (or run alongside a [full website SEO audit API](/blog/website-seo-audit-how-to-run-a-full-audit-in-one-api-call/)).
 
 ---
 
 ## 1. Problem Statement
 
-Every time you publish a page, you introduce new links. Some point to internal pages, some to external resources, some to images, stylesheets, or API endpoints. Over time, those targets change. Pages get deleted, restructured, or moved without redirects. Domains expire. CMS platforms rewrite URL slugs. The result is a slow accumulation of broken links that erodes site quality.
+Every time you publish a page, you introduce new links. Some point to internal pages, some to external resources, some to images, stylesheets, or API endpoints. Over time, those targets change. Pages get deleted, restructured, or moved without redirects. Domains expire. CMS platforms rewrite URL slugs (which often leads to title and description truncation detectable via a [Meta Audit API](/blog/meta-audit-api-for-title-tags-descriptions-and-open-graph/)). The result is a slow accumulation of broken links that erodes site quality.
 
 We ran an audit on a 50,000-page e-commerce site in March 2026. The site had 1,847 broken internal links and 3,212 broken external links. That's a 10.1% broken link ratio. The homepage alone had 14 broken links in the footer — links to privacy policy pages that had been moved two years prior. The SEO team had no idea. They were manually checking their top 50 pages once a quarter.
 

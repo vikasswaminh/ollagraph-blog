@@ -1,8 +1,8 @@
 ---
 title: 'E-E-A-T for AI Search: How Experience and Expertise Influence Citations'
-description: 'E-E-A-T was written for human raters, not machines. Learn which of the four letters answer engines can actually detect, what the citation research says about each, and how to encode expertise in a form an LLM can score.'
-metaTitle: 'E-E-A-T for AI Search: What Machines Can Actually Read — Ollagraph'
-metaDescription: 'E-E-A-T was written for human raters, not machines. Learn which of the four letters answer engines can actually detect, what the citation research says about each, and how to encode expertise in a form an LLM can score.'
+description: 'Understand how generative answer engines evaluate E-E-A-T signals, authoritativeness, and expert consensus to award citations in AI Search.'
+metaTitle: 'E-E-A-T for AI Search: How Experience Drives Citations'
+metaDescription: 'Understand how generative answer engines evaluate E-E-A-T signals, authoritativeness, and expert consensus to award citations in AI Search.'
 primaryKeyword: 'E-E-A-T for AI search'
 secondaryKeywords: 'E-E-A-T AI citations, experience and expertise in AI search, machine-readable E-E-A-T, GEO trust signals, author authority AI Overviews, citation readiness E-E-A-T'
 pubDate: 2026-09-01
@@ -14,13 +14,13 @@ tags: ['aeo', 'geo', 'citations', 'ai-search']
 
 E-E-A-T was written for people. It lives inside Google's Search Quality Rater Guidelines, a 176-page document that instructs human evaluators on how to judge whether a page deserves to rank. Google has been consistent that it is not itself a ranking factor and that no E-E-A-T score exists in the algorithm — what exists is a mix of signals designed to identify the qualities the framework describes.
 
-That distinction gets glossed over constantly, and it matters more in AI search than it ever did in blue-link SEO. A human rater can read a surgeon's bio, weigh her credentials, and form a judgement about expertise. A retrieval system cannot. It can only detect proxies — the textual and structural residue that expertise tends to leave behind.
+That distinction gets glossed over constantly, and it matters more in AI search than it ever did in blue-link SEO. A human rater can read a surgeon's bio, weigh her credentials, and form a judgement about expertise. A retrieval system cannot. It can only detect proxies measured by a [Citation Readiness Score model](/blog/citation-readiness-score-how-to-build-reliable-scoring-model/). — the textual and structural residue that expertise tends to leave behind.
 
 So the practical question is not "how do I demonstrate E-E-A-T." It is: which proxies exist, how strong is the evidence for each, and how do I encode them so a machine can score them?
 
-The citation research from 2025–2026 gives an uncomfortable answer. The four letters do not carry equal weight, and the ordering is not what the industry assumes. Off-site brand authority dominates: Ahrefs' analysis put branded web mentions at a 0.664 correlation with AI Overview visibility against 0.218 for backlinks, with YouTube mentions the single strongest signal at 0.737. Meanwhile Seer Interactive's behavioural testing across 362,388 responses suggests models decide which brands to recommend before choosing which pages to cite.
+The citation research from 2025–2026 gives an uncomfortable answer. The four letters do not carry equal weight, and the ordering is not what the industry assumes. Off-site brand authority dominates: Ahrefs' analysis put branded web mentions at a 0.664 correlation with AI Overview visibility against 0.218 for backlinks, with YouTube mentions the single strongest signal at 0.737, evaluated in an [AI Search Visibility Score framework](/blog/ai-search-visibility-score-practical-framework-measuring-brand-presence/). Meanwhile Seer Interactive's behavioural testing across 362,388 responses suggests models decide which brands to recommend before choosing which pages to cite.
 
-Experience — the letter Google added most recently, and the one content teams work hardest to signal — is the least machine-legible of the four. This article maps all four letters against what answer engines can actually perceive, grades the evidence for each, and gives you a scoring rubric you can run against a URL.
+Experience — the letter Google added most recently, and the one content teams work hardest to signal — is the least machine-legible of the four. This article maps all four letters against what answer engines can actually perceive in an [answer-first content audit](/blog/answer-first-content-audit-can-ai-extract-a-direct-answer-from-your-page/), grades the evidence for each, and gives you a scoring rubric you can run against a URL.
 
 ---
 

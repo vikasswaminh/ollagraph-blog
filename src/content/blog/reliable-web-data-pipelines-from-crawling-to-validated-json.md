@@ -1,8 +1,8 @@
 ---
 title: 'Reliable Web Data Pipelines: From Crawl to Validated JSON'
-description: 'Web data pipelines fail silently — corrupted JSON, stale records, broken crawls. Learn how to build reliable pipelines from crawling through validated JSON with quality gates, observability, and self-healing retry strategies.'
-metaTitle: 'Reliable Web Data Pipelines: From Crawl to Validated JSON'
-metaDescription: 'Web data pipelines fail silently — corrupted JSON, stale records, broken crawls. Learn how to build reliable pipelines from crawling through validated JSON with quality gates, observability, and self-healing retry strategies.'
+description: 'Learn how to build reliable web data pipelines from crawling through validated JSON with quality gates, observability, and self-healing retries.'
+metaTitle: 'Reliable Web Data Pipelines: Crawl to Validated JSON'
+metaDescription: 'Learn how to build reliable web data pipelines from crawling through validated JSON with quality gates, observability, and self-healing retries.'
 primaryKeyword: 'reliable web data pipelines'
 secondaryKeywords: 'crawling to validated JSON, web data pipeline reliability, extraction quality gates, pipeline observability, self-healing data pipelines'
 pubDate: 2026-07-31

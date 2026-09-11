@@ -1,7 +1,7 @@
 ---
 title: 'OCR to Markdown for RAG: Turn Scans into Citable Evidence'
 description: 'Turn scanned PDFs and images into citation-ready Markdown for RAG with layout recovery, provenance anchors, and reliable evaluation.'
-metaTitle: 'OCR to Markdown for RAG: Citable Evidence'
+metaTitle: 'OCR to Markdown for RAG: Turn Scans into Evidence'
 metaDescription: 'Turn scanned PDFs and images into citation-ready Markdown for RAG with layout recovery, provenance anchors, and reliable evaluation.'
 primaryKeyword: 'OCR to markdown for RAG'
 secondaryKeywords: 'OCR, RAG, markdown, provenance, layout recovery, scanned documents'
@@ -14,7 +14,7 @@ tags: ['rag', 'citations']
 
 If your RAG system answers questions from scanned documents, the OCR step is not "text extraction." It is the moment you decide what the system will treat as evidence. A single OCR-to-Markdown pipeline that loses structure, drops page context, or produces unstable anchors will quietly degrade retrieval and citations—often without obvious errors.
 
-This article focuses on a practical goal: turn scanned documents into citation-ready Markdown. That means your output must preserve logical structure (headings, lists, tables, captions), keep reading order stable, and attach provenance metadata that your citation layer can trust. We'll walk through a production pipeline, show a concrete Markdown schema for evidence blocks, and provide an evaluation harness that measures answer-level correctness and citation precision.
+This article focuses on a practical goal: turn scanned documents into citation-ready Markdown with verifiable [markdown conversion quality](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/) for RAG with layout recovery, [field-level provenance anchors](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/), and reliable evaluation. That means your output must preserve logical structure (headings, lists, tables, captions), keep reading order stable, and attach provenance metadata that your citation layer can trust. We'll walk through a production pipeline, show a concrete Markdown schema for evidence blocks, and provide an evaluation harness that measures answer-level correctness and citation precision.
 
 **Key takeaway:** For scanned-document RAG, "good OCR" is not enough. You need OCR-to-Markdown that preserves structure and provenance so retrieval returns the right evidence, not just the right words.
 
@@ -576,7 +576,7 @@ Version your conversion pipeline and keep normalization deterministic. If you ch
 Rerankers can help, but they don't fix broken evidence. If your OCR-to-Markdown pipeline loses structure, reranking may still retrieve the wrong evidence. Start with citation-ready preprocessing, then add reranking if you need additional precision.
 
 ### Q12. How do I handle confidence scores from OCR?
-Treat OCR confidence as a signal for downstream decisions, not as a display-only metric. If confidence is low for digits, dates, or table boundaries, you can flag the evidence block for review, increase OCR preprocessing quality (deskew/denoise), or use a fallback OCR engine for that region.
+Treat OCR confidence alongside [PDF to markdown layout preservation](/blog/pdf-to-markdown-for-rag-preserve-tables-layout-and-document-structure/) as a signal for downstream decisions. If confidence is low for digits, dates, or table boundaries, you can flag the evidence block for review, increase OCR preprocessing quality (deskew/denoise), or use a fallback OCR engine for that region.
 
 ### Q13. What if my scanned documents have different templates?
 Template diversity is normal. The solution is not to hardcode one layout. Instead, build a structure assembly layer that can generalize: detect region types (tables, form fields, headings) and map them into the same evidence-block Markdown schema. Then evaluate per-template to see where you need additional rules or model tuning.

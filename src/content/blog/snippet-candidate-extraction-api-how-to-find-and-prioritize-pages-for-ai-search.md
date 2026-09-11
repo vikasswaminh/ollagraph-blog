@@ -1,8 +1,8 @@
 ---
 title: 'Snippet Candidate Extraction API: How to Find and Prioritize Pages for AI Search'
-description: 'Snippet Candidate Extraction API enables technical teams to discover, audit, score, and prioritize web pages for AI search engines, position-zero answers, and LLM citations.'
-metaTitle: 'Snippet Candidate Extraction API: How to Find and Prioritize Pages for AI Search'
-metaDescription: 'Snippet Candidate Extraction API enables technical teams to discover, audit, score, and prioritize web pages for AI search engines, position-zero answers, and LLM citations.'
+description: 'Discover, audit, score, and prioritize web pages for AI search engines, position-zero answers, and LLM citations with the Snippet Candidate Extraction API.'
+metaTitle: 'Snippet Candidate Extraction API for AI Search'
+metaDescription: 'Discover, audit, score, and prioritize web pages for AI search engines, position-zero answers, and LLM citations with the Snippet Candidate Extraction API.'
 primaryKeyword: 'Snippet Candidate Extraction API'
 secondaryKeywords: 'AI search snippets, passage extraction, featured snippet extraction, Ollagraph API, AEO, citation readiness, GEO, answer engine optimization, passage ranking, LLM extraction'
 pubDate: 2026-09-11

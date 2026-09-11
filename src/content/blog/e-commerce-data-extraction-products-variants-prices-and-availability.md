@@ -1,8 +1,8 @@
 ---
 title: 'E-commerce Data Extraction for Variants, Prices, and Stock'
-description: 'Learn how to extract structured product data — names, variants, prices, stock status, and SKUs — from e-commerce websites at production scale. Includes schema design, JavaScript rendering, anti-bot handling, and a working pipeline.'
-metaTitle: 'E-commerce Data Extraction for Variants, Prices, and Stock'
-metaDescription: 'Learn how to extract structured product data — names, variants, prices, stock status, and SKUs — from e-commerce websites at production scale. Includes schema design, JavaScript rendering, anti-bot handling, and a working pipeline.'
+description: 'Learn how to extract structured product data, variants, and stock status from e-commerce sites at scale with schema validation and JS rendering.'
+metaTitle: 'E-commerce Data Extraction: Products & Prices'
+metaDescription: 'Learn how to extract structured product data, variants, and stock status from e-commerce sites at scale with schema validation and JS rendering.'
 primaryKeyword: 'e-commerce data extraction'
 secondaryKeywords: 'extract product variants from ecommerce sites, product price extraction API, stock availability scraping, ecommerce product data pipeline, structured ecommerce extraction, multi-variant product extraction'
 pubDate: 2026-07-30

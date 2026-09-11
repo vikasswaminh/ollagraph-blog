@@ -73,7 +73,7 @@ Modern web apps changed the default architecture:
 -   **Lazy loading:** sections appear only after scroll, intersection observers, or user interaction.
 -   **Data fetching after load:** content arrives via API calls after the initial HTML.
 
-At the same time, LLM crawlers and RAG pipelines became more sensitive to extraction quality:
+At the same time, LLM crawlers and RAG pipelines became more sensitive to [markdown conversion quality](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/):
 
 -   If extracted text is empty, the crawler can't cite.
 -   If extracted text is noisy, embeddings drift.
@@ -161,7 +161,7 @@ Performs HTTP GET, handles redirects, and captures response metadata.
 Parses HTML and computes text density, article element presence, and placeholder patterns to determine `needs_render`.
 
 ### 3) Renderer (Playwright-based)
-Launches headless browser contexts with consistent viewport, timezone, and locale settings, capturing rendered DOM snapshots.
+Executes [rendering before extraction in web data pipelines](/blog/rendering-before-extraction-building-reliable-web-data-pipelines/) with consistent viewport and locale settings, capturing rendered DOM snapshots.
 
 ### 4) Readiness engine
 Evaluates readiness conditions repeatedly until satisfied or timed out, enforcing a stability window.
@@ -311,7 +311,7 @@ wrong_route_detection: true
 ## 14. Performance & Benchmarks (How to Measure)
 
 ### Metrics to evaluate:
--   `render_rate`: percentage of URLs requiring headless browser execution
+-   `render_rate`: percentage of URLs requiring headless browser execution (see [static fetch vs headless browsers](/blog/static-fetch-vs-headless-browser-choosing-the-right-web-scraping-strategy/))
 -   `success_rate`: percentage passing validation gates
 -   `avg_markdown_chars`: volume of structured content extracted
 -   `median_latency_ms`: end-to-end processing time

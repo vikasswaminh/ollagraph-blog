@@ -1,8 +1,8 @@
 ---
 title: 'How LLMs Index the Web: From Crawler Fetch Queues to Vectorized Knowledge Graphs'
-description: 'LLMs don’t “read the internet” as one page. They queue URLs, fetch and clean content, chunk it, embed it, and link entities into retrieval graphs. Learn the full indexing pipeline—and how to make your site machine-indexable with Ollagraph.'
-metaTitle: 'How LLMs Index the Web: From Crawler Fetch Queues to Vectorized Knowledge Graphs'
-metaDescription: 'LLMs don’t “read the internet” as one page. They queue URLs, fetch and clean content, chunk it, embed it, and link entities into retrieval graphs. Learn the full indexing pipeline—and how to make your site machine-indexable with Ollagraph.'
+description: 'Learn the complete indexing pipeline used by LLM crawlers: URL queues, content extraction, chunking, embedding, and vectorized retrieval graphs.'
+metaTitle: 'How LLMs Index the Web: Crawlers to Knowledge Graphs'
+metaDescription: 'Learn the complete indexing pipeline used by LLM crawlers: URL queues, content extraction, chunking, embedding, and vectorized retrieval graphs.'
 primaryKeyword: 'how LLMs index the web'
 secondaryKeywords: 'LLM indexing pipeline, AI crawler fetch queues, vectorized knowledge graphs, RAG web ingestion, semantic chunking, citation readiness'
 pubDate: 2026-09-02

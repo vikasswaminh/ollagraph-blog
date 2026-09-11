@@ -1,7 +1,7 @@
 ---
 title: 'Structured Markdown for AI Agents: Better Retrieval and Citations'
 description: 'Preserve headings, lists, tables, and code blocks to stabilize chunks, improve retrieval accuracy, and keep citations deterministic.'
-metaTitle: 'Structured Markdown for AI Agents'
+metaTitle: 'Structured Markdown for AI Agent Retrieval'
 metaDescription: 'Preserve headings, lists, tables, and code blocks to stabilize chunks, improve retrieval accuracy, and keep citations deterministic.'
 primaryKeyword: 'structured markdown for agents'
 secondaryKeywords: 'structured markdown, retrieval accuracy, agent grounding, chunking, citations'
@@ -12,11 +12,11 @@ tags: ['rag', 'citations']
 
 ## Executive Summary
 
-AI agents fail in ways that look like "reasoning problems," but the root cause is often earlier: the agent is retrieving from documents whose structure was lost during conversion.
+AI agents fail in ways that look like "reasoning problems," but the root cause is often earlier: the agent is retrieving from documents whose structure was lost during conversion, impacting [how LLMs index the web](/blog/how-llms-index-the-web-from-crawler-fetch-queues-to-vectorized-knowledge-graphs/).
 
-Structured Markdown is the bridge between "what the page means" and "what the agent can reliably retrieve." When you preserve semantic units (headings, lists, tables, code blocks) and keep them stable across runs, you reduce chunk boundary drift, improve recall for the right evidence, and make citations consistent.
+Structured Markdown (ensured by high [markdown conversion quality](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/)) is the bridge between "what the page means" and "what the agent can reliably retrieve." When you preserve semantic units (headings, lists, tables, code blocks) and keep them stable across runs, you reduce chunk boundary drift, improve recall for the right evidence, and make citations consistent.
 
-In this post, you'll learn a practical, testable Markdown structure contract for agent accuracy. You'll also get a troubleshooting decision tree and a lightweight evaluation harness you can run before embedding.
+In this post, you'll learn a practical, testable Markdown structure contract for agent accuracy in [LangGraph multi-agent workflows](/blog/integrating-mcp-web-tools-into-langgraph-autonomous-multi-agent-workflows/). You'll also get a troubleshooting decision tree and a lightweight evaluation harness you can run before embedding.
 
 We'll also show a concrete "before vs after" example of how structured Markdown changes chunk boundaries and improves evidence hit rate for agent queries.
 

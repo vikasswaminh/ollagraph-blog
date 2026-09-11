@@ -14,13 +14,13 @@ tags: ['rag', 'guides']
 
 If your RAG pipeline treats PDFs as "just text," you'll eventually pay for it: tables collapse into unreadable lines, headings lose hierarchy, and chunk boundaries drift away from the user's intent. The fix is not "more cleaning." The fix is structure preservation—turning visual layout into stable Markdown primitives (headings, lists, tables, captions, and provenance markers) so chunking and retrieval stay aligned.
 
-In this guide, we'll walk through a practical, production-minded approach to converting PDFs into AI-ready Markdown that keeps tables readable, preserves document hierarchy, and supports grounded citations. You'll also get an evaluation harness you can run on a small PDF set to quantify whether your converter is actually preserving structure.
+In this guide, we'll walk through a practical, production-minded approach to converting PDFs (and related workbooks, as detailed in our guide on [XLSX to markdown for RAG](/blog/xlsx-to-markdown-for-rag-converting-excel-workbooks-into-ai-ready-markdown/)) into AI-ready Markdown that keeps tables readable, preserves document hierarchy, and supports grounded citations. You'll also get an evaluation harness you can run on a small PDF set to quantify whether your converter is actually preserving structure.
 
 ## Key Takeaways
 
 -   Preserve heading hierarchy and table geometry (rows/columns, headers, merged cells) before you chunk.
 -   Treat layout as data: captions, footnotes, and "table context" often matter as much as the table itself.
--   Use an OCR fallback path for image-based pages, but keep the output consistent with your text-based path.
+-   Use an [OCR to markdown for RAG](/blog/ocr-to-markdown-for-rag-turning-scanned-documents-into-citation-ready-context/) fallback path for image-based pages, but keep the output consistent with your text-based path.
 -   Add provenance anchors (page number and stable offsets) so citations map back to the source.
 -   Validate with a small benchmark: measure table fidelity, heading fidelity, and retrieval impact.
 

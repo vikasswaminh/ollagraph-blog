@@ -1,7 +1,7 @@
 ---
 title: 'Headless Browser API: Automate Browsers at Scale'
 description: 'Run rendered browser jobs without managing browser farms. Learn how Ollagraph uses CDP, sessions, and stealth controls to scale reliably.'
-metaTitle: 'Headless Browser API: Automate Browsers at Scale'
+metaTitle: 'Headless Browser API: Automate Chrome at Scale'
 metaDescription: 'Run rendered browser jobs without managing browser farms. Learn how Ollagraph uses CDP, sessions, and stealth controls to scale reliably.'
 primaryKeyword: 'headless browser API'
 secondaryKeywords: 'headless browser, CDP, automation, web scraping, orchestration, stealth controls'
@@ -20,7 +20,7 @@ The core protocol that makes this possible is the Chrome DevTools Protocol (CDP)
 
 ## Key Takeaways
 
-- **Headless Chrome is not a single binary** — it is a protocol (CDP) wrapped in libraries (Puppeteer, Playwright) and orchestrated by infrastructure (browser pools, proxy managers, stealth engines).
+- **Headless Chrome is not a single binary** — it is a protocol (CDP) wrapped in libraries (see our [browser automation developer guide](/blog/browser-automation-api-the-complete-guide-for-developers/)) and orchestrated by infrastructure (browser pools, proxy managers, stealth engines).
 - **The Chrome DevTools Protocol exposes 500+ domains and methods.** Most headless browser APIs use only 15–20 of them. Understanding which ones matter helps you debug failures faster.
 - **Memory is the #1 scaling constraint.** A single headless Chrome instance consumes 200–600 MB of RAM. At 50 concurrent sessions, you need 16+ GB of RAM just for the browsers.
 - **Stealth is not a feature — it is an ongoing engineering war.** Cloudflare, DataDome, and PerimeterX update their detection heuristics weekly. A headless browser API that does not update its stealth patches loses effectiveness within a month.

@@ -1,8 +1,8 @@
 ---
 title: 'SEO Audit for AI Crawlers: The Six-Layer Framework'
-description: 'Traditional SEO audits miss how AI crawlers fetch, render, and extract content. Use a six-layer audit to improve AI search visibility.'
+description: 'Move beyond legacy SEO audits. Discover how to inspect rendering budgets, crawler token limits, and machine extractability for AI search engines.'
 metaTitle: 'SEO Audit for AI Crawlers: Six-Layer Framework'
-metaDescription: "Traditional SEO audits check for Googlebot. AI crawlers like GPTBot, ClaudeBot, and PerplexityBot have different requirements. Here's how to evolve your audit framework for both — with a unified methodology, real benchmarks, and a remediation workflow that works in 2026."
+metaDescription: 'Move beyond legacy SEO audits. Discover how to inspect rendering budgets, crawler token limits, and machine extractability for AI search engines.'
 primaryKeyword: 'SEO audit for AI crawlers'
 secondaryKeywords: 'AI crawler audit, technical SEO for AI, GPTBot audit, AI search visibility audit, beyond traditional SEO'
 pubDate: 2026-08-01
@@ -12,7 +12,7 @@ tags: ['seo', 'aeo', 'robots-txt']
 
 ## Executive Summary
 
-Traditional technical SEO audits were built for Googlebot — a crawler that indexes pages and ranks them. AI crawlers work differently: they fetch pages, render them in headless browsers, extract specific passages, and synthesize answers with citations. An audit built for Googlebot misses most of what matters to GPTBot, ClaudeBot, and PerplexityBot. This article presents a unified audit framework covering both traditional SEO signals (canonicals, redirects, page speed, structured data) and AI-specific requirements (fetch simulation, passage extraction quality, citation readiness, llms.txt, per-user-agent behavior). You'll get a repeatable methodology, real benchmarks from testing 200+ pages, and a prioritized remediation workflow.
+Traditional technical SEO audits were built for Googlebot — a crawler that indexes pages and ranks them. AI crawlers work differently: they fetch pages, render them in headless browsers, extract specific passages, and synthesize answers with citations. An audit built for Googlebot misses most of what matters to GPTBot, ClaudeBot, and PerplexityBot (start by auditing [robots.txt for AI crawlers without blocking search](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/)). This article presents a unified audit framework covering both traditional SEO signals and AI-specific requirements (such as [structured data for AI Overviews](/blog/structured-data-for-ai-overviews-which-schema-signals-matter-most/)) (fetch simulation, passage extraction quality, [citation readiness scoring](/blog/citation-readiness-score-how-to-build-reliable-scoring-model/), llms.txt, per-user-agent behavior). You'll get a repeatable methodology, real benchmarks from testing 200+ pages, and a prioritized remediation workflow.
 
 ---
 

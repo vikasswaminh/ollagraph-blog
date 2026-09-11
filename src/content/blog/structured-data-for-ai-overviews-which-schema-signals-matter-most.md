@@ -1,8 +1,8 @@
 ---
 title: 'Structured Data for AI Overviews: Which Schema Signals Matter Most?'
-description: 'Not all schema helps AI Overviews. Learn which Schema.org types and properties reduce ambiguity, improve citation confidence, and which ones waste crawl budget in 2026.'
-metaTitle: 'Structured Data for AI Overviews: Which Schema Signals Matter Most?'
-metaDescription: 'Not all schema helps AI Overviews. Learn which Schema.org types and properties reduce ambiguity, improve citation confidence, and which ones waste crawl budget in 2026.'
+description: 'Learn which Schema.org types and properties reduce ambiguity and improve citation confidence in Google AI Overviews, and which waste crawl budget.'
+metaTitle: 'Structured Data for AI Overviews: Key Schema Signals'
+metaDescription: 'Learn which Schema.org types and properties reduce ambiguity and improve citation confidence in Google AI Overviews, and which waste crawl budget.'
 primaryKeyword: 'structured data for AI Overviews'
 secondaryKeywords: 'schema signals AI Overviews, JSON-LD for AI search, Schema.org AEO, citation readiness schema, entity resolution schema'
 pubDate: 2026-09-02

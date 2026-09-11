@@ -12,7 +12,7 @@ tags: ['guides', 'rag']
 
 ## Executive summary
 
-Traditional web scrapers were built for an era that no longer exists. For over two decades, data pipelines relied on a simple two-step model: issue an HTTP GET request to retrieve a static HTML document, then parse DOM nodes using regular expressions, XPath expressions, or CSS selectors (BeautifulSoup, Cheerio, lxml).
+Traditional web scrapers were built for an era that no longer exists. For over two decades, data pipelines relied on static HTTP GET requests (compare this with [static fetch vs headless browsers](/blog/static-fetch-vs-headless-browser-choosing-the-right-web-scraping-strategy/)), then parse DOM nodes using regular expressions, XPath expressions, or CSS selectors (BeautifulSoup, Cheerio, lxml).
 
 Today, over 74% of enterprise web applications—including modern e-commerce stores, SaaS dashboards, financial exchanges, and real estate portals—are built as dynamic Single Page Applications (SPAs) powered by JavaScript frameworks like React, Next.js, Vue, Nuxt, Angular, and Svelte. When an HTTP client requests a modern web application URL, the server returns an almost empty HTML shell containing little more than `<div id="root"></div>` and a bundle of minified JavaScript files.
 
@@ -22,10 +22,10 @@ Extracting structured data from JavaScript apps requires a fundamentally differe
 
 This guide details four proven technical paradigms for extracting clean, strongly typed structured data from JavaScript applications:
 
--   **Post-Hydration DOM Parsing:** Controlling headless browser instances (Playwright, Puppeteer) with deterministic wait conditions.
+-   **Post-Hydration DOM Parsing:** Controlling headless browser instances with deterministic wait conditions, as covered in [rendering before extraction](/blog/rendering-before-extraction-building-reliable-web-data-pipelines/).
 -   **Framework State Dehydration Sniffing:** Bypassing the DOM to extract structured state objects (`__NEXT_DATA__`, `__NUXT__`, Redux initial states) directly from window memory space.
 -   **Network Interception & XHR/Fetch Capture:** Tapping Chrome DevTools Protocol (CDP) network events to intercept clean API responses directly from backend microservices before client rendering occurs.
--   **Schema-Driven Managed Extraction:** Offloading browser orchestration, proxy management, and type validation to automated schema-driven extraction infrastructure.
+-   **Schema-Driven Managed Extraction:** Offloading browser orchestration, proxy management, and type validation to a [structured data extraction API](/blog/structured-data-extraction-api-from-web-pages-to-validated-json/).
 
 In our production testing across 1,000 modern JavaScript applications, state sniffing and network interception yielded a 5.2x speedup over visual DOM scraping while reducing infrastructure RAM requirements by 68% and lowering extraction failure rates from 18.4% down to 0.4%.
 

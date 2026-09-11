@@ -1,7 +1,7 @@
 ---
 title: 'Static Fetch vs Headless Browser: How to Choose'
 description: 'Choose static fetch for server-rendered HTML and a browser when JavaScript builds the page. A hybrid flow keeps scraping fast and reliable.'
-metaTitle: 'Static Fetch vs Headless Browser: How to Choose'
+metaTitle: 'Static Fetch vs Headless Browser: Scraping Strategy'
 metaDescription: 'Choose static fetch for server-rendered HTML and a browser when JavaScript builds the page. A hybrid flow keeps scraping fast and reliable.'
 primaryKeyword: 'static fetch vs headless browser'
 secondaryKeywords: 'web scraping, headless browser, HTTP fetch, JavaScript rendering, crawl strategy'

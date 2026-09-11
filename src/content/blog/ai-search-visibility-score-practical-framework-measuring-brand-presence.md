@@ -1,8 +1,8 @@
 ---
 title: 'AI Search Visibility Score: A Practical Framework for Measuring Brand Presence'
-description: 'Master the AI Search Visibility Score (AISVS) framework. Learn how to quantify, measure, and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini using Ollagraph’s AEO intelligence suite.'
-metaTitle: 'AI Search Visibility Score: A Practical Framework for Measuring Brand Presence'
-metaDescription: 'Master the AI Search Visibility Score (AISVS) framework. Learn how to quantify, measure, and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini using Ollagraph’s AEO intelligence suite.'
+description: 'Master the AI Search Visibility Score (AISVS) framework. Quantify and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini.'
+metaTitle: 'AI Search Visibility Score: A Practical Framework'
+metaDescription: 'Master the AI Search Visibility Score (AISVS) framework. Quantify and optimize brand presence across ChatGPT, Perplexity, Claude, and Gemini.'
 primaryKeyword: 'AI Search Visibility Score'
 secondaryKeywords: 'AISVS framework, Answer Engine Optimization, AEO audit framework, LLM brand visibility, measuring AI search presence, Ollagraph AEO audit, Generative Engine Optimization, GEO metrics, LLM citation tracking, RAG brand retrieval, AI search monitoring API, synthetic SERP tracking'
 pubDate: 2026-08-24
@@ -23,7 +23,7 @@ Executing an AISVS workflow at enterprise scale requires continuous, non-determi
 - **Beyond SERP Rankings to Generative Share of Voice (gSOV):** Traditional impression counts and click-through rates do not exist in zero-click AI responses. Brand presence must now be evaluated based on answer inclusion, citation placement, semantic context, and recommendation weight within generated LLM responses.
 - **The Four Mathematical Pillars of AISVS:** AISVS is calculated using four explicit vector metrics: Citation Presence Rate (CPR), Synthesized Impression Share (SIS), Token-Distance Sentiment Score (TDSS), and Entity Anchor Prominence (EAP).
 - **RAG Ingestion and Structural Markdown Optimization:** AI crawlers (such as GPTBot, ClaudeBot, and PerplexityBot) do not read rendered visual layouts; they ingest raw markdown chunks. Sites optimized with clean, semantics-preserving HTML-to-Markdown structures achieve a 3x higher citation frequency in real-time web-grounded RAG pipelines.
-- **The Role of Ollagraph in Autonomous AEO Auditing:** By bringing scraping, crawling, live web search aggregation, and automated AEO audit primitives into a single API with flat credit pricing and native Model Context Protocol (MCP) support, Ollagraph provides the core web data layer required to monitor and audit AI search visibility at scale.
+- **The Role of Ollagraph in Autonomous AEO Auditing:** By bringing scraping, crawling (including discovering opportunities via a [snippet candidate extraction API](/blog/snippet-candidate-extraction-api-how-to-find-and-prioritize-pages-for-ai-search/)), live web search aggregation, and automated AEO audit primitives into a single API with flat credit pricing and native Model Context Protocol (MCP) support, Ollagraph provides the core web data layer required to monitor and audit AI search visibility at scale.
 - **Proactive Reputation Defense Against LLM Hallucinations:** Without programmatic tracking of synthetic search results, brands remain unaware of outdated product pricing, false security claims, or competitor bias introduced by LLM stochastic sampling and stale vector embeddings.
 
 ## 1. Problem Statement

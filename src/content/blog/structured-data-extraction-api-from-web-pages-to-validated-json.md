@@ -1,7 +1,7 @@
 ---
 title: 'Structured Data Extraction API for Validated JSON'
 description: 'Turn messy web pages into validated JSON with schema contracts, evidence packets, and quality gates. Built for trust in downstream systems.'
-metaTitle: 'Structured Data Extraction API for JSON'
+metaTitle: 'Structured Data Extraction API for Validated JSON'
 metaDescription: 'Turn messy web pages into validated JSON with schema contracts, evidence packets, and quality gates. Built for trust in downstream systems.'
 primaryKeyword: 'structured data extraction API'
 secondaryKeywords: 'extraction, JSON, schema, validation, web scraping, evidence packets, quality gates'
@@ -30,13 +30,13 @@ You can extract JSON from a web page and still end up with unusable data.
 
 The failure mode is usually subtle: the API returns a JSON object that "looks right" but violates the assumptions your downstream system relies on. Maybe a price is missing currency, a date is in the wrong format, a product variant list is truncated, or an author field is populated with a navigation label.
 
-When that happens, the pipeline doesn't crash immediately. It quietly embeds the wrong facts, and the first time you notice is when retrieval answers start drifting.
+When that happens, brittle pipelines fail quietly—which is why [reliable web data pipelines](/blog/reliable-web-data-pipelines-from-crawling-to-validated-json/) require strict validation gates, and the first time you notice is when retrieval answers start drifting.
 
 So the real requirement is not extraction. It's validated extraction.
 
 ## 2. History & Context
 
-Web extraction started with selectors: grab HTML, run CSS/XPath, parse strings, and hope the DOM stays stable.
+Web extraction started with selectors: grab HTML, run CSS/XPath, parse strings, and hope the DOM stays stable (learn [why schema-driven extraction beats CSS selectors](/blog/why-schema-driven-extraction-beats-css-selectors-for-web-scraping/)).
 
 Then sites got more dynamic. Data moved into JavaScript, lists became paginated or infinite scroll, and anti-bot defenses became common. Teams responded by adding headless browsers, proxies, and retries.
 
@@ -125,7 +125,7 @@ In practice, evidence packets should be stable enough that you can diff them acr
 
 -   Use consistent check IDs (e.g., `required_fields_present`, `types_match`).
 -   Include a schema contract version (`contract.v1`) so you know what rules were applied.
--   Store enough extraction provenance to reproduce the candidate selection (strategy name + source hint).
+-   Store enough [field-level extraction provenance](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/) to reproduce candidate selection.
 
 When you store evidence, debugging becomes a deterministic workflow instead of a guessing game.
 
@@ -576,7 +576,7 @@ When teams compare approaches, they usually compare "how to extract," not "how t
 
 ### Selector-based scraping
 
-Selector-based scraping is the classic approach: you define CSS/XPath selectors, extract strings, and parse them into JSON.
+Selector-based scraping is the classic approach (explore [why schema-driven extraction beats CSS selectors](/blog/why-schema-driven-extraction-beats-css-selectors-for-web-scraping/)): you define CSS/XPath selectors and hope nothing breaks.
 
 **Pros:**
 -   Cheap for stable pages where the DOM structure rarely changes.

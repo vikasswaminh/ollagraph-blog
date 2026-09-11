@@ -1,7 +1,7 @@
 ---
 title: 'HTML to Markdown for AI With Links and Source Attribution'
 description: 'Convert HTML into LLM-ready Markdown without losing headings, links, or provenance. Keep citations traceable to the source page.'
-metaTitle: 'HTML to Markdown for AI With Attribution'
+metaTitle: 'HTML to Markdown for AI with Source Attribution'
 metaDescription: 'Convert HTML into LLM-ready Markdown without losing headings, links, or provenance. Keep citations traceable to the source page.'
 primaryKeyword: 'HTML to markdown attribution'
 secondaryKeywords: 'HTML to markdown, RAG, provenance, citations, markdown, source attribution'
@@ -355,7 +355,7 @@ Attribution pipelines introduce new security and compliance concerns:
 
 ### Symptom: Links are missing in answers
 -   **Likely causes:** `include_links` disabled, link filtering removed anchors without preserving context, anchor text became empty.
--   **Fix:** Enable link preservation, validate link count invariants, extract anchor text before boilerplate removal.
+-   **Fix:** Enable link preservation, validate link count invariants, extract anchor text before [boilerplate removal for RAG](/blog/html-to-markdown-boilerplate-removal-for-better-rag-retrieval/).
 
 ### Symptom: Relative URLs remain unresolved
 -   **Likely causes:** `absolute_urls` disabled, canonical URL not used for base resolution.
@@ -452,7 +452,7 @@ Preserving structure is the baseline because it keeps meaning intact for chunkin
 
 Preserving links and source attribution is what makes the system trustworthy. Links are not just decoration; they are the connective tissue between claims and their original references. Source attribution (provenance) is the mechanism that lets you map retrieved Markdown back to the exact page region and the exact link objects that produced the content. That's what turns citations from "plausible" into "verifiable."
 
-When your HTML-to-Markdown pipeline emits deterministic Markdown plus provenance metadata, you gain three operational advantages: you can validate conversion quality before embedding, you can attach grounded citations to retrieved chunks during answer generation, and you can debug failures quickly using evidence packets instead of guesswork. This reduces both engineering time and user trust risk.
+When your HTML-to-Markdown pipeline emits deterministic Markdown with [field-level provenance](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/), you gain three operational advantages: you can validate conversion quality before embedding, you can attach grounded citations to retrieved chunks during answer generation, and you can debug failures quickly using evidence packets instead of guesswork. This reduces both engineering time and user trust risk.
 
 ## Common questions
 
@@ -470,7 +470,7 @@ At minimum, preserve heading hierarchy, lists, tables, anchor text, resolved URL
 
 ### How do you validate that conversion quality is good enough?
 
-Use cheap invariants before embedding: compare link counts, check heading continuity, and verify that tables still have the expected shape. Also measure attribution confidence so low-quality extractions can be retried or rejected. Validation should happen before the content enters your index.
+Maintain high [markdown conversion quality](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/) by comparing link counts and checking heading continuity, and verify that tables still have the expected shape. Also measure attribution confidence so low-quality extractions can be retried or rejected. Validation should happen before the content enters your index.
 
 ### What is an evidence packet, and why store it?
 

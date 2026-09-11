@@ -1,7 +1,7 @@
 ---
 title: 'Document-to-Markdown Pipelines for AI Knowledge Bases'
 description: 'Build reliable batch conversion pipelines with idempotency, validation gates, and quarantine/replay to keep AI knowledge bases clean.'
-metaTitle: 'Document-to-Markdown Pipelines for AI'
+metaTitle: 'Document-to-Markdown Pipelines for AI Knowledge Bases'
 metaDescription: 'Build reliable batch conversion pipelines with idempotency, validation gates, and quarantine/replay to keep AI knowledge bases clean.'
 primaryKeyword: 'document to markdown pipelines'
 secondaryKeywords: 'markdown, pipelines, idempotency, validation, ingestion, knowledge bases'
@@ -12,9 +12,9 @@ tags: ['rag', 'guides']
 
 ## Executive Summary
 
-Batch conversion sounds simple until you run it on real corpora: thousands of documents, mixed formats, inconsistent quality, and a downstream system that assumes your output is correct. A document-to-Markdown pipeline for an AI knowledge base is therefore less about "converting files" and more about enforcing contracts between stages: routing, conversion, normalization, validation, chunking, and indexing.
+Batch conversion (ensuring high [markdown conversion quality for AI](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/)) sounds simple until you run it on real corpora: thousands of documents, mixed formats, inconsistent quality, and a downstream system that assumes your output is correct. A document-to-Markdown pipeline for an AI knowledge base is therefore less about "converting files" and more about enforcing contracts between stages: routing, [PDF to markdown conversion for RAG](/blog/pdf-to-markdown-for-rag-preserve-tables-layout-and-document-structure/), normalization, validation, chunking, and indexing.
 
-In this post, you'll get a production blueprint for batch conversion at scale. You'll see how to design idempotent jobs, how to quarantine failures without blocking the whole corpus, how to validate Markdown with measurable structural signals, and how to replay conversions safely when rules or converter versions change.
+In this post, you'll get a production blueprint for batch conversion at scale. You'll see how to design idempotent jobs, how to quarantine failures without blocking the whole corpus, how to validate Markdown with measurable structural signals after [HTML boilerplate removal for RAG](/blog/html-to-markdown-boilerplate-removal-for-better-rag-retrieval/), and how to replay conversions safely when rules or converter versions change.
 
 **Key takeaway:** Treat conversion as a pipeline with contracts and evidence, not as a one-off transformation.
 

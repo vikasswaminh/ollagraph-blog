@@ -1,8 +1,8 @@
 ---
 title: 'Structured Data Extraction for RAG: Web Pages to Queryable Facts'
-description: 'Most RAG systems retrieve chunks of text, not facts. Learn how structured data extraction turns web pages into queryable entities and relationships — enabling precise, citeable answers from natural language, SQL, and graph queries.'
-metaTitle: 'Structured Data Extraction for RAG: Web Pages to Queryable Facts'
-metaDescription: 'Most RAG systems retrieve chunks of text, not facts. Learn how structured data extraction turns web pages into queryable entities and relationships — enabling precise, citeable answers from natural language, SQL, and graph queries.'
+description: 'Learn how structured data extraction turns web pages into queryable entities and relationships, enabling precise, citeable answers for RAG.'
+metaTitle: 'Structured Data Extraction for RAG: Queryable Facts'
+metaDescription: 'Learn how structured data extraction turns web pages into queryable entities and relationships, enabling precise, citeable answers for RAG.'
 primaryKeyword: 'structured data extraction for RAG'
 secondaryKeywords: 'queryable facts extraction, entity extraction for RAG, knowledge graph from web pages, fact extraction pipeline, structured RAG architecture'
 pubDate: 2026-07-30
@@ -568,7 +568,7 @@ Start small. Pick the three most important entity types in your domain. Define a
 - [Lewis et al. (2020) — "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"](https://arxiv.org/abs/2005.11401)
 - [Edge et al. (2024) — "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"](https://arxiv.org/abs/2404.16130)
 - [Ollagraph Engineering — Document-to-JSON Extraction: Turning Web Pages into Typed Records](/blog/document-to-json-extraction-turning-web-pages-into-typed-records/)
-- [Ollagraph Engineering — How to Build a RAG Data Pipeline: From Web Scraping to Vector Search](/blog/how-to-build-a-rag-data/)
+- [Ollagraph Engineering — How to Build a RAG Data Pipeline: From Web Scraping to Vector Search](/blog/reliable-web-data-pipelines-from-crawling-to-validated-json/)
 - [Ollagraph Engineering — Evidence-Based Data Extraction: Provenance for Every Field](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/)
 - [OpenAI — GPT-4o Structured Outputs API Reference](https://platform.openai.com/docs/guides/structured-outputs)
 - Related Ollagraph cluster: [Citation Readiness Score](/blog/citation-readiness-score-how-to-build-reliable-scoring-model/), [Evidence-Based Data Extraction](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/), [Markdown Conversion Quality for AI](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/), [Reliable Web Data Pipelines](/blog/reliable-web-data-pipelines-from-crawling-to-validated-json/)

@@ -12,7 +12,7 @@ tags: ['guides', 'rag']
 
 ## Executive summary
 
-If you have built data pipelines around web scrapers, you know the scenario: a critical cron job runs overnight, completes with status code 0, and ingests thousands of records. Two days later, your machine learning model or search index starts behaving erratically because half the price fields were parsed as 0.0 or empty strings. A front-end designer changed a CSS class from `.product-price-value` to `.price-current`, and your BeautifulSoup or Cheerio script failed silently.
+If you have built [reliable web data pipelines](/blog/reliable-web-data-pipelines-from-crawling-to-validated-json/) around web scrapers, you know the scenario: a critical cron job runs overnight, completes with status code 0, and ingests thousands of records. Two days later, your machine learning model or search index starts behaving erratically because half the price fields were parsed as 0.0 or empty strings. A front-end designer changed a CSS class from `.product-price-value` to `.price-current`, and your BeautifulSoup or Cheerio script failed silently.
 
 CSS selectors bind your pipeline directly to the visual markup and layout choices of web developers who do not know or care that you are consuming their HTML. They treat the DOM path as the source of truth, but the DOM is the most volatile layer of any web application.
 
@@ -122,7 +122,7 @@ flowchart TD
 
 ## 4. The silent corruption crisis: silent errors vs deterministic schema rejections
 
-The biggest danger in web scraping is not a hard HTTP 500 error—it is silent data corruption. Silent data corruption happens when your scraper runs without throwing exceptions, but writes corrupt or incomplete data into production data stores.
+The biggest danger in web scraping is silent data corruption, which a [structured data extraction API](/blog/structured-data-extraction-api-from-web-pages-to-validated-json/) prevents through schema validation. Silent data corruption happens when your scraper runs without throwing exceptions, but writes corrupt or incomplete data into production data stores.
 
 ### Silent Corruption in Action: A Real-World Example
 

@@ -1,8 +1,8 @@
 ---
 title: 'AI Crawler Regression Testing: How to Detect AEO Problems After Website Deployments'
-description: 'Learn how AI crawler regression testing detects AEO problems after website deployments. Test crawling, rendering, extraction, WAF, JavaScript, and AI visibility.'
-metaTitle: 'AI Crawler Regression Testing: Detect AEO Problems After Deployments'
-metaDescription: 'Learn how AI crawler regression testing detects AEO problems after website deployments. Test crawling, rendering, extraction, WAF, JavaScript, and AI visibility.'
+description: 'Learn how AI crawler regression testing detects AEO problems after website deployments across WAF, JavaScript rendering, and AI search visibility.'
+metaTitle: 'AI Crawler Regression Testing: Catch AEO Bugs'
+metaDescription: 'Learn how AI crawler regression testing detects AEO problems after website deployments across WAF, JavaScript rendering, and AI search visibility.'
 primaryKeyword: 'AI crawler regression testing'
 secondaryKeywords: 'AI crawler testing, AI crawler regression test, AEO regression testing, AEO testing, AEO problems, AEO audit, AI search visibility, AI crawler audit, AI crawler monitoring, AI crawler optimization, AI search crawler testing, AI search optimization, Answer Engine Optimization, AI visibility testing, AI citation testing, AI citation monitoring, AI crawler deployment testing, website AI crawler testing, AI crawler compatibility, AI crawler issues, AI crawler errors, AI crawler detection, AI bot testing, AI bot monitoring, GPTBot testing'
 pubDate: 2026-08-31

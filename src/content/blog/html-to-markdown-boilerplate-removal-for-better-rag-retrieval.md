@@ -1,7 +1,7 @@
 ---
 title: 'HTML to Markdown Boilerplate Removal for Better RAG Retrieval'
 description: 'Strip boilerplate before Markdown conversion to improve RAG retrieval and citations. Deterministic extraction keeps chunks stable.'
-metaTitle: 'HTML to Markdown Boilerplate Removal for RAG Retrieval'
+metaTitle: 'HTML to Markdown Boilerplate Removal for RAG'
 metaDescription: 'Strip boilerplate before Markdown conversion to improve RAG retrieval and citations. Deterministic extraction keeps chunks stable.'
 primaryKeyword: 'HTML to markdown boilerplate removal'
 secondaryKeywords: 'RAG retrieval, boilerplate removal, HTML to markdown, deterministic extraction, citations, chunking stability'
@@ -25,7 +25,7 @@ This guide treats boilerplate removal as a measurable ingestion contract. You wi
 -   Validate invariants and fail closed with retry/fallback instead of silent drift
 -   Evaluate end-to-end impact with a run-ready benchmark harness (precision@k + citation correctness)
 
-The goal is not pretty Markdown. The goal is retrieval-grade Markdown that improves answer quality and citation trust.
+The goal is not pretty Markdown. The goal is retrieval-grade Markdown with [source attribution and link preservation](/blog/html-to-markdown-for-ai-preserving-structure-links-and-source-attribution/) that improves answer quality and citation trust.
 
 ## Key Takeaways
 
@@ -39,7 +39,7 @@ The goal is not pretty Markdown. The goal is retrieval-grade Markdown that impro
 
 Most RAG pipelines fail in a way that is hard to notice early.
 
-Your ingestion job succeeds. Your Markdown conversion works. Your embeddings are created. But retrieval quality drops—sometimes subtly, sometimes catastrophically.
+Your ingestion job succeeds. Your Markdown conversion works. Your embeddings are created. But [markdown conversion quality](/blog/markdown-conversion-quality-for-ai-accuracy-structure-and-retrieval/) drops—sometimes subtly, sometimes catastrophically.
 
 When you inspect retrieved chunks, you often see the same patterns:
 

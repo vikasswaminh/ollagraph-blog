@@ -1,8 +1,8 @@
 ---
 title: 'Redirect Chain Audit: How to Find and Fix Loops'
-description: 'Learn how to audit redirect chains, detect redirect loops, and fix them before they destroy your crawl budget and rankings. Includes mapping techniques, CLI tools, API automation, and real chain data from a 200K-page audit.'
+description: 'Identify and resolve redirect chains, circular loops, and crawl budget bottlenecks with an automated redirect audit API and edge rule tests.'
 metaTitle: 'Redirect Chain Audit: How to Find and Fix Loops'
-metaDescription: 'Learn how to audit redirect chains, detect redirect loops, and fix them before they destroy your crawl budget and rankings. Includes mapping techniques, CLI tools, API automation, and real chain data from a 200K-page audit.'
+metaDescription: 'Identify and resolve redirect chains, circular loops, and crawl budget bottlenecks with an automated redirect audit API and edge rule tests.'
 primaryKeyword: 'redirect chain audit'
 secondaryKeywords: 'redirect loop detection, map redirect chains, fix redirect loops, redirect chain checker API, HTTP redirect tracing'
 pubDate: 2026-08-01
@@ -24,15 +24,15 @@ A redirect chain audit traces every HTTP redirect path on a website — from ini
 - Mapping redirect chains manually with `curl -IL` works for spot checks but does not scale beyond a handful of URLs.
 - The Ollagraph `/v1/seo/redirect-chain-map` API returns hop-by-hop JSON with status codes, TTLs, and timing data for every redirect in the chain.
 - Collapsing a five-hop chain to a single 301 redirect recovers roughly 40–60% of lost PageRank flow and cuts page load time by 300–600ms.
-- Automated redirect chain audits should run weekly on any site with more than 10,000 pages or frequent CMS changes.
+- Automated redirect chain audits (integrated into a [full website SEO audit API](/blog/website-seo-audit-how-to-run-a-full-audit-in-one-api-call/)) should run weekly on any site with more than 10,000 pages or frequent CMS changes.
 
 ---
 
 ## 1. Problem Statement
 
-You deploy a site migration. URLs change. You set up 301 redirects. Six months later, organic traffic is down 22% and you cannot figure out why. Google Search Console shows no manual actions. Core Web Vitals are fine. But crawl stats tell a different story: Googlebot is crawling 80% fewer pages per day, and the "Crawled — currently not indexed" count is climbing.
+You deploy a site migration. URLs change. You set up 301 redirects. Six months later, organic traffic is down 22% and you cannot figure out why. Google Search Console shows no manual actions. Core Web Vitals are fine. But crawl stats tell a different story: Googlebot is crawling 80% fewer pages per day (a degradation also caused by [broken 404 links](/blog/broken-links-checker-api-detect-and-fix-404s-at-scale/)), and the "Crawled — currently not indexed" count is climbing.
 
-You run `curl -IL` on a few old URLs and find the problem. `/blog/2024/q3-report` redirects to `/blog/2024/q3-report/` (trailing slash added), which redirects to `/blog/2024/q3-report` (trailing slash removed by a different rule), which redirects to `/insights/2024/q3-report` (category restructure), which redirects to `/insights/2024/q3-report/` (another trailing slash rule), which finally lands on `/insights/2024/q3-report`. Five hops. Googlebot hit that chain, spent its crawl budget, and moved on.
+You run `curl -IL` on a few old URLs and find the problem. `/blog/2024/q3-report` redirects to `/blog/2024/q3-report/` (trailing slash added), which redirects to `/blog/2024/q3-report` (trailing slash removed by a different rule), which redirects to `/insights/2024/q3-report` (category restructure), which redirects to `/insights/2024/q3-report/` (another trailing slash rule), which finally lands on `/insights/2024/q3-report`. Five hops. Googlebot hit that chain, spent its crawl budget (which can be governed via [robots.txt audits for AI crawlers](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/)), and moved on.
 
 This is not a hypothetical. We audited a 200,000-page e-commerce site in early 2026 and found 1,847 redirect chains longer than three hops, 92 chains longer than eight hops, and 14 redirect loops that had been running for over a year. The loops alone consumed an estimated 340,000 crawl requests — roughly 17% of the site's monthly crawl budget — returning nothing but 302s in an infinite circle.
 

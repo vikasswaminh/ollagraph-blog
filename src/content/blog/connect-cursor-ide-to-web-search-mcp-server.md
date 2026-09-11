@@ -1,8 +1,8 @@
 ---
 title: 'How to Connect Cursor IDE to a Web Search MCP Server Using Ollagraph'
-description: "Configure Cursor IDE with Ollagraph's Model Context Protocol (MCP) server for live multi-engine web search, real-time scraping, and RAG context injection."
-metaTitle: 'Connect Cursor IDE to Web Search MCP Server (Ollagraph)'
-metaDescription: "Configure Cursor IDE with Ollagraph's Model Context Protocol (MCP) server for live multi-engine web search, real-time scraping, and RAG context injection."
+description: 'Configure Cursor IDE with Ollagraph''s Model Context Protocol (MCP) server for live multi-engine web search, real-time scraping, and RAG context injection.'
+metaTitle: 'Connect Cursor IDE to Web Search MCP Server'
+metaDescription: 'Configure Cursor IDE with Ollagraph''s Model Context Protocol (MCP) server for live multi-engine web search, real-time scraping, and RAG context injection.'
 primaryKeyword: 'connect cursor ide to web search mcp server'
 secondaryKeywords: 'cursor mcp web search, ollagraph mcp server, model context protocol cursor setup, cursor agent live web search, Cursor IDE, Model Context Protocol (MCP), Ollagraph API, JSON-RPC 2.0, stdio transport, Server-Sent Events (SSE), Anthropic MCP Specification, Headless Chromium, Markdown RAG'
 pubDate: 2026-08-20
@@ -12,13 +12,13 @@ tags: ['guides', 'ai-search']
 
 ## Executive Summary
 
-Connecting Cursor IDE to a web search Model Context Protocol (MCP) server using [Ollagraph](https://ollagraph.com) gives your AI coding agent real-time, multi-engine search capabilities and web-scraping powers directly inside your editor. This setup eliminates model knowledge cutoffs, hallucinated API syntax, and stale library documentation.
+Connecting Cursor IDE to a web search Model Context Protocol (MCP) server using [Ollagraph](https://ollagraph.com) gives your AI coding agent real-time, multi-engine search capabilities and web-scraping powers directly inside your editor. This setup—much like [integrating MCP web tools into LangGraph multi-agent workflows](/blog/integrating-mcp-web-tools-into-langgraph-autonomous-multi-agent-workflows/)—eliminates model knowledge cutoffs, hallucinated API syntax, and stale library documentation.
 
-To configure it, add an entry to your workspace's `.cursor/mcp.json` (or Cursor's global features settings) pointing to `@ollagraph/mcp` via `npx` with your `OLLAGRAPH_API_KEY`. Once connected, Cursor automatically discovers over 219 live web tools—enabling it to search the live web, render client-side JavaScript, extract structured JSON, and ingest documentation as clean Markdown without breaking your coding flow.
+To configure it, add an entry to your workspace's `.cursor/mcp.json` (or Cursor's global features settings) pointing to `@ollagraph/mcp` via `npx` with your `OLLAGRAPH_API_KEY`. Once connected, Cursor automatically discovers over 219 live web tools—enabling it to search the live web, render client-side JavaScript, perform [entity extraction for AI agents](/blog/entity-extraction-for-ai-agents-extract-companies-people-products-and-more/), and ingest documentation as clean Markdown without breaking your coding flow.
 
 Connecting an IDE to the live web used to mean constantly copying documentation URLs, switching back and forth between browser tabs, and manually pasting code snippets into chat windows. With the Model Context Protocol (MCP) standard, Cursor IDE can now call external web APIs programmatically.
 
-By linking Cursor to Ollagraph's cloud infrastructure through MCP, you grant Cursor's agent direct access to real-time search engine indexes, stealth browser pools, document-to-markdown parsers, and specialized platform actors such as GitHub repositories, SEC EDGAR filings, arXiv papers, and job board detectors.
+By linking Cursor to Ollagraph's cloud infrastructure through MCP, you grant Cursor's agent direct access to real-time search engine indexes (understanding [how LLMs index the web](/blog/how-llms-index-the-web-from-crawler-fetch-queues-to-vectorized-knowledge-graphs/)), stealth browser pools, document-to-markdown parsers, and specialized platform actors such as GitHub repositories, SEC EDGAR filings, arXiv papers, and job board detectors.
 
 The underlying process runs locally via an unprivileged stdio subprocess (`@ollagraph/mcp`), which intercepts JSON-RPC requests from Cursor and routes them securely over TLS 1.3 to Ollagraph's API gateway. The cloud engine performs multi-engine aggregation, renders dynamic JavaScript single-page applications via headless Chromium when required, strips HTML boilerplate, and returns token-efficient Markdown context directly to Cursor's reasoning loop.
 

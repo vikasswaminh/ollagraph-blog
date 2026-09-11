@@ -39,7 +39,7 @@ But retrieval is sensitive to small representation changes. Consider what happen
 
 -   Headings become plain paragraphs, so the retriever can't reliably anchor queries to sections.
 -   Lists flatten into sentences, so item-level semantics disappear.
--   Tables become unstructured text, so key-value relationships lose their shape.
+-   Tables become unstructured text when poorly extracted from PDFs (see [PDF to markdown for RAG](/blog/pdf-to-markdown-for-rag-preserve-tables-layout-and-document-structure/)).
 -   Code blocks lose language fences, so technical queries match poorly.
 -   Chunkers split across logical boundaries because the Markdown patterns don't match what the chunker expects.
 -   Provenance metadata is dropped, so even correct retrieval can't be cited correctly.
@@ -56,7 +56,7 @@ As systems matured, teams learned that chunking needs structure. Markdown became
 
 -   headings represent hierarchy,
 -   lists represent discrete items,
--   tables represent structured facts,
+-   tables represent structured facts (which can also be extracted via [structured data extraction for RAG](/blog/structured-data-extraction-for-rag-turning-web-pages-into-queryable-facts/)),
 -   code blocks represent technical artifacts.
 
 However, "Markdown for humans" is not automatically "Markdown for retrieval." Human-friendly formatting can still be retrieval-hostile if it's inconsistent, ambiguous, or lossy.

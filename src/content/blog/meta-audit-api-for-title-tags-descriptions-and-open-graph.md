@@ -1,8 +1,8 @@
 ---
 title: 'Meta Audit API for Title Tags, Descriptions, and Open Graph'
-description: 'Stop manually checking title tags and Open Graph previews. Automate meta tag validation across thousands of pages with a Meta Audit API — catch truncation, duplication, and missing OG tags before they break your search and social presence.'
-metaTitle: 'Meta Audit API for Title Tags, Descriptions, and Open Graph'
-metaDescription: 'Stop manually checking title tags and Open Graph previews. Automate meta tag validation across thousands of pages with a Meta Audit API — catch truncation, duplication, and missing OG tags before they break your search and social presence.'
+description: 'Automate meta tag audits across thousands of URLs. Detect title truncation, description issues, and missing Open Graph cards before deployments.'
+metaTitle: 'Meta Audit API for Title Tags and Open Graph'
+metaDescription: 'Automate meta tag audits across thousands of URLs. Detect title truncation, description issues, and missing Open Graph cards before deployments.'
 primaryKeyword: 'Meta Audit API'
 secondaryKeywords: 'title tag audit API, meta description audit, Open Graph validation API, bulk meta tag checker, SEO metadata audit at scale, programmatic meta tag testing'
 pubDate: 2026-08-01
@@ -24,8 +24,8 @@ A Meta Audit API solves this by programmatically fetching pages, extracting all 
 - Each platform enforces different rules. Google truncates titles past ~580 pixels (not characters). Facebook requires `og:image` at least 200×200 pixels. LinkedIn ignores OG tags if `article:published_time` is missing.
 - A Meta Audit API can check 1,000 pages in under 90 seconds. A manual audit of the same volume takes 4–8 hours.
 - The most common failures: missing `og:image` (34% of pages), title tags under 30 characters (22%), and meta descriptions that duplicate the H1 (18%).
-- Integrating meta tag validation into CI/CD catches issues before they reach production.
-- Ollagraph's Meta Audit API checks 40+ validation rules per page across Google, Facebook, LinkedIn, X/Twitter, Slack, and Discord.
+- Integrating meta tag validation into CI/CD—alongside automated [broken link checks](/blog/broken-links-checker-api-detect-and-fix-404s-at-scale/)—catches issues before they reach production.
+- Ollagraph's Meta Audit API (part of our [full website SEO audit API](/blog/website-seo-audit-how-to-run-a-full-audit-in-one-api-call/)) checks 40+ validation rules per page across Google, Facebook, LinkedIn, X/Twitter, Slack, and Discord.
 
 ---
 
@@ -33,7 +33,7 @@ A Meta Audit API solves this by programmatically fetching pages, extracting all 
 
 You push a new landing page to production. The title tag looks fine in staging. The meta description reads well. The Open Graph preview shows a beautiful card. Then the page goes live and your social media manager sends a Slack message: "The LinkedIn preview is broken. It's showing the default logo instead of the product shot."
 
-You open Facebook Sharing Debugger, paste the URL, and scrape it. Facebook says `og:image` is missing. You inspect the page source. The tag is there. The image URL is a relative path that resolves fine in a browser but fails Facebook's crawler because the crawler does not execute JavaScript and does not follow the same redirect chain.
+You open Facebook Sharing Debugger, paste the URL, and scrape it. Facebook says `og:image` is missing. You inspect the page source. The tag is there. The image URL is a relative path that resolves fine in a browser but fails Facebook's crawler because the crawler does not execute JavaScript and does not follow the same [redirect chain](/blog/redirect-chain-audit-how-to-find-and-fix-loops/).
 
 This is not a one-time bug. It repeats across every deployment, every CMS migration, every template change, and every A/B test that touches the `<head>` section. The problem is not that developers cannot write a title tag. The problem is that no human checks 500 pages after a CMS template update.
 

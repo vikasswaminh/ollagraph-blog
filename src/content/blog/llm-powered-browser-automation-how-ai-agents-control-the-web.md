@@ -22,7 +22,7 @@ An LLM-powered agent arrives at a page it has never seen, reads the DOM like a h
 
 This shift from selector-driven to semantic control is the most significant change in browser automation since Puppeteer shipped in 2017. But the gap between a demo that works once and a pipeline that runs 10,000 times is enormous. LLMs hallucinate selectors. A single interaction that takes 200 ms with a hardcoded selector can take 8–15 seconds with an LLM in the loop.
 
-We built this guide from direct experience: we ran 2,000 benchmark iterations across four frameworks, deployed LLM-powered agents in production for three clients, and broke enough things along the way to know what actually matters. This is not a theoretical overview. Every claim in this post is backed by a test run, a log file, or a production incident.
+We built this guide from direct experience: we ran 2,000 benchmark iterations across four frameworks, deployed LLM-powered agents in production for three clients (such as orchestrating [company intelligence pipelines](/blog/company-intelligence-pipelines-extracting-structured-data-from-public-websites/)), and broke enough things along the way to know what actually matters. This is not a theoretical overview. Every claim in this post is backed by a test run, a log file, or a production incident.
 
 ## Key Takeaways
 

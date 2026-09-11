@@ -1,8 +1,8 @@
 ---
 title: 'Integrating MCP Web Tools into LangGraph Autonomous Multi-Agent Workflows'
-description: "Connect LangGraph multi-agent swarms to Ollagraph's Model Context Protocol (MCP) server for stateful, real-time web search, JS scraping, and RAG retrieval."
-metaTitle: 'Integrate MCP Web Tools into LangGraph Multi-Agent Workflows | Ollagraph'
-metaDescription: "Connect LangGraph multi-agent swarms to Ollagraph's Model Context Protocol (MCP) server for stateful, real-time web search, JS scraping, and RAG retrieval."
+description: 'Connect LangGraph multi-agent swarms to Ollagraph''s Model Context Protocol (MCP) server for stateful, real-time web search, JS scraping, and RAG retrieval.'
+metaTitle: 'Integrate MCP Web Tools in LangGraph Workflows'
+metaDescription: 'Connect LangGraph multi-agent swarms to Ollagraph''s Model Context Protocol (MCP) server for stateful, real-time web search, JS scraping, and RAG retrieval.'
 primaryKeyword: 'langgraph mcp tool integration'
 secondaryKeywords: 'langgraph multi agent web search, mcp tools for ai agents, model context protocol langgraph, ollagraph langgraph mcp, autonomous agent web scraping'
 pubDate: 2026-08-21
@@ -12,13 +12,13 @@ tags: ['guides', 'rag', 'ai-search']
 
 ## Executive Summary
 
-Connecting Model Context Protocol (MCP) web tools to LangGraph multi-agent workflows equips autonomous agent swarms with real-time web search, dynamic JavaScript rendering, and structured document parsing without risking state corruption or context window bloat. By connecting LangGraph's state machine nodes to [Ollagraph](https://ollagraph.com)'s MCP Server, agent nodes execute live web retrieval over a standardized JSON-RPC 2.0 interface.
+Connecting Model Context Protocol (MCP) web tools (see also how to [connect Cursor IDE to a web search MCP server](/blog/connect-cursor-ide-to-web-search-mcp-server/)) to LangGraph multi-agent workflows equips autonomous agent swarms with real-time web search, dynamic JavaScript rendering, and structured document parsing without risking state corruption or context window bloat. By connecting LangGraph's state machine nodes to [Ollagraph](https://ollagraph.com)'s MCP Server, agent nodes execute live web retrieval over a standardized JSON-RPC 2.0 interface.
 
 To implement this integration in production, define your LangGraph `StateGraph` state, initialize an asynchronous MCP `ClientSession` connected to Ollagraph's cloud infrastructure via stdio or Server-Sent Events (SSE), and route tool execution requests through a centralized tool-node. This setup provides over 219 live web intelligence tools—including multi-engine search, stealth browser rendering, PDF parsing, and domain reconnaissance—while maintaining strict state isolation across agent steps.
 
 Building autonomous multi-agent systems requires moving beyond single-prompt execution loops. While frameworks like LangGraph provide the stateful graph orchestration necessary for complex multi-agent collaboration, agents frequently fail when attempting to fetch live web information. Legacy approaches rely on fragile, custom scraping scripts or static HTTP GET tools that fail on dynamic JavaScript single-page applications (SPAs) and pollute prompt context windows with unparsed HTML boilerplate.
 
-By pairing LangGraph's directed graph state machines with Ollagraph's cloud web intelligence engine via the Model Context Protocol standard, developers can construct resilient multi-agent swarms. Each agent node in the graph—whether a Primary Research Agent, a Fact Verification Agent, or a Code Generation Agent—can asynchronously query live search indexes, parse complex technical documentation into token-efficient Markdown, and extract schema-validated JSON data with flat 1-credit predictability and zero data persistence.
+By pairing LangGraph's directed graph state machines with Ollagraph's cloud web intelligence engine via the Model Context Protocol standard, developers can construct resilient multi-agent swarms. Each agent node in the graph—whether a Primary Research Agent, a Fact Verification Agent, or a Code Generation Agent—can asynchronously query live search indexes, parse complex technical documentation into [structured markdown for AI agents](/blog/how-structured-markdown-improves-ai-agent-accuracy-and-retrieval/), and perform [entity extraction for AI agents](/blog/entity-extraction-for-ai-agents-extract-companies-people-products-and-more/) with flat 1-credit predictability.
 
 ---
 

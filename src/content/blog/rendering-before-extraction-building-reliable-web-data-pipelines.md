@@ -12,7 +12,7 @@ tags: ['guides', 'rag']
 
 ## Executive Summary
 
-Every web data pipeline has a moment where raw bytes become structured data. That moment is rendering — the step where JavaScript executes, the DOM stabilizes, and content that did not exist in the original HTML finally appears. Get rendering right and your extraction is deterministic. Get it wrong and you extract empty shells, partial data, or content from a different page state entirely.
+Every web data pipeline has a moment where raw bytes become structured data. That moment is rendering — the step where JavaScript executes (see [JavaScript rendering to deterministic markdown for AI content](/blog/markdown-conversion-for-dynamic-websites-javascript-rendering-for-ai-ready/)), the DOM stabilizes, and content that did not exist in the original HTML finally appears. Get rendering right and your extraction is deterministic. Get it wrong and you extract empty shells, partial data, or content from a different page state entirely.
 
 Most pipeline failures trace back to rendering, not fetching or parsing. A fetch either succeeds or fails. Parsing either produces data or throws an exception. But rendering lives in a gray zone: the page loads, the browser reports success, and the extracted data is subtly wrong. Prices are missing. Descriptions are truncated. The real content never hydrated because a lazy-load script timed out.
 

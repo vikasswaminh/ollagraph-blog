@@ -1,8 +1,8 @@
 ---
 title: 'Website Security Scorecard API: How to Quantify Website Risk at Scale'
-description: 'Website Security Scorecard API: Quantify external website risk at scale with automated audits across SSL/TLS, HTTP headers, DNSSEC, SRI, and cookies via Ollagraph.'
-metaTitle: 'Website Security Scorecard API: Quantify Risk · OllaGraph'
-metaDescription: 'Website Security Scorecard API: Quantify external website risk at scale with automated audits across SSL/TLS, HTTP headers, DNSSEC, SRI, and cookies via Ollagraph.'
+description: 'Quantify external website risk at scale with automated security audits across SSL/TLS, HTTP headers, DNSSEC, SRI, and cookies via Ollagraph.'
+metaTitle: 'Website Security Scorecard API: Quantify Risk'
+metaDescription: 'Quantify external website risk at scale with automated security audits across SSL/TLS, HTTP headers, DNSSEC, SRI, and cookies via Ollagraph.'
 primaryKeyword: 'Website Security Scorecard API'
 secondaryKeywords: 'quantify website risk at scale, website security rating API, programmatic external attack surface assessment, vendor risk management API, automated security posture scorecard, Ollagraph security intelligence'
 pubDate: 2026-09-09
@@ -14,7 +14,7 @@ tags: ['guides', 'seo']
 
 Security teams, vendor risk analysts, and DevSecOps engineers face an escalating visibility crisis: enterprise web footprints expand continuously through microservices, cloud migrations, third-party JavaScript dependencies, and ephemeral campaign sites, yet security evaluations remain painfully manual or locked inside proprietary, black-box rating platforms. Point-in-time penetration tests go out of date within hours of a production deployment, while static questionnaire-based audits reflect organizational aspiration rather than actual Internet-facing defensive posture.
 
-A programmatic Website Security Scorecard API solves this operational bottleneck by continuously probing, aggregating, and normalizing multi-vector perimeter signals into an objective, deterministic risk index. Instead of guessing whether hundreds of production web assets comply with baseline security hygiene, security teams can programmatically interrogate transport layer encryption (TLS/SSL), edge defense headers, domain configuration (DNSSEC and CAA), client-side supply chains (Subresource Integrity), session cookie flags, vulnerability disclosure responsiveness (RFC 9116 security.txt), and external attack surface exposures at scale.
+A programmatic Website Security Scorecard API (leveraging a unified [Website Security Audit API](/blog/website-security-audit-api-scan-at-scale/)) solves this operational bottleneck by continuously probing, aggregating, and normalizing multi-vector perimeter signals into an objective, deterministic risk index. Instead of guessing whether hundreds of production web assets comply with baseline security hygiene, security teams can programmatically interrogate transport layer encryption, edge defense headers (alongside a [full website SEO audit API](/blog/website-seo-audit-how-to-run-a-full-audit-in-one-api-call/)), domain configuration, client-side supply chains (Subresource Integrity), session cookie flags, vulnerability disclosure responsiveness (RFC 9116 security.txt), and external attack surface exposures at scale.
 
 This guide details the mathematical foundations, architecture, and deployment patterns necessary to quantify website risk across thousands of domains without deploying intrusive network agents or triggering defensive firewalls. Using Ollagraph's unified intelligence endpoints—including `/v1/intel/headers`, `/v1/intel/ssl`, `/v1/intel/sri-audit`, `/v1/intel/dnssec`, `/v1/intel/cookies`, and `/v1/intel/subdomain-enumerate`—we present an automated Python scoring engine that translates raw protocol telemetry into normalized 0–100 scores and defensible compliance evidence packets.
 

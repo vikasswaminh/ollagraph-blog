@@ -1,7 +1,7 @@
 ---
 title: 'Featured Snippet Opportunity API: How to Find and Prioritize Position-Zero Opportunities'
 description: 'Featured Snippet Opportunity API enables engineering teams to programmatically find, score, and capture Position-Zero search results using Ollagraph.'
-metaTitle: 'Featured Snippet Opportunity API: How to Find and Prioritize Position-Zero Opportunities'
+metaTitle: 'Featured Snippet API: Prioritize Position Zero'
 metaDescription: 'Featured Snippet Opportunity API enables engineering teams to programmatically find, score, and capture Position-Zero search results using Ollagraph.'
 primaryKeyword: 'Featured Snippet Opportunity API'
 secondaryKeywords: 'position zero opportunities, featured snippets, SERP API, passage extraction, AEO, citation readiness, Ollagraph'

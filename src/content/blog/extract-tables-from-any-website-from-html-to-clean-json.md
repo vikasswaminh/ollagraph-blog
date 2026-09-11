@@ -1,7 +1,7 @@
 ---
 title: 'How to Extract Tables from Any Website to JSON'
 description: 'Turn HTML and CSS-based tables into clean JSON, see where DIY parsing breaks, and learn when Ollagraph''s API is the safer choice.'
-metaTitle: 'How to Extract Tables from Any Website to JSON'
+metaTitle: 'Extract Tables from Any Website to Clean JSON'
 metaDescription: 'Turn HTML and CSS-based tables into clean JSON, see where DIY parsing breaks, and learn when Ollagraph''s API is the safer choice.'
 primaryKeyword: 'extract tables from any website'
 secondaryKeywords: 'table extraction to JSON, html table parser, web table scraper, extract pricing table html, visual table extraction, table extraction API'

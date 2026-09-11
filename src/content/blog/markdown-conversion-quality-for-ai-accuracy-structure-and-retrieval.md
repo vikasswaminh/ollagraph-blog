@@ -1,8 +1,8 @@
 ---
 title: 'Markdown Conversion Quality for AI: Accuracy, Structure, Retrieval'
-description: 'Preserve headings, lists, tables, and provenance so AI retrieval stays accurate and citations remain verifiable.'
-metaTitle: 'Markdown Conversion Quality for AI'
-metaDescription: 'Preserve headings, lists, tables, and provenance so AI retrieval stays accurate and citations remain verifiable.'
+description: 'Discover how high-fidelity Markdown conversion preserves headings, tables, and provenance to maximize AI retrieval accuracy and keep citations verifiable.'
+metaTitle: 'Markdown Conversion Quality for AI Retrieval'
+metaDescription: 'Discover how high-fidelity Markdown conversion preserves headings, tables, and provenance to maximize AI retrieval accuracy and keep citations verifiable.'
 primaryKeyword: 'markdown conversion quality'
 secondaryKeywords: 'markdown, retrieval, grounding, chunking, RAG, provenance, citations'
 pubDate: 2026-07-30
@@ -43,7 +43,7 @@ Markdown conversion quality is the discipline of making those failure modes meas
 
 ## 2. History & Context
 
-Early RAG pipelines focused on embeddings and chunk sizes. Conversion was "good enough" as long as text existed.
+Early RAG pipelines (unlike modern [document-to-markdown pipelines for AI knowledge bases](/blog/document-to-markdown-pipelines-for-ai-knowledge-bases/)) focused on embeddings and chunk sizes. Conversion was "good enough" as long as text existed.
 
 As systems moved from single-shot Q&A to tool-using agents, the tolerance for evidence ambiguity dropped. Agents need stable, inspectable units: a list item is not the same as a paragraph; a table row is not the same as a sentence.
 
@@ -635,7 +635,7 @@ In practice, HTML contains a lot of non-evidence content:
 -   navigation chrome and repeated UI blocks
 -   scripts, styles, and hidden elements
 -   inconsistent DOM structure across templates
--   boilerplate that inflates retrieval with irrelevant matches
+-   boilerplate that inflates retrieval (remediated by [HTML boilerplate removal for RAG](/blog/html-to-markdown-boilerplate-removal-for-better-rag-retrieval/))
 
 **Why it's harder for accuracy:**
 
@@ -672,7 +672,7 @@ Structured extraction typically needs:
 
 -   schema design and evolution
 -   per-document-type handling
--   robust extraction logic for messy layouts, especially PDFs
+-   robust extraction logic for messy layouts, especially when [converting PDFs to markdown for RAG](/blog/pdf-to-markdown-for-rag-preserve-tables-layout-and-document-structure/)
 -   ongoing maintenance when upstream pages change
 
 **Why it's powerful:**  
@@ -694,7 +694,7 @@ A production deployment typically includes a set of services that treat conversi
 
 **Conversion service with versioned structure contracts**
 
-Converts source documents (HTML/PDF/DOCX) into Markdown using deterministic rules. Contract versions let you reproduce behavior and attribute changes.
+Converts source documents into Markdown using deterministic rules following our [markdown formatting for RAG guide](/blog/markdown-for-retrieval-augmented-generation-rag-how-proper-formatting-improves/). Contract versions let you reproduce behavior and attribute changes.
 
 **Validation service that quarantines failures**
 

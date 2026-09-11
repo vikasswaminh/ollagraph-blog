@@ -1,8 +1,8 @@
 ---
 title: 'Building a Machine-Readable Website: The Technical Specification for AI Bots'
-description: 'Technical specification for AI-bot-ready websites: robots.txt, llms.txt, semantic HTML, entity contracts, markdown mirrors, and Ollagraph audit workflows to improve extractability and citations.'
-metaTitle: 'Building a Machine-Readable Website for AI Bots'
-metaDescription: 'Technical specification for AI-bot-ready websites: robots.txt, llms.txt, semantic HTML, entity contracts, markdown mirrors, and Ollagraph audit workflows to improve extractability and citations.'
+description: 'Technical specification for AI-ready sites: robots.txt, semantic HTML, entity contracts, and markdown mirrors to maximize crawler extraction and citations.'
+metaTitle: 'Machine-Readable Website Spec for AI Bots'
+metaDescription: 'Technical specification for AI-ready sites: robots.txt, semantic HTML, entity contracts, and markdown mirrors to maximize crawler extraction and citations.'
 primaryKeyword: 'machine-readable website'
 secondaryKeywords: 'AI bot specification, llms.txt, robots.txt for AI bots, semantic HTML for AEO, markdown mirrors, citation readiness, Ollagraph page audit'
 pubDate: 2026-09-03
@@ -16,7 +16,7 @@ A machine-readable website is not a site with “some schema” and a green Rich
 
 In 2026, ChatGPT, Claude, Perplexity, Gemini, and Google AI Overviews do not browse like humans. They fetch constrained representations, extract passages, reconcile claims, and decide whether a page is safe to cite. If your HTML is a decorative shell, your robots.txt blocks the wrong agents, your answers are buried under marketing fluff, or your structured data disagrees with the page, the bot does not “try harder.” It skips you or cites a competitor.
 
-This guide is a technical specification for building that contract. It covers access policy, discovery surfaces (robots.txt, sitemaps, llms.txt), semantic HTML and answer blocks, entity and schema alignment, optional markdown/API mirrors, validation gates, and production operations. Throughout, we show how to verify the contract with Ollagraph endpoints such as `/v1/aeo/page-audit`, `/v1/aeo/llms-txt-audit`, `/v1/aeo/llm-fetch-simulator`, `/v1/seo/schema-validate`, and `/v1/aeo/citation-readiness`.
+This guide is a technical specification for building that contract. It covers access policy, discovery surfaces (including our guide to [audit robots.txt for AI crawlers without blocking search](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/)), semantic HTML and answer blocks, entity and schema alignment, optional markdown/API mirrors, validation gates, and production operations. Throughout, we show how to verify the contract with Ollagraph endpoints such as `/v1/aeo/page-audit`, `/v1/aeo/llms-txt-audit`, `/v1/aeo/llm-fetch-simulator`, `/v1/seo/schema-validate`, and `/v1/aeo/citation-readiness` (see [how to build a Citation Readiness Score model](/blog/citation-readiness-score-how-to-build-reliable-scoring-model/)).
 
 The goal is not more markup. The goal is a website an AI bot can fetch, parse, trust, and quote without guessing.
 

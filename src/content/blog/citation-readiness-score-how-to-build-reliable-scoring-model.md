@@ -1,8 +1,8 @@
 ---
 title: 'Citation Readiness Score: How to Build a Reliable Scoring Model'
-description: 'Learn how to engineer, calculate, and deploy a Citation Readiness Score (CRS) model to optimize web content for LLM retrieval, RAG grounding, and AI search engines.'
-metaTitle: 'Citation Readiness Score: How to Build a Reliable Scoring Model'
-metaDescription: 'Learn how to engineer, calculate, and deploy a Citation Readiness Score (CRS) model to optimize web content for LLM retrieval, RAG grounding, and AI search engines.'
+description: 'Learn how to engineer and calculate a Citation Readiness Score (CRS) model to optimize web content for LLM retrieval, RAG grounding, and AI search engines.'
+metaTitle: 'Citation Readiness Score: Reliable Scoring Model'
+metaDescription: 'Learn how to engineer and calculate a Citation Readiness Score (CRS) model to optimize web content for LLM retrieval, RAG grounding, and AI search engines.'
 primaryKeyword: 'Citation Readiness Score'
 secondaryKeywords: 'AI Engine Optimization, AEO audit model, RAG citation scoring, LLM grounding metrics, web extraction for AI agents, Ollagraph AEO, semantic entity density, AI search ranking factors'
 pubDate: 2026-08-25
@@ -16,7 +16,7 @@ As the web transitions from traditional search indexers to agentic Retrieval-Aug
 
 A Citation Readiness Score (CRS) is a quantitative, deterministic framework (scaled from 0 to 100) designed to measure how effectively a webpage can be ingested, converted into clean markdown, split into semantic chunks, anchored to verifiable entity facts, and cited by Large Language Models.
 
-This guide provides the complete engineering blueprint for building a production-grade Citation Readiness Scoring engine. We explore the five core mathematical dimensions of CRS: Structural Extractability, Grounding and Fact Density, Epistemic Authority and Provenance, Crawlability and Rendering Overhead, and Semantic Chunk Stability.
+This guide provides the complete engineering blueprint for building a production-grade Citation Readiness Scoring engine. We explore the five core mathematical dimensions of CRS: Structural Extractability, Grounding and Fact Density, Epistemic Authority and Provenance (as explored in our guide on [E-E-A-T for AI search](/blog/eeat-for-ai-search-how-experience-and-expertise-influence-citations/)), Crawlability and Rendering Overhead, and Semantic Chunk Stability.
 
 By pairing this scoring model with model-ready extraction infrastructure like [OllaGraph](https://ollagraph.com/)—which converts unstructured DOM trees into clean, agent-ready markdown behind a high-speed API—engineering and content teams can programmatically audit, measure, and remediate technical web pages to ensure maximum citation fidelity across the generative AI ecosystem. To benchmark broader search presence across answer engines, evaluate our [AI Search Visibility Score framework](/blog/ai-search-visibility-score-practical-framework-measuring-brand-presence/), audit your crawler access rules with our [robots.txt audit for AI crawlers guide](/blog/how-to-audit-robots-txt-for-ai-crawlers-without-blocking-search-engines/), or capture position-zero search real estate with our [Featured Snippet Opportunity API guide](/blog/featured-snippet-opportunity-api-find-prioritize-position-zero/).
 

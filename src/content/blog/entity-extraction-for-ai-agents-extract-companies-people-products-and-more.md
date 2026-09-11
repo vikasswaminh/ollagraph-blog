@@ -1,8 +1,8 @@
 ---
 title: 'Entity Extraction for AI Agents: Turn Web Pages into Facts'
-description: 'AI agents need facts, not paragraphs. Learn how to extract companies, people, products, and organizations from web pages with entity resolution, disambiguation, and confidence scoring — so your agents can act on clean, typed data.'
-metaTitle: 'Entity Extraction for AI Agents: Turn Web Pages into Facts'
-metaDescription: 'AI agents need facts, not paragraphs. Learn how to extract companies, people, products, and organizations from web pages with entity resolution, disambiguation, and confidence scoring — so your agents can act on clean, typed data.'
+description: 'Extract companies, people, and products from web pages with entity resolution and disambiguation so AI agents can act on clean, typed data.'
+metaTitle: 'Entity Extraction for AI Agents: Turn Web Pages to Facts'
+metaDescription: 'Extract companies, people, and products from web pages with entity resolution and disambiguation so AI agents can act on clean, typed data.'
 primaryKeyword: 'entity extraction for AI agents'
 secondaryKeywords: 'named entity recognition for AI agents, extract companies people products from web, entity resolution for agents, structured entity extraction, AI agent data extraction pipeline, entity disambiguation for LLMs'
 pubDate: 2026-07-30
@@ -577,7 +577,7 @@ Try it on your own pages. Point it at a competitor's pricing page, a news articl
 - [OntoNotes 5.0 Release — Linguistic Data Consortium](https://catalog.ldc.upenn.edu/LDC2013T19)
 - [OpenAI GPT-4 Technical Report](https://arxiv.org/abs/2303.08774)
 - [Ollagraph Entity Resolution API v1 Specification](https://ollagraph.com/docs/entity-resolution)
-- Related Ollagraph cluster: [Structured Data for RAG](/blog/structured-data-extraction-for-rag-turning-web-pages-into-queryable-facts/), [Evidence-Based Data Extraction](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/), [Document-to-JSON Extraction](/blog/document-to-json-extraction-turning-web-pages-into-typed-records/), [LangGraph MCP Integration](/blog/langgraph-mcp-web-tools-integration/)
+- Related Ollagraph cluster: [Structured Data for RAG](/blog/structured-data-extraction-for-rag-turning-web-pages-into-queryable-facts/), [Evidence-Based Data Extraction](/blog/evidence-based-data-extraction-how-to-return-provenance-for-every-field/), [Document-to-JSON Extraction](/blog/document-to-json-extraction-turning-web-pages-into-typed-records/), [LangGraph MCP Integration](/blog/integrating-mcp-web-tools-into-langgraph-autonomous-multi-agent-workflows/)
 
 ## Common questions
 

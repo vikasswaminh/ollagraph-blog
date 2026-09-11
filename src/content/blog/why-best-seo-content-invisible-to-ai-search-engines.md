@@ -1,7 +1,7 @@
 ---
 title: 'Why Your Best SEO Content Is Invisible to AI Search Engines — And How to Fix It'
 description: 'Ranking #1 on Google doesn’t mean ChatGPT or Perplexity will cite you. Learn why SEO-winning pages stay invisible to AI search—and how to fix extractability.'
-metaTitle: 'Why Your Best SEO Content Is Invisible to AI Search Engines'
+metaTitle: 'Why Top SEO Content Stays Invisible to AI Search'
 metaDescription: 'Ranking #1 on Google doesn’t mean ChatGPT or Perplexity will cite you. Learn why SEO-winning pages stay invisible to AI search—and how to fix extractability.'
 primaryKeyword: 'AI search visibility for SEO content'
 secondaryKeywords: 'AI search, AEO, GEO, SEO content, citation readiness, Ollagraph, passage extraction, extractability audit'

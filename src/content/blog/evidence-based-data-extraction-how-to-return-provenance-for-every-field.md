@@ -1,8 +1,8 @@
 ---
 title: 'Evidence-Based Data Extraction: Provenance for Every Field'
-description: 'Learn how to implement field-level provenance tracking in data extraction pipelines. Covers JSON schema design, confidence scoring, normalization tracing, quality gates, and storage strategies with Python and Node.js implementations.'
-metaTitle: 'Evidence-Based Data Extraction: Provenance for Every Field'
-metaDescription: 'Learn how to implement field-level provenance tracking in data extraction pipelines. Covers JSON schema design, confidence scoring, normalization tracing, quality gates, and storage strategies with Python and Node.js implementations.'
+description: 'Learn how to implement field-level provenance tracking in data extraction pipelines with JSON schemas, confidence scoring, and quality gates.'
+metaTitle: 'Evidence-Based Data Extraction: Field Provenance'
+metaDescription: 'Learn how to implement field-level provenance tracking in data extraction pipelines with JSON schemas, confidence scoring, and quality gates.'
 primaryKeyword: 'evidence-based data extraction'
 secondaryKeywords: 'provenance for every field, field-level provenance, extraction provenance envelope, data quality gates, extraction confidence scoring'
 pubDate: 2026-07-30

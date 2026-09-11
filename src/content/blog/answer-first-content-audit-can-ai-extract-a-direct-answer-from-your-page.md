@@ -1,8 +1,8 @@
 ---
 title: 'Answer-First Content Audit: Can AI Extract a Direct Answer From Your Page?'
-description: 'Ranking is no longer the same as being quotable. Learn how to run an answer-first content audit that tests whether ChatGPT, Perplexity, Claude, and Google AI Overviews can lift a direct, self-contained answer out of your page — with a six-component scoring model you can run in CI.'
-metaTitle: 'Answer-First Content Audit: Can AI Quote Your Page? — Ollagraph'
-metaDescription: 'Ranking is no longer the same as being quotable. Learn how to run an answer-first content audit that tests whether ChatGPT, Perplexity, Claude, and Google AI Overviews can lift a direct, self-contained answer out of your page — with a six-component scoring model you can run in CI.'
+description: 'Learn how to run an answer-first content audit testing whether ChatGPT, Perplexity, and Claude can extract direct, quotable answers from your pages.'
+metaTitle: 'Answer-First Content Audit: Can AI Quote Your Page?'
+metaDescription: 'Learn how to run an answer-first content audit testing whether ChatGPT, Perplexity, and Claude can extract direct, quotable answers from your pages.'
 primaryKeyword: 'answer-first content audit'
 secondaryKeywords: "AI direct answer extraction, answer extractability score, AEO content audit, why isn't my page cited by AI, answer-first content structure, chunk boundary optimization"
 pubDate: 2026-08-28

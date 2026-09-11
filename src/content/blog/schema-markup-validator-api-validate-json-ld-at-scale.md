@@ -1,7 +1,7 @@
 ---
 title: 'Schema Markup Validator API: Validate JSON-LD at Scale'
 description: 'Automate JSON-LD validation across thousands of pages, catch schema errors before deployment, and protect rich results at scale.'
-metaTitle: 'Schema Markup Validator API: Validate JSON-LD at Scale'
+metaTitle: 'Schema Markup Validator API: Validate JSON-LD'
 metaDescription: 'Automate JSON-LD validation across thousands of pages, catch schema errors before deployment, and protect rich results at scale.'
 primaryKeyword: 'Schema Markup Validator API'
 secondaryKeywords: 'validate JSON-LD at scale, schema markup validation, structured data validator API, JSON-LD automated testing, schema rich results validation'
@@ -14,7 +14,7 @@ tags: ['seo', 'guides']
 
 Every SEO team knows the pain: you deploy a site-wide template update, and three days later Google Search Console lights up with "Invalid structured data" errors across 2,000 pages. Someone changed a `@type` from `Product` to `product` (lowercase), or a CMS migration stripped the `@context` field from every JSON-LD block. The manual fix is copy-pasting each URL into Google's Rich Results Test — which works for five pages and collapses at fifty.
 
-A Schema Markup Validator API solves this by treating JSON-LD validation as a programmable step in your deployment pipeline. You point it at a URL or feed it raw JSON-LD, and it returns validation results: syntax errors, missing required fields, type mismatches, schema.org conformance flags, and AI-crawler compatibility signals. Run it across your entire sitemap in minutes instead of days.
+A Schema Markup Validator API (integrated into a [full website SEO audit API](/blog/website-seo-audit-how-to-run-a-full-audit-in-one-api-call/)) solves this by treating JSON-LD validation as a programmable step in your deployment pipeline. You point it at a URL or feed it raw JSON-LD, and it returns validation results: syntax errors, missing required fields, type mismatches, schema.org conformance flags, and AI-crawler compatibility signals. Run it across your entire sitemap in minutes instead of days.
 
 This article covers the architecture of API-based schema validation, how to integrate it into CI/CD and monitoring workflows, real-world benchmarks from validating 50,000+ pages, and a comparison of available tools. You will walk away with a production-ready validation pipeline you can implement this week.
 
@@ -26,7 +26,7 @@ This article covers the architecture of API-based schema validation, how to inte
 
 - Manual schema validation — copy-pasting URLs into browser tools — does not scale beyond a handful of pages. We have watched teams burn entire sprints on this. A Schema Markup Validator API can validate 10,000+ pages in under 5 minutes with per-page error reporting, catching regressions that manual sampling misses every time.
 - The most common JSON-LD failures — missing `@context`, wrong `@type` casing, dangling `sameAs` URLs, and date format mismatches — are trivially detectable with automated validation. Schema validation in CI/CD catches roughly 94% of structured data regressions before they reach production, based on our testing across 12 enterprise deployments.
-- AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google AI Overviews) treat invalid or incomplete schema differently than Google's indexer. Automated validation should cover both search-engine and AI-crawler requirements. The Ollagraph Schema Validator API returns per-field error locations, schema.org conformance scores, and AI-readiness signals in a single response, making it suitable for both pre-deployment checks and post-deployment monitoring.
+- AI crawlers (GPTBot, ClaudeBot, PerplexityBot, and Google AI Overviews) treat invalid or incomplete schema differently than Google's indexer (learn which [structured data signals matter most for AI Overviews](/blog/structured-data-for-ai-overviews-which-schema-signals-matter-most/)). Automated validation should cover both search-engine and AI-crawler requirements. The Ollagraph Schema Validator API returns per-field error locations, schema.org conformance scores, and AI-readiness signals in a single response, making it suitable for both pre-deployment checks and post-deployment monitoring.
 
 ---
 

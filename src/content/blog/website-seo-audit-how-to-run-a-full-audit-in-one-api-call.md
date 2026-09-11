@@ -27,7 +27,7 @@ A full website SEO audit traditionally requires stitching together a crawler, a 
 
 You manage a website — maybe one site, maybe fifty. Every quarter someone asks: "Are we good on SEO?" And every quarter you run the same ritual. Fire up Screaming Frog, let it crawl for 45 minutes. Export the CSV. Cross-reference with Ahrefs for backlinks. Open a second tab for schema validation. Copy-paste URLs into a readability checker. Manually trace redirect chains with `curl -I`. Half a day gone.
 
-The pain is worse at scale. An agency with 200 client sites can't spend 4 hours per site per month. An ecommerce team with 50,000 product pages can't crawl everything weekly with a desktop tool. A CI/CD pipeline that deploys hourly can't wait for a manual audit cycle.
+The pain is worse at scale. An agency with 200 client sites can't spend 4 hours per site per month. An ecommerce team with 50,000 product pages can't crawl everything weekly with a desktop tool. A CI/CD pipeline that deploys hourly can't wait for a manual audit cycle (compare economics in our benchmark of [SEO audit API vs manual audits](/blog/seo-audit-api-vs-manual-seo-audits-cost-speed-and-accuracy/)).
 
 The real problem isn't the work — it's the fragmentation. Each tool has its own authentication, rate limits, output format, and billing model. You end up building integration glue more complex than the audit logic. And the glue breaks every time a tool updates its API.
 
