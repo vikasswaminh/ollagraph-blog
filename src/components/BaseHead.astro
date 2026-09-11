@@ -46,8 +46,9 @@ const imageMimeType = ogImage.endsWith('.webp')
     ? 'image/jpeg'
     : 'image/png';
 
-// Determine final title without duplicate branding
-const brandSuffix = ` · ${SITE.brand} Blog`;
+// Determine final title without duplicate branding (< 60 characters guaranteed)
+const brandFullSuffix = ` · ${SITE.brand} Blog`;
+const brandShortSuffix = ` · ${SITE.brand}`;
 let rawTitle = (metaTitle || title || SITE.title).trim();
 
 // Strip any existing trailing brand references to prevent duplicate branding
@@ -56,12 +57,24 @@ rawTitle = rawTitle
   .replace(/\s*[·|—\-]\s*OllaGraph$/i, '')
   .trim();
 
-const fullTitle = rawTitle === SITE.title || rawTitle === `${SITE.brand} Blog` || rawTitle === SITE.brand
-  ? SITE.title
-  : `${rawTitle}${brandSuffix}`;
+let fullTitle = '';
+if (rawTitle === SITE.title || rawTitle === `${SITE.brand} Blog` || rawTitle === SITE.brand) {
+  fullTitle = SITE.title.length < 60 ? SITE.title : SITE.title.slice(0, 54).replace(/\s+\S*$/, '') + '...';
+} else if (rawTitle.length + brandFullSuffix.length <= 55) {
+  fullTitle = `${rawTitle}${brandFullSuffix}`;
+} else if (rawTitle.length + brandShortSuffix.length <= 55) {
+  fullTitle = `${rawTitle}${brandShortSuffix}`;
+} else if (rawTitle.length <= 55) {
+  fullTitle = rawTitle;
+} else {
+  fullTitle = rawTitle.slice(0, 52).replace(/\s+\S*$/, '') + '...';
+}
 
-// Determine final description
-const activeDescription = metaDescription || description;
+// Determine final description (< 160 characters guaranteed)
+let activeDescription = (metaDescription || description || SITE.description).trim();
+if (activeDescription.length >= 160) {
+  activeDescription = activeDescription.slice(0, 156).replace(/\s+\S*$/, '') + '...';
+}
 
 // Global Structured Data
 const siteSchema = {

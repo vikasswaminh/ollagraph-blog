@@ -1,8 +1,8 @@
 ---
 title: 'Data Privacy Audit for AI: What GDPR/CCPA Mean for Web Scraping Pipelines'
-description: 'Scraping public web data for AI and RAG does not bypass GDPR or CCPA. Learn how to audit pipelines, scrub PII, enforce provenance, and build compliant scrapers.'
+description: 'Scraping web data for AI and RAG does not bypass GDPR or CCPA. Learn how to audit pipelines, scrub PII, enforce provenance, and build compliant scrapers.'
 metaTitle: 'Data Privacy Audit for AI: GDPR & CCPA Scraping'
-metaDescription: 'Scraping public web data for AI and RAG does not bypass GDPR or CCPA. Learn how to audit pipelines, scrub PII, enforce provenance, and build compliant scrapers.'
+metaDescription: 'Scraping web data for AI and RAG does not bypass GDPR or CCPA. Learn how to audit pipelines, scrub PII, enforce provenance, and build compliant scrapers.'
 primaryKeyword: 'data privacy audit for AI web scraping'
 secondaryKeywords: 'GDPR web scraping AI, CCPA web scraping pipeline, AI scraping privacy compliance, PII scrubbing for RAG, lawful basis web scraping AI'
 pubDate: 2026-09-08
