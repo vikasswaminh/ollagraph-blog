@@ -1,7 +1,7 @@
 ---
-title: 'SEO Audit for JavaScript Sites: What Crawlers Miss'
+title: 'SEO Audit for JavaScript-Heavy Sites: Blindspots'
 description: 'SEO audit for JavaScript-heavy sites reveals why static crawlers miss hydrated DOM content, dynamic links, and schema. Learn how to audit modern web apps.'
-metaTitle: 'SEO Audit for JavaScript Sites: What Crawlers Miss'
+metaTitle: 'SEO Audit for JavaScript-Heavy Sites: Blindspots'
 metaDescription: 'SEO audit for JavaScript-heavy sites reveals why static crawlers miss hydrated DOM content, dynamic links, and schema. Learn how to audit modern web apps.'
 primaryKeyword: 'SEO audit for JavaScript-heavy sites'
 secondaryKeywords: 'what static crawlers miss, JavaScript rendering SEO audit, headless rendering vs static HTML, DOM hydration SEO, client-side rendering audit Ollagraph'
